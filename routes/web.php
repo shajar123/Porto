@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use \App\Http\Controllers\FrontendController;
 
 /*
@@ -14,5 +16,7 @@ use \App\Http\Controllers\FrontendController;
 |
 */
 
+
+Route::get('/admin/dashboard',[DashboardController::class,'index']);
 Route::get('/', [FrontendController::class, 'dashboard']);
 
