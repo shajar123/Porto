@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use \App\Http\Controllers\FrontendController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,5 @@ Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout
 
 
 
+Route::get('/login', [FrontendController::class, 'getLogin']);
+Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
