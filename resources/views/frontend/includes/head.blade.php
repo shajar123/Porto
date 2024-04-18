@@ -34,4 +34,5 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{asset('/frontend/css/demo4.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/frontend/vendor/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/libs/growl/jquery.growl.css')}}">
 </head>
