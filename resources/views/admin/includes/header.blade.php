@@ -3,18 +3,18 @@
         <div class="navbar-brand-box text-center">
             <a href="index.html" class="logo logo-light">
                 <span class="logo-sm">
-                    <img src="admin_assets/images/logo-sm.png" alt="" height="22">
+                    <img src="{{asset('admin_assets/images/logo-sm.png')}} " alt="" height="22">
                 </span>
                 <span class="logo-lg">
-                    <img src="admin_assets/images/logo.png" alt="" height="20">
+                    <img src="{{asset('admin_assets/images/logo.png')}}" alt="" height="20">
                 </span>
             </a>
             <a href="index.html" class="logo logo-dark">
                 <span class="logo-sm">
-                    <img src="admin_assets/images/logo-sm.png" alt="" height="22">
+                    <img src="{{asset('admin_assets/images/logo-sm.png')}}" alt="" height="22">
                 </span>
                 <span class="logo-lg">
-                    <img src="admin_assets/images/logo_dark.png" alt="" height="20">
+                    <img src="{{asset('admin_assets/images/logo_dark.png')}}" alt="" height="20">
                 </span>
             </a>
         </div>
@@ -38,38 +38,38 @@
                 <div class="dropdown d-none d-md-block">
                     <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <img class="flag-img me-2" src="admin_assets/images/flags/us_flag.jpg" alt="Header Language"
+                        <img class="flag-img me-2" src="{{asset('admin_assets/images/flags/us_flag.jpg')}}" alt="Header Language"
                             height="16"> English <i class="mdi mdi-chevron-down"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="admin_assets/images/flags/germany_flag.jpg" alt="user-image" height="12"> <span
+                            <img src="{{asset('admin_assets/images/flags/germany_flag.jpg')}}" alt="user-image" height="12"> <span
                                 class="align-middle"> German </span>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="admin_assets/images/flags/italy_flag.jpg" alt="user-image" height="12"> <span
+                            <img src="{{asset('admin_assets/images/flags/italy_flag.jpg')}}" alt="user-image" height="12"> <span
                                 class="align-middle"> Italian </span>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="admin_assets/images/flags/french_flag.jpg" alt="user-image" height="12"> <span
+                            <img src="{{asset('admin_assets/images/flags/french_flag.jpg')}}" alt="user-image" height="12"> <span
                                 class="align-middle"> French </span>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="admin_assets/images/flags/spain_flag.jpg" alt="user-image" height="12"> <span
+                            <img src="{{asset('admin_assets/images/flags/spain_flag.jpg')}}" alt="user-image" height="12"> <span
                                 class="align-middle"> Spanish </span>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="admin_assets/images/flags/russia_flag.jpg" alt="user-image" height="12"> <span
+                            <img src="{{asset('admin_assets/images/flags/russia_flag.jpg')}}" alt="user-image" height="12"> <span
                                 class="align-middle"> Russian </span>
                         </a>
 
@@ -198,7 +198,7 @@
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle header-profile-user me-2"
-                            src="admin_assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                            src="{{asset('admin_assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
                         <span class="d-none d-md-inline-block ms-1">Donald T. <i
                                 class="mdi mdi-chevron-down"></i> </span>
                     </button>
