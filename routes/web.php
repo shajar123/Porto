@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Route::get('/admin/dashboard',[DashboardController::class,'index']);
+
 Route::get('/', [FrontendController::class, 'dashboard'])->name('dashboard');
 Route::get('/blogs', [FrontendController::class, 'blogs'])->name('blogs');
 Route::get('/blog-details', [FrontendController::class, 'blog_details'])->name('blog.details');
@@ -35,15 +35,24 @@ Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist
 Route::get('/shopping-cart', [FrontendController::class, 'shopping_cart'])->name('shopping.cart');
 Route::get('/about-us', [FrontendController::class, 'about_us'])->name('about.us');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
+Route::get('/login', [FrontendController::class, 'getLogin'])->name('login');
 
 
 
 
 
 
+Route::middleware('auth')->group(function () {
 
 
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
 
+        Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
+
+    });
+
+});
 
 Route::get('/login', [FrontendController::class, 'getLogin']);
 Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');

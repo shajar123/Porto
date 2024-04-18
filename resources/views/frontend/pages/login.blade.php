@@ -34,6 +34,7 @@
                         </div>
 
                         <form id="addRegisterForm">
+                            @csrf
                             <label for="login-email">
                                 Username or email address
                                 <span class="required">*</span>
@@ -57,7 +58,7 @@
                                     class="forget-password text-dark form-footer-right">Forgot
                                     Password?</a>
                             </div>
-                            <button type="submit" class="btn btn-dark btn-md w-100">
+                            <button type="submit submitBtn2" class="btn btn-dark btn-md w-100">
                                 LOGIN
                             </button>
                         </form>
@@ -96,6 +97,7 @@
 
 
 @endsection
+@section('custom-scripts')
 <script>
            $('#addRegisterForm').on("submit", function(e) {
             e.preventDefault()
@@ -114,13 +116,13 @@
                 mimeType: 'multipart/form-data',
 
                 success: function(res) {
+
                     if (res.Error == false) {
-                        $.growl.notice({
-                            message: res.Message
-                        });
-                        $('#addregister').modal('hide');
+
+                        $.growl.notice({message: res.Message});
+
                         setTimeout(function() {
-                            window.location.reload();
+                            window.location.href = '{{ route('admin.dashboard') }}';
                         }, 1000);
                     } else {
                         $.growl.error({
@@ -156,3 +158,4 @@
             });
         });
 </script>
+@endsection

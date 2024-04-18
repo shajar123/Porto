@@ -247,6 +247,7 @@
 
     <!-- Plugins JS File -->
    @include('frontend.includes.scripts')
+   @yield('custom-scripts')
 </body>
 
 

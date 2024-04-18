@@ -36,7 +36,6 @@ class FrontendController extends Controller
     public function checkout(){
         return view('frontend.elements.checkout');
     }
-
     public function getLogin(){
         return view('frontend.pages.login');
 
