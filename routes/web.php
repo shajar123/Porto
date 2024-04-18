@@ -4,6 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\FrontendController;
+use \App\Http\Controllers\BlogController;
+use \App\Http\Controllers\ContactController;
+
+
+use \App\Http\Controllers\AdminController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -21,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [FrontendController::class, 'dashboard'])->name('dashboard');
 Route::get('/blogs', [FrontendController::class, 'blogs'])->name('blogs');
+Route::get('/blog-details', [FrontendController::class, 'blog_details'])->name('blog.details');
 Route::get('/contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 Route::get('/Category', [FrontendController::class, 'category'])->name('category');
 Route::get('/products', [FrontendController::class, 'products'])->name('products');
@@ -46,4 +53,25 @@ Route::middleware('auth')->group(function () {
     });
 
 });
+
+Route::get('/login', [FrontendController::class, 'getLogin']);
+Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
+
+
+
+                    //   ADMIN ROUTES
+
+
+ Route::get('/admin-blogs', [AdminController::class, 'admin_blogs']);
+ Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.store');
+
+
+
+ Route::get('/admin-contact', [AdminController::class, 'admin_contact']);
+ Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
+
+
+
+
+
 

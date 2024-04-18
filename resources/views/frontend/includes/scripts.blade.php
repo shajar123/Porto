@@ -6,6 +6,7 @@
 <script src="{{asset('/frontend/js/plugins.min.js')}}"></script>
 <script src="{{asset('/frontend/js/jquery.appear.min.js')}}"></script>
 
+
 <!-- Main JS File -->
 <script src="{{asset('/frontend/js/main.min.js')}}"></script>
 <script src="{{asset('frontend/libs/growl/jquery.growl.js')}}"></script>
