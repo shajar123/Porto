@@ -33,7 +33,13 @@
                 <li>
                     <a href="calendar.html" class="waves-effect">
                         <i class="dripicons-calendar"></i>
-                        <span>Calendar</span>
+                        <span>Blogs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html" class="waves-effect">
+                        <i class="dripicons-calendar"></i>
+                        <span>Contact</span>
                     </a>
                 </li>
 
