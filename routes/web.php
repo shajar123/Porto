@@ -19,7 +19,24 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/admin/dashboard',[DashboardController::class,'index']);
-Route::get('/', [FrontendController::class, 'dashboard']);
+Route::get('/', [FrontendController::class, 'dashboard'])->name('dashboard');
+Route::get('/blogs', [FrontendController::class, 'blogs'])->name('blogs');
+Route::get('/contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
+Route::get('/Category', [FrontendController::class, 'category'])->name('category');
+Route::get('/products', [FrontendController::class, 'products'])->name('products');
+Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
+Route::get('/shopping-cart', [FrontendController::class, 'shopping_cart'])->name('shopping.cart');
+Route::get('/about-us', [FrontendController::class, 'about_us'])->name('about.us');
+Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
+
+
+
+
+
+
+
+
+
 
 Route::get('/login', [FrontendController::class, 'getLogin']);
 Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
