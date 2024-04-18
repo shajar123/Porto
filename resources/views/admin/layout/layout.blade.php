@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+    
 
 
 <!-- Mirrored from themesbrand.com/foxia/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 May 2023 18:20:42 GMT -->
@@ -53,6 +54,7 @@
 
 
     @include('admin.includes.script')
+    @yield('custom-scripts')
 
 
 
