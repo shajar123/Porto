@@ -61,36 +61,40 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">ADD CONTACT</h4>
-                            <form id="contact-us">
+                            <h4 class="card-title mb-4">ADD BLOGS</h4>
+                            <form id="blog-create">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div>
                                             <div class="mb-4">
-                                                <label class="form-label"  for="input-date1">ADDRESS</label>
-                                                <input id="input-date1" name="address" class="form-control input-mask"
-                                                    data-inputmask="'alias': 'datetime'"
-                                                    data-inputmask-inputformat="dd/mm/yyyy">
-                                            </div>
-                                            <div class="mb-4">
-                                                <label class="form-label"  for="input-date1">E-MAIL</label>
-                                                <input id="input-date1" name="email" class="form-control input-mask"
+                                                <label class="form-label"  for="input-date1">TITLE</label>
+                                                <input id="input-date1" name="title" class="form-control input-mask"
                                                     data-inputmask="'alias': 'datetime'"
                                                     data-inputmask-inputformat="dd/mm/yyyy">
                                             </div>
 
 
 
-
+                                            <div class="col-4 mb-4">
+                                                IMAGE:
+                                                <br>
+                                                <div class="w-100 h-100 d-flex align-items-center">
+                                                    <img onclick="$(this).next().click()" id="previewBlogImg" style="height: 100px;
+                                                        width: 200px;
+                                                        object-fit: cover;" src="https://via.placeholder.com/1000x1000" alt="">
+                                                    <input onchange="showSelectedImage($(this),'previewBlogImg')" type="file"
+                                                           class="d-none" name="image">
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-4">
-                                                <label class="form-label"  for="input-repeat">PHONE NO</label>
-                                                <input id="input-repeat" name="phone" class="form-control input-mask"
+                                                <label class="form-label"  for="input-repeat">DESCRIPTION</label>
+                                                <input id="input-repeat" name="description" class="form-control input-mask"
                                                     data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
                                             </div>
 
@@ -129,32 +133,34 @@
     <!-- END layout-wrapper -->
 
     <!-- Right Sidebar -->
-
-
     @section('custom-scripts')
-
     <script>
-    $(document).ready(function() {
-   $('#contact-us').submit(function(event) {
-       event.preventDefault();
-       $.ajax({
-           type: 'POST',
-           url: 'admin-create',
-           data: $(this).serialize(),
-           success: function(response) {
-           Swal.fire("Contact has been Saved successfully", "", "success");
+         $(document).ready(function() {
+        $('#blog-create').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData($(this)[0]);
 
-               $('#contact-us')[0].reset();
-           },
-           error: function(xhr, status, error) {
-               console.error(xhr.responseText);
-           }
-       });
-   });
-});
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("blogs.setting.create") }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    swal.fire('Data stored successfully!');
+                    $('#dataForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+    </script>
+    @endsection
 
-</script>
-@endsection
+
+
 
 
 

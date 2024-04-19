@@ -13,3 +13,20 @@
     <script src="{{asset('admin_assets/js/pages/dashboard.init.js')}}"></script>
 
     <script src="{{asset('admin_assets/js/app.js')}}"></script>
+    <script>
+         function showSelectedImage(selectInput, imgTagId) {
+        console.log(imgTagId);
+        var file = selectInput[0].files[0];
+        console.log(file);
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#' + imgTagId).attr("src", e.target.result);
+        }
+
+        reader.readAsDataURL(file);
+
+    }
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    </script>
