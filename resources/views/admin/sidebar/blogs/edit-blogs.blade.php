@@ -77,14 +77,23 @@
                                             <td>{{ $blog->id }}</td>
                                             <td>{{ $blog->title }}</td>
                                             <td>{{ $blog->description }}</td>
-                                            <td>{{ $blog->image }}</td>
-                                            <td>
+
+                                                <td>
+                                                    <img style="height: 50px; width: 50px; object-fit: cover;"   src="{{!empty($blog->image) ? asset($blog->image) : 'https://via.placeholder.com/1000x1000'}}" alt="">
+
+                                                </td>
+                                                <td>
                                                 <button
                                                     onclick="setEditValues('{{ $blog->title }}','{{ $blog->description }}','{{ asset($blog->image) }}','{{ $blog->id }}')"
                                                     type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#exampleModal" data-whatever="@getbootstrap"><i
                                                         class="fas fa-edit"></i>
                                                 </button>
+                                                <a onclick="setDeleteValues('{{ $blog->id }}')"
+                                                    class="btn btn-primary">DELETE</a>
+
+                                            </td>
+
 
                                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -140,9 +149,7 @@
                                                     </div>
                                                 </div>
 
-                                                <a onclick="setDeleteValues('{{ $blog->id }}')"
-                                                    class="btn btn-primary">DELETE</a>
-                                            </td>
+
                                         </tr>
                                     @endforeach
 
@@ -161,6 +168,10 @@
 
         </div> <!-- container-fluid -->
     </div>
+
+
+    @endsection
+
 @section('custom-scripts')
     <script>
   $(document).ready(function() {
@@ -196,7 +207,7 @@
 function setEditValues(title, description, image, id) {
             $('#title-id').val(title);
             $('#description-id').val(description);
-            $('#image-id').val(image);
+            $('#image-id').attr('src',image);
             $('#blog-id').val(id);
 
         }
@@ -244,4 +255,3 @@ function setEditValues(title, description, image, id) {
 @endsection
 
 
-@endsection

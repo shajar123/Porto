@@ -29,31 +29,20 @@
                             <form id="blog-create">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-6">
 
-                                            <div class="mb-4">
+
+                                            <div class="col-6">
                                                 <label class="form-label"  for="input-date1">TITLE</label>
-                                                <input id="input-date1" name="title" class="form-control input-mask"
-                                                    data-inputmask="'alias': 'datetime'"
-                                                    data-inputmask-inputformat="dd/mm/yyyy">
+                                                <input id="input-date1" name="title" class="form-control input-mask">
+
                                             </div>
 
 
 
-                                            <div class="col-4 mb-4">
-                                                IMAGE:
-                                                <br>
-                                                <div class="w-100 h-100 d-flex align-items-center">
-                                                    <img onclick="$(this).next().click()" id="previewBlogImg" style="height: 100px;
-                                                        width: 200px;
-                                                        object-fit: cover;" src="https://via.placeholder.com/1000x1000" alt="">
-                                                    <input onchange="showSelectedImage($(this),'previewBlogImg')" type="file"
-                                                           class="d-none" name="image">
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                    </div>
+
+
+
                                     <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-4">
@@ -65,6 +54,17 @@
                                         </div>
 
                                     </div>
+                                    <div class="col-12 mb-4">
+                                        IMAGE:
+                                        <br>
+                                        <div class="w-100 h-100 d-flex align-items-center">
+                                            <img onclick="$(this).next().click()" id="previewBlogImg" style="height: 100px;
+                                                width: 400px;
+                                                object-fit: cover;" src="https://via.placeholder.com/1000x1000" alt="">
+                                            <input onchange="showSelectedImage($(this),'previewBlogImg')" type="file"
+                                                   class="d-none" name="image">
+                                        </div>
+                                    </div>
 
                                 </div>
 
@@ -72,7 +72,9 @@
                         </div>
 
                     </div>
+
                     <button type="submit" class="btn btn-primary w-100">SAVE</button>
+                </div>
                     </form>
                 </div>
             </div>
@@ -83,9 +85,9 @@
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+    @endsection
 
 
-    <div class="rightbar-overlay"></div>
 
     <!-- end main content-->
 
