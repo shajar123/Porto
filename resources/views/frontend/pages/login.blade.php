@@ -122,7 +122,13 @@
                         $.growl.notice({message: res.Message});
 
                         setTimeout(function() {
-                            window.location.href = '{{ route('admin.dashboard') }}';
+                            if (res.user_type==0) {
+                                window.location.href = '{{ route('admin.dashboard') }}';
+                            }else{
+                                window.location.href = '{{ route('dashboard') }}';
+
+                            }
+
                         }, 1000);
                     } else {
                         $.growl.error({

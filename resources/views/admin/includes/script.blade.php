@@ -13,3 +13,4 @@
     <script src="{{asset('admin_assets/js/pages/dashboard.init.js')}}"></script>
 
     <script src="{{asset('admin_assets/js/app.js')}}"></script>
+    <script src="{{asset('admin_assets/libs/growl/jquery.growl.js')}}"></script>
