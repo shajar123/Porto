@@ -44,7 +44,7 @@
 								<i class="sicon-location-pin"></i>
 								<div class="feature-box-content">
 									<h3>Address</h3>
-									<h5>123 Wall Street, New York / NY</h5>
+									<h5>{{ $contacts->address }}</h5>
 								</div>
 							</div>
 						</div>
@@ -53,7 +53,7 @@
 								<i class="fa fa-mobile-alt"></i>
 								<div class="feature-box-content">
 									<h3>Phone Number</h3>
-									<h5>(800) 123-4567</h5>
+									<h5>{{ $contacts->phone }}</h5>
 								</div>
 							</div>
 						</div>
@@ -62,7 +62,7 @@
 								<i class="far fa-envelope"></i>
 								<div class="feature-box-content">
 									<h3>E-mail Address</h3>
-									<h5><a href="https://portotheme.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb9b84999f84ab9b84999f849f838e868ec5888486">[email&#160;protected]</a></h5>
+									<h5>{{ $contacts->email }}</h5>
 								</div>
 							</div>
 						</div>

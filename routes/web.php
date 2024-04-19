@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [FrontendController::class, 'dashboard'])->name('dashboard');
 Route::get('/blogs', [FrontendController::class, 'blogs'])->name('blogs');
-Route::get('/blog-details', [FrontendController::class, 'blog_details'])->name('blog.details');
+Route::get('/blog-details/{id}', [FrontendController::class, 'blog_details'])->name('blog.details');
 Route::get('/contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 Route::get('/Category', [FrontendController::class, 'category'])->name('category');
 Route::get('/products', [FrontendController::class, 'products'])->name('products');
@@ -62,12 +62,22 @@ Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.reg
                     //   ADMIN ROUTES
 
 
- Route::get('/admin-blogs', [AdminController::class, 'admin_blogs']);
- Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.store');
+ Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
+ Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
+
+
+ Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.setting.create');
+
+ Route::post('/edit', [BlogController::class, 'blog_edit_create'])->name('edit.blogs');
+
+
+ Route::post('/delete', [BlogController::class, 'blog_delete'])->name('blog.delete');
 
 
 
- Route::get('/admin-contact', [AdminController::class, 'admin_contact']);
+
+
+ Route::get('/admin-contact', [AdminController::class, 'admin_contact'])->name('admin.contacts');
  Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
 
 

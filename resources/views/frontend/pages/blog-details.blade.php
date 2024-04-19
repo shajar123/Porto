@@ -16,7 +16,7 @@
 					<div class="col-lg-9">
 						<article class="post single">
 							<div class="post-media">
-								<img src="{{asset('frontend/images/blog/post-1.jpg')}}" alt="Post">
+								<img src="{{asset($blogs->image)}}" alt="Post">
 							</div><!-- End .post-media -->
 
 							<div class="post-body">
@@ -25,21 +25,14 @@
 									<span class="month">Jun</span>
 								</div><!-- End .post-date -->
 
-								<h2 class="post-title">Top New Collection</h2>
+								<h2 class="post-title">{{ $blogs->title }}</h2>
 
 								<div class="post-meta">
 									<a href="#" class="hash-scroll">0 Comments</a>
 								</div><!-- End .post-meta -->
 
 								<div class="post-content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi.
-										Etiam non tellus sem. Aenean pretium convallis lorem, sit amet dapibus ante
-										mollis a. Integer bibendum interdum sem, eget volutpat purus pulvinar in. Sed
-										tristique augue vitae sagittis porta. Phasellus ullamcorper, dolor suscipit
-										mattis viverra, sapien elit condimentum odio, ut imperdiet nisi risus sit amet
-										ante. Sed sem lorem, laoreet et facilisis quis, tincidunt non lorem. Etiam
-										tempus, dolor in sollicitudin faucibus, sem massa accumsan erat.
-									</p>
+									<p>{{ $blogs->description }}
 
 									<h3>“ Many
 										desktop publishing packages and web page editors now use Lorem Ipsum as their

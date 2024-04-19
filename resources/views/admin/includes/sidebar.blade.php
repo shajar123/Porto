@@ -21,23 +21,18 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="dripicons-message"></i>
-                        <span> Email </span>
+                        <span> BLOGS </span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Inbox</a></li>
-                        <li><a href="email-read.html">Email Read</a></li>
+                        <li><a href="{{ route('admin.blogs') }}">ADD BLOGS</a></li>
+                        <li><a href="{{ route('blogs.edit.page') }}">EDIT BLOGS</a></li>
                         <li><a href="email-compose.html">Email Compose</a></li>
                     </ul>
                 </li>
 
+
                 <li>
-                    <a href="calendar.html" class="waves-effect">
-                        <i class="dripicons-calendar"></i>
-                        <span>Blogs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar.html" class="waves-effect">
+                    <a href="{{ route('admin.contacts') }}" class="waves-effect">
                         <i class="dripicons-calendar"></i>
                         <span>Contact</span>
                     </a>
