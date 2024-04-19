@@ -1,27 +1,5 @@
-<!-- Mirrored from themesbrand.com/foxia/layouts/form-mask.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2023 18:46:05 GMT -->
-
-
 @extends('admin.layout.layout')
 @section('body')
-
-    <!-- Loader -->
-
-
-    <!-- Begin page -->
-
-
-
-    <!-- ========== Left Sidebar Start ========== -->
-
-    <!-- Left Sidebar End -->
-
-
-
-
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
 
     <div class="page-content">
         <div class="container-fluid">
@@ -68,13 +46,13 @@
                                     <div class="col-lg-6">
                                         <div>
                                             <div class="mb-4">
-                                                <label class="form-label"  for="input-date1">ADDRESS</label>
+                                                <label class="form-label" for="input-date1">ADDRESS</label>
                                                 <input id="input-date1" name="address" class="form-control input-mask"
                                                     data-inputmask="'alias': 'datetime'"
                                                     data-inputmask-inputformat="dd/mm/yyyy">
                                             </div>
                                             <div class="mb-4">
-                                                <label class="form-label"  for="input-date1">E-MAIL</label>
+                                                <label class="form-label" for="input-date1">E-MAIL</label>
                                                 <input id="input-date1" name="email" class="form-control input-mask"
                                                     data-inputmask="'alias': 'datetime'"
                                                     data-inputmask-inputformat="dd/mm/yyyy">
@@ -89,7 +67,7 @@
                                     <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-4">
-                                                <label class="form-label"  for="input-repeat">PHONE NO</label>
+                                                <label class="form-label" for="input-repeat">PHONE NO</label>
                                                 <input id="input-repeat" name="phone" class="form-control input-mask"
                                                     data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
                                             </div>
@@ -124,42 +102,39 @@
 
 
 
-    <!-- end main content-->
 
     <!-- END layout-wrapper -->
 
     <!-- Right Sidebar -->
 
 
-    @section('custom-scripts')
 
+@section('custom-scripts')
     <script>
-    $(document).ready(function() {
-   $('#contact-us').submit(function(event) {
-       event.preventDefault();
-       $.ajax({
-           type: 'POST',
-           url: 'admin-create',
-           data: $(this).serialize(),
-           success: function(response) {
-           Swal.fire("Contact has been Saved successfully", "", "success");
+        $(document).ready(function() {
+            $('#contact-us').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'admin-create',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        Swal.fire("Contact has been Saved successfully", "", "success");
 
-               $('#contact-us')[0].reset();
-           },
-           error: function(xhr, status, error) {
-               console.error(xhr.responseText);
-           }
-       });
-   });
-});
-
-</script>
+                        $('#contact-us')[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
 
 
 
-<!-- JAVASCRIPT -->
-@endsection
+
 
 
 

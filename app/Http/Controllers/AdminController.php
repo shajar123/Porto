@@ -17,4 +17,5 @@ class AdminController extends Controller
     public function admin_contact(){
         return view('admin.sidebar.contact');
     }
+    
 }

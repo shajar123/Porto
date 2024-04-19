@@ -9,7 +9,8 @@ use \App\Http\Controllers\ContactController;
 
 
 use \App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -35,7 +36,6 @@ Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist
 Route::get('/shopping-cart', [FrontendController::class, 'shopping_cart'])->name('shopping.cart');
 Route::get('/about-us', [FrontendController::class, 'about_us'])->name('about.us');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
-Route::get('/login', [FrontendController::class, 'getLogin'])->name('login');
 
 
 
@@ -48,14 +48,24 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
 
-        Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
+        Route::get('/blogs', [AdminController::class, 'admin_blogs']);
+        Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.store');
+
+
+
+        Route::get('/contact', [AdminController::class, 'admin_contact']);
+        Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
+        Route::get('/category', [CategoryController::class, 'getCategory'])->name('get.category');
+        Route::post('/category-add', [CategoryController::class, 'add'])->name('add.category');
 
     });
 
 });
 
-Route::get('/login', [FrontendController::class, 'getLogin']);
+Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
 Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
+
+
 
 
 

@@ -13,6 +13,8 @@
     <script src="{{asset('admin_assets/js/pages/dashboard.init.js')}}"></script>
 
     <script src="{{asset('admin_assets/js/app.js')}}"></script>
+    <script src="{{asset('admin_assets/libs/growl/jquery.growl.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
          function showSelectedImage(selectInput, imgTagId) {
         console.log(imgTagId);
@@ -27,6 +29,6 @@
         reader.readAsDataURL(file);
 
     }
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     </script>
