@@ -70,7 +70,7 @@ Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.reg
 
 
                     //   ADMIN ROUTES
-
+ Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
 
  Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
  Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
