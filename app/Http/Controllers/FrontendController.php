@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blogs;
+use App\Models\Contact;
+
 
 class FrontendController extends Controller
 {
@@ -10,13 +13,16 @@ class FrontendController extends Controller
         return view('frontend.includes.dashboard');
     }
     public function blogs(){
-        return view('frontend.pages.blog');
+        $blogs=Blogs::get();
+        return view('frontend.pages.blog',compact('blogs'));
     }
-    public function blog_details(){
-        return view('frontend.pages.blog-details');
+    public function blog_details($id){
+        $blogs=Blogs::findOrFail($id);
+        return view('frontend.pages.blog-details',compact('blogs'));
     }
     public function contact_us(){
-        return view('frontend.pages.contact-us');
+        $contacts=Contact::latest()->first();
+        return view('frontend.pages.contact-us',compact('contacts'));
     }
     public function category(){
         return view('frontend.pages.category');

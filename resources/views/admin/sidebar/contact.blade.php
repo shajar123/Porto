@@ -103,6 +103,11 @@
 
 
 
+    <!-- END layout-wrapper -->
+
+    <!-- Right Sidebar -->
+
+
 
 @section('custom-scripts')
     <script>
@@ -129,8 +134,7 @@
 
 
 
-<!-- JAVASCRIPT -->
-@endsection
+
 
 
 

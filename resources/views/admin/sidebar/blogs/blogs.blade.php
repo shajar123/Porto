@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Form Mask</li>
                         </ol>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">ADD BLOGS</h4>
-                            <form id="submitBtn">
+                            <form id="blog-create">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -39,12 +39,26 @@
                                             </div>
 
 
+
+                                            <div class="col-4 mb-4">
+                                                IMAGE:
+                                                <br>
+                                                <div class="w-100 h-100 d-flex align-items-center">
+                                                    <img onclick="$(this).next().click()" id="previewBlogImg" style="height: 100px;
+                                                        width: 200px;
+                                                        object-fit: cover;" src="https://via.placeholder.com/1000x1000" alt="">
+                                                    <input onchange="showSelectedImage($(this),'previewBlogImg')" type="file"
+                                                           class="d-none" name="image">
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mt-4 mt-lg-0">
                                             <div class="mb-4">
-                                                <label class="form-label" name="description" for="input-repeat">DESCRIPTION</label>
-                                                <input id="input-repeat" class="form-control input-mask"
+                                                <label class="form-label"  for="input-repeat">DESCRIPTION</label>
+                                                <input id="input-repeat" name="description" class="form-control input-mask"
                                                     data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
                                             </div>
 
@@ -68,37 +82,45 @@
 
         </div> <!-- container-fluid -->
     </div>
+    <!-- End Page-content -->
 
-@endsection
-    <!-- Right bar overlay-->
+
     <div class="rightbar-overlay"></div>
-@section('custom-scripts')
+
+    <!-- end main content-->
+
+    <!-- END layout-wrapper -->
+
+    <!-- Right Sidebar -->
+    @section('custom-scripts')
     <script>
-        $(document).ready(function() {
-            $('#submitBtn').click(function(e) {
-                e.preventDefault();
+         $(document).ready(function() {
+        $('#blog-create').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData($(this)[0]);
 
-                var formData = new FormData();
-                formData.append('name', $('#name').val());
-                formData.append('image', $('#image')[0].files[0]);
-
-                $.ajax({
-                    url: '{{ route('blogs.store') }}',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        alert(response.message);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("blogs.setting.create") }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    swal.fire('Data stored successfully!');
+                    $('#dataForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
             });
         });
+    });
     </script>
-@endsection
+    @endsection
+
+
+
+
 
 
 <!-- JAVASCRIPT -->
