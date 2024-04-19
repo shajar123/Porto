@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function getCategory(){
-        return view('admin.sidebar.category');
+        $categories= Category::get();
+        return view('admin.sidebar.category',compact('categories'));
     }
 
     public function add(Request $request){
@@ -21,8 +22,6 @@ class CategoryController extends Controller
         $create = Category::create([
 
             'title' => $request->title,
-            'sale_price' => $request->sale_price,
-            'price' => $request->price,
             'image' => saveFiles($request->image, 'category_images')
 
         ]);
@@ -32,5 +31,46 @@ class CategoryController extends Controller
             'Message' => 'Category added successfully'
         ]);
 
+    }
+    public function update(Request $request)
+    {
+        $validate = $request->validate([
+            'title' => ['required'],
+           
+
+
+        ]);
+        $data = [
+            'title' => $request->title,
+            
+        ];
+        if ($request->has('image')) {
+            $get_image = Category::where('id', $request->id)->first();
+            if (file_exists(public_path($get_image->image))) {
+                // Delete the file
+                unlink(public_path($get_image->image));
+            }
+            $data['image'] = saveFiles($request->image, 'category_images');
+        }
+        $update =Category::where('id', $request->id)->update($data);
+
+
+        return json_encode([
+            'Error' => false,
+            'Message' => 'Category updated successfully'
+        ]);
+    }
+    public function delete(Request $request){
+        $delete = Category::where('id', $request->id)->first();
+
+        if (file_exists(public_path($delete->image))) {
+            unlink(public_path($delete->image));
+        }
+
+        $delete->delete();
+        return json_encode([
+            'Error' => false,
+            'Message' => 'Category deleted successfully'
+        ]);
     }
 }

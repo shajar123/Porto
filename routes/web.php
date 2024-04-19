@@ -57,7 +57,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
         Route::get('/category', [CategoryController::class, 'getCategory'])->name('get.category');
         Route::post('/category-add', [CategoryController::class, 'add'])->name('add.category');
-
+        Route::post('/category-delete', [CategoryController::class, 'delete'])->name('delete.category');
+        Route::post('/category-update', [CategoryController::class, 'update'])->name('update.category');
     });
 
 });
