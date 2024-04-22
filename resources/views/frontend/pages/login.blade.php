@@ -122,10 +122,10 @@
                         $.growl.notice({message: res.Message});
 
                         setTimeout(function() {
-                            if (res.user_type==0) {
-                                window.location.href = '{{ route('admin.dashboard') }}';
-                            }else{
+                            if (res.user_type==1) {
                                 window.location.href = '{{ route('dashboard') }}';
+                            }else{
+                                $.growl.error({message: 'Email or Password is incorrect'});
 
                             }
 

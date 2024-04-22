@@ -21,9 +21,14 @@ class AuthController extends Controller
         if ($user) {
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                if ($user->user_type == 0) {
+                    $message = 'Admin logged in successfully.';
+                } else {
+                    $message = 'User Logged in successfully';
+                }
                 return json_encode([
                     'Error' => false,
-                    'Message' => 'Logged in successfully...',
+                    'Message' => $message,
                     'user_type' => $user->user_type
                 ]);
 
@@ -40,5 +45,11 @@ class AuthController extends Controller
             ]);
         }
     }
+
+
+
+
+
+
 
 }

@@ -31,16 +31,17 @@
                                 </div>
                                 <div class="p-3">
 
-                                    <form class="form-horizontal" action="https://themesbrand.com/foxia/layouts/index.html">
+                                    <form id="addRegisterForm">
+                                        @csrf
 
                                         <div class="mb-3">
                                             <label class="form-label" for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            <input type="text" id="username" name="email" class="form-control" placeholder="Enter username" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            <label  class="form-label" for="userpassword">Password</label>
+                                            <input type="password" name="password" id="userpassword" class="form-control" placeholder="Enter password" required>
                                         </div>
 
                                         <div class="row mt-4">
@@ -53,7 +54,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 text-end">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit submitBtn2">Log In</button>
                                             </div>
                                         </div>
 
@@ -68,10 +69,7 @@
 
                             </div>
                         </div>
-                        <div class="mt-5 text-center position-relative">
-                            <p class="text-white-50">Don't have an account ? <a href="pages-register.html" class="fw-bold text-white"> Signup Now </a> </p>
-                            <p class="text-white-50"> © <script>document.write(new Date().getFullYear())</script>  Foxia. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                        </div>
+
 
                     </div>
                 </div>
@@ -81,5 +79,74 @@
 
         <!-- JAVASCRIPT -->
         @include('admin.includes.script')
+
+        <script>
+             $('#addRegisterForm').on("submit", function(e) {
+            e.preventDefault()
+            var form = $('#addRegisterForm')[0];
+            var formdata = new FormData(form);
+            $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
+            $('.submitBtn2').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('add.register') }}',
+                dataType: 'json',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                cache: false,
+                mimeType: 'multipart/form-data',
+
+                success: function(res) {
+
+                    if (res.Error == false) {
+
+                        $.growl.notice({message: res.Message});
+
+                        setTimeout(function() {
+                            if (res.user_type==0) {
+                                window.location.href = '{{ route('admin.dashboard') }}';
+                            }
+                            else{
+                                $.growl.error({message: 'Email or Password is incorrect'});
+
+                            }
+
+                        }, 1000);
+                    } else {
+                        $.growl.error({
+                            message: res.Message
+                        });
+                    }
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                },
+                error: function(e) {
+
+                    var first_error = '';
+                    var count = 0;
+
+                    $.each(e.responseJSON.errors, function(index, item) {
+
+                        if (count == 0) {
+                            first_error = item[0];
+                        }
+
+                        count++;
+                    });
+                    $.growl.error({
+                        message: first_error
+                    });
+
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                }
+
+            });
+        });
+        </script>
+
 
 
