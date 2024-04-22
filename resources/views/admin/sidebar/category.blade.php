@@ -12,58 +12,54 @@
             text-align: end;
         }
     </style>
-
-    <div class="page-title-box ">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <h6 class="page-title">Form Mask</h6>
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="#">Foxia</a></li>
-                    <li class="breadcrumb-item"><a href="#">Form</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Form Mask</li>
-                </ol>
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="page-title-box ">
+                <h2> Category Page</h2>
             </div>
 
-        </div>
-    </div>
-    <div class="card ">
-        <div class="card-header d-flex justify-content-end">
+            <div class="card ">
+                <div class="card-header d-flex justify-content-end">
 
-            <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"
-                    href="javascript:void(0)">Add +</a></div>
-        </div>
-        <div class="card-body py-3">
-            <div class="table-responsive">
-                <table class="table table-bordered text-nowrap" id="example2">
-                    <thead>
-                        <tr>
-                            <th class="wd-15p border-bottom-0">Title</th>
-                            <th class="wd-15p border-bottom-0">Image</th>
-                            <th class="wd-20p border-bottom-0">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($categories as $category)
-                            <tr>
-                                <td>{{ $category->title ?? '' }}</td>
-                                <td><img src="{{ asset($category->image) }}"
-                                        style="height: 50px;width: 50px;object-fit: cover" alt=""></td>
-                                <td>
-                                    <button onclick="setValues('{{ $category->id }}','{{ $category->title }}','{{ asset($category->image) }}')"
-                                        data-toggle="modal" data-target="#editCategoryModal" type="button"
-                                        class="btn btn-success"><i class="fa fa-edit"></i></button>
-                                    <button onclick="deleteCategory('{{ $category->id }}',$(this))" type="button"
-                                        class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                </td>
+                    <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"
+                            href="javascript:void(0)">Add +</a></div>
+                </div>
+                <div class="card-body py-3">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-nowrap" id="example2">
+                            <thead>
+                                <tr>
+                                    <th class="wd-15p border-bottom-0">Title</th>
+                                    <th class="wd-15p border-bottom-0">Image</th>
+                                    <th class="wd-20p border-bottom-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td>{{ $category->title ?? '' }}</td>
+                                        <td><img src="{{ asset($category->image) }}"
+                                                style="height: 50px;width: 50px;object-fit: cover" alt=""></td>
+                                        <td>
+                                            <button
+                                                onclick="setValues('{{ $category->id }}','{{ $category->title }}','{{ asset($category->image) }}')"
+                                                data-toggle="modal" data-target="#editCategoryModal" type="button"
+                                                class="btn btn-success"><i class="fa fa-edit"></i></button>
+                                            <button onclick="deleteCategory('{{ $category->id }}',$(this))" type="button"
+                                                class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </td>
 
-                            </tr>
-                        @endforeach
+                                    </tr>
+                                @endforeach
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <!--/div-->
     <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -88,7 +84,7 @@
                             <label for=""><b>Image</b></label>
                             <br>
                             <img style="height: 100px;
-  width: 200px;object-fit: cover" id="categoryImagePreview"
+  width: 100px;object-fit: cover" id="categoryImagePreview"
                                 src="https://via.placeholder.com/1000x1000" onclick="$(this).next().click()" alt="">
                             <input hidden="" onchange="showSelectedImage($(this),'categoryImagePreview')"
                                 autocomplete="off" type="file" name="image" class="form-control">
@@ -108,7 +104,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -122,13 +118,12 @@
                             <input id="edit_title" type="text" name="title" class="form-control">
                         </div>
                         <div class="modal-body">
-                            <img id="categoryImgPreview"  onclick="$(this).next().click()"
-                            src=""
-                            style="height: 100px;width: 100px;object-fit: cover" alt="">
-                       <input value="" autocomplete="off" type="file" hidden="" name="image"
-                              onchange="showSelectedImage($(this),'categoryImgPreview')">
+                            <img id="categoryImgPreview" onclick="$(this).next().click()" src=""
+                                style="height: 100px;width: 100px;object-fit: cover" alt="">
+                            <input value="" autocomplete="off" type="file" hidden="" name="image"
+                                onchange="showSelectedImage($(this),'categoryImgPreview')">
                         </div>
-    
+
 
 
                     </div>
@@ -206,7 +201,7 @@
         function setValues(id, title, image) {
             $('#edit_category_id').val(id);
             $('#edit_title').val(title);
-            $('#categoryImgPreview').attr('src',image);
+            $('#categoryImgPreview').attr('src', image);
         }
 
         $('#editCategoryForm').on("submit", function(e) {

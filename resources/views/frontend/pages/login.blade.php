@@ -107,7 +107,7 @@
             $('.submitBtn2').prop('disabled', true);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('add.register') }}',
+                url: '{{ route('add.login') }}',
                 dataType: 'json',
                 data: formdata,
                 contentType: false,
