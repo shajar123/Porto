@@ -31,6 +31,17 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="dripicons-message"></i>
+                        <span> Variants </span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('get.colors') }}">Color</a></li>
+                        <li><a href="{{ route('get.size') }}">Size</a></li>
+
+                    </ul>
+                </li>
 
                 <li>
                     <a href="{{ route('admin.contacts') }}" class="waves-effect">
@@ -44,24 +55,6 @@
                         <span>Category</span>
                     </a>
                 </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

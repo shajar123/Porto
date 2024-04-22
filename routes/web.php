@@ -7,11 +7,10 @@ use \App\Http\Controllers\FrontendController;
 use \App\Http\Controllers\BlogController;
 use \App\Http\Controllers\ContactController;
 
-
 use \App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
-use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\SizeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,14 +58,22 @@ Route::middleware('auth')->group(function () {
         Route::post('/category-add', [CategoryController::class, 'add'])->name('add.category');
         Route::post('/category-delete', [CategoryController::class, 'delete'])->name('delete.category');
         Route::post('/category-update', [CategoryController::class, 'update'])->name('update.category');
+        Route::get('/colors', [ColorController::class, 'getColors'])->name('get.colors');
+        Route::post('/colors-add', [ColorController::class, 'add'])->name('add.color');
+        Route::post('/color-delete', [ColorController::class, 'delete'])->name('delete.color');
+        Route::post('/color-update', [ColorController::class, 'update'])->name('update.color');
+        Route::get('/size', [SizeController::class, 'getSize'])->name('get.size');
+        Route::post('/size-add', [SizeController::class, 'add'])->name('add.size');
+        Route::post('/size-delete', [SizeController::class, 'delete'])->name('delete.size');
+        Route::post('/size-update', [SizeController::class, 'update'])->name('update.size');
     });
 
 });
 
 Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
-Route::post('/register', [AuthController::class, 'attemptLogin'])->name('add.register');
+Route::post('/attempt-login', [AuthController::class, 'attemptLogin'])->name('add.login');
 
-
+Route::get('/register', [FrontendController::class, 'register'])->name('get.register');
 
 
 
