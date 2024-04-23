@@ -23,11 +23,25 @@ class AuthController extends Controller
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 if ($user->user_type == 0) {
                     $message = 'Admin logged in successfully.';
-                } else {
-                    $message = 'User Logged in successfully';
+                    return json_encode([
+                        'Error' => false,
+                        'Message' => $message,
+                        'user_type' => $user->user_type
+                    ]);
+                }
+
+
+                else {
+                    $message = 'Email 0r Password is incorrect';
+                    return json_encode([
+                        'Error' => true,
+                        'Message' => $message,
+                        'user_type' => $user->user_type
+                    ]);
+
                 }
                 return json_encode([
-                    'Error' => false,
+                    'Error' => true,
                     'Message' => $message,
                     'user_type' => $user->user_type
                 ]);
@@ -45,6 +59,62 @@ class AuthController extends Controller
             ]);
         }
     }
+
+
+
+
+
+    public function user_login(Request $request)
+    {
+        $request->validate([
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                if ($user->user_type == 1) {
+                    $message = 'logged in successfully.';
+                    return json_encode([
+                        'Error' => false,
+                        'Message' => $message,
+                        'user_type' => $user->user_type
+                    ]);
+                }
+
+
+                else {
+                    $message = 'Email 0r Password is incorrect';
+                    return json_encode([
+                        'Error' => true,
+                        'Message' => $message,
+                        'user_type' => $user->user_type
+                    ]);
+
+                }
+                return json_encode([
+                    'Error' => true,
+                    'Message' => $message,
+                    'user_type' => $user->user_type
+                ]);
+
+            } else {
+                return json_encode([
+                    'Error' => true,
+                    'Message' => 'Invalid Password'
+                ]);
+            }
+        } else {
+            return json_encode([
+                'Error' => true,
+                'Message' => 'email not found'
+            ]);
+        }
+    }
+
+
 
 
 

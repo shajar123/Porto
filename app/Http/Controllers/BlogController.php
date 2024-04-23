@@ -40,25 +40,15 @@ class BlogController extends Controller
 
     }
 
-    public function  blog_delete(Request $request){
-        $record = $request->input('id');
-
-        // Find the record
-        $record = Blogs::find($record);
-
-        // Check if the record exists
-        if (!$record) {
-            return response()->json(['error' => 'Record not found'], 404);
-        }
-
-        // Delete the record
-        $record->delete();
-        dd($record);
-
-        // Return success response
-        return response()->json(['message' => 'Record deleted successfully']);
+    
+    public function blog_delete(Request $request){
+        $delete = Blogs::where('id', $request->id)->delete();
 
 
+        return json_encode([
+            'Error' => false,
+            'Message' => 'Color deleted successfully'
+        ]);
     }
 
 

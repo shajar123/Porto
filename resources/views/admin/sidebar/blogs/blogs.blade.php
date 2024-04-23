@@ -95,34 +95,36 @@
 
     <!-- Right Sidebar -->
     @section('custom-scripts')
+
     <script>
-         $(document).ready(function() {
-        $('#blog-create').submit(function(event) {
-            event.preventDefault();
-            var formData = new FormData($(this)[0]);
+        $(document).ready(function() {
+            $('#blog-create').submit(function(event) {
+                event.preventDefault();
 
-            $.ajax({
-                type: 'POST',
-                url: '{{ route("blogs.setting.create") }}',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    swal.fire('Data stored successfully!');
-                    $('#dataForm')[0].reset();
-                    setTimeout(function() {
-                    window.location.reload();
-                }, 2000);
+                // Create FormData object
+                var formData = new FormData($(this)[0]);
 
-                },
-
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
+                $.ajax({
+                    type: 'POST',
+                    url: 'blogs-store',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire("Blogs has been Saved successfully", "", "success");
+                        $('#blog-create')[0].reset();
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
-    });
     </script>
+
     @endsection
 
 
