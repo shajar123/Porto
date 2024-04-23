@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::prefix('admin')->group(function () {
-        Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::get('/blogs', [AdminController::class, 'admin_blogs']);
         Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.store');
@@ -68,6 +68,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/size-add', [SizeController::class, 'add'])->name('add.size');
         Route::post('/size-delete', [SizeController::class, 'delete'])->name('delete.size');
         Route::post('/size-update', [SizeController::class, 'update'])->name('update.size');
+
+        Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
+
+        Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
+        Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
         Route::get('/admin-footer', [FooterController::class, 'admin_footer'])->name('admin.footer');
         Route::post('/footer', [FooterController::class, 'admin_footer_create'])->name('admin.footer.create');
 
@@ -86,24 +91,30 @@ Route::get('/register', [FrontendController::class, 'register'])->name('get.regi
  Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
  Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
  Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
+ 
+
+        Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.setting.create');
+
+        Route::post('/edit', [BlogController::class, 'blog_edit_create'])->name('edit.blogs');
 
 
- Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.setting.create');
+        Route::post('/delete', [BlogController::class, 'blog_delete'])->name('blog.delete');
+    });
+});
 
- Route::post('/edit', [BlogController::class, 'blog_edit_create'])->name('edit.blogs');
+Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
+Route::post('/attempt-login', [AuthController::class, 'attemptLogin'])->name('add.login');
 
+Route::get('/register', [FrontendController::class, 'register'])->name('get.register');
+Route::post('/attempt-register', [AuthController::class, 'createRegister'])->name('create.register');
+Route::post('register-select-country', [AuthController::class, 'selectCountry'])->name('register.select_country');
+Route::post('register-select-state', [AuthController::class, 'selectState'])->name('register.select_state');
 
- Route::post('/delete', [BlogController::class, 'blog_delete'])->name('blog.delete');
-
-
-
-
-
- Route::get('/admin-contact', [AdminController::class, 'admin_contact'])->name('admin.contacts');
- Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
-
-
+//   ADMIN ROUTES
 
 
 
 
+
+Route::get('/admin-contact', [AdminController::class, 'admin_contact'])->name('admin.contacts');
+Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
