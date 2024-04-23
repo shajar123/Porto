@@ -108,7 +108,7 @@
                                 window.location.href = '{{ route('admin.dashboard') }}';
                             }
                             else{
-                                $.growl.error({message: 'Email or Password is incorrect'});
+                                $.growl.notice({message: 'Admin Logged In Successfully'});
 
                             }
 

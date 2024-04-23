@@ -123,6 +123,9 @@
                         Swal.fire("Contact has been Saved successfully", "", "success");
 
                         $('#contact-us')[0].reset();
+                        setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);

@@ -98,7 +98,7 @@
 
 @endsection
 @section('custom-scripts')
-<script>
+{{-- <script>
            $('#addRegisterForm').on("submit", function(e) {
             e.preventDefault()
             var form = $('#addRegisterForm')[0];
@@ -117,21 +117,18 @@
 
                 success: function(res) {
 
-                    if (res.Error == false) {
+                    if (usertype == false) {
 
-                        $.growl.notice({message: res.Message});
+                        $.growl.error({message: res.Message});
 
                         setTimeout(function() {
                             if (res.user_type==1) {
                                 window.location.href = '{{ route('dashboard') }}';
-                            }else{
-                                $.growl.error({message: 'Email or Password is incorrect'});
-
                             }
 
                         }, 1000);
                     } else {
-                        $.growl.error({
+                        $.growl.notice({
                             message: res.Message
                         });
                     }
@@ -163,5 +160,69 @@
 
             });
         });
+</script> --}}
+<script>
+    $('#addRegisterForm').on("submit", function(e) {
+   e.preventDefault()
+   var form = $('#addRegisterForm')[0];
+   var formdata = new FormData(form);
+   $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
+   $('.submitBtn2').prop('disabled', true);
+   $.ajax({
+       type: 'POST',
+       url: '{{ route('user.login') }}',
+       dataType: 'json',
+       data: formdata,
+       contentType: false,
+       processData: false,
+       cache: false,
+       mimeType: 'multipart/form-data',
+
+       success: function(res) {
+
+           if (res.Error == false) {
+            $.growl.notice({
+                message: res.Message
+               });
+               setTimeout(function() {
+                   if (res.user_type==1) {
+                       window.location.href = '{{ route('dashboard') }}';
+                   }
+
+
+               }, 1000);
+           } else {
+               $.growl.error({
+                   message: res.Message
+               });
+           }
+           $('.submitBtn2').html('Save');
+           $('.submitBtn2').prop('disabled', false);
+
+       },
+       error: function(e) {
+
+           var first_error = '';
+           var count = 0;
+
+           $.each(e.responseJSON.errors, function(index, item) {
+
+               if (count == 0) {
+                   first_error = item[0];
+               }
+
+               count++;
+           });
+           $.growl.error({
+               message: first_error
+           });
+
+           $('.submitBtn2').html('Save');
+           $('.submitBtn2').prop('disabled', false);
+
+       }
+
+   });
+});
 </script>
 @endsection
