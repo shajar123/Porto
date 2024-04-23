@@ -52,8 +52,38 @@
                             </label>
                             <input type="password" class="form-input form-wide" id="register-password"
                                 required />
+                                <label for="register-password">
+                                    Country
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-control" aria-label="Default select example" >
+                                    @foreach ($country as $countries )
+                                    <option >{{ $countries->name }}</option>
+                                    @endforeach
+                                  </select>
 
-                               
+                                  <label for="register-password">
+                                    State
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-control" aria-label="Default select example" >
+                                    @foreach ($states as $state )
+                                    <option >{{ $state->name }}</option>
+                                    @endforeach
+                                  </select>
+
+
+                                  <label for="register-password">
+                                    City
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-control" aria-label="Default select example" >
+                                    @foreach ($city as $c )
+                                    <option >{{ $c->name }}</option>
+                                    @endforeach
+
+
+                                  </select>
 
                             <div class="form-footer mb-2">
                                 <button type="submit" class="btn btn-dark btn-md w-100 mr-0">

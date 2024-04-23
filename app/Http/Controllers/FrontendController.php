@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blogs;
+use App\Models\City;
 use App\Models\Contact;
-
+use App\Models\Country;
+use App\Models\State;
 
 class FrontendController extends Controller
 {
     public function dashboard(){
-        return view('frontend.includes.dashboard');
+        return view('frontend.pages.dashboard');
     }
     public function blogs(){
         $blogs=Blogs::get();
@@ -47,6 +49,10 @@ class FrontendController extends Controller
 
     }
     public function register(){
-        return view('frontend.pages.register');
+        $country=Country::get();
+        $states=State::get();
+        $city=City::get();
+
+        return view('frontend.pages.register',compact('country','states','city'));
     }
 }
