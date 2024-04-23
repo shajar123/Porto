@@ -192,6 +192,9 @@
             success: function(response) {
                 $('#exampleModal').modal('hide'); // Hide the modal
                 swal.fire('Data stored successfully');
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -236,6 +239,8 @@ function setEditValues(title, description, image, id) {
                             Swal.fire("Slider has been deleted successfully", "", "success");
 
                             $('#dataForm')[0].reset();
+
+
                         }
                         , error: function(xhr, status, error) {
                             var err = eval("(" + xhr.responseText + ")");

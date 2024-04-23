@@ -110,7 +110,12 @@
                 success: function(response) {
                     swal.fire('Data stored successfully!');
                     $('#dataForm')[0].reset();
+                    setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
+
                 },
+
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
                 }

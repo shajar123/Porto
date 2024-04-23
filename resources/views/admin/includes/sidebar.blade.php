@@ -10,7 +10,7 @@
 
 
                 <li>
-                    <a href="index.html" class="waves-effect">
+                    <a href="{{ route('admin.dashboard') }}" class="waves-effect">
                         <span class="badge rounded-pill bg-info float-end">2</span>
                         <i class="dripicons-meter"></i>
                         <span> Dashboard </span>
