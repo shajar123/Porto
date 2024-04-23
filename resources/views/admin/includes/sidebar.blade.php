@@ -27,7 +27,6 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.blogs') }}">ADD BLOGS</a></li>
                         <li><a href="{{ route('blogs.edit.page') }}">EDIT BLOGS</a></li>
-                        <li><a href="email-compose.html">Email Compose</a></li>
                     </ul>
                 </li>
 
@@ -53,6 +52,12 @@
                     <a href="{{ route('get.category') }}" class="waves-effect">
                         <i class="dripicons-calendar"></i>
                         <span>Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.footer') }}" class="waves-effect">
+                        <i class="dripicons-calendar"></i>
+                        <span>Add Footer</span>
                     </a>
                 </li>
 

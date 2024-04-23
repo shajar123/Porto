@@ -89,9 +89,8 @@
                                                     data-target="#exampleModal" data-whatever="@getbootstrap"><i
                                                         class="fas fa-edit"></i>
                                                 </button>
-                                                <a onclick="setDeleteValues('{{ $blog->id }}')"
-                                                    class="btn btn-primary">DELETE</a>
-
+                                                <a onclick="setDeleteValues('{{ $blog->id }}',$(this))"
+                                                    class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
 
 
@@ -180,7 +179,6 @@
 
         var formData = new FormData(this); // Create a FormData object from the form
 
-        // Manually append the id field to the FormData object
         formData.append('id', $('#blog-id').val());
 
         $.ajax({
@@ -191,7 +189,7 @@
             contentType: false,
             success: function(response) {
                 $('#exampleModal').modal('hide'); // Hide the modal
-                swal.fire('Data stored successfully');
+                swal.fire('Data stored successfully',"","success");
                 setTimeout(function() {
                     window.location.reload();
                 }, 1000);
@@ -215,42 +213,51 @@ function setEditValues(title, description, image, id) {
 
         }
 
-        function setDeleteValues(id) {
+
+
+        function setDeleteValues(id, element) {
             Swal.fire({
-                title: "Do you want to save the changes?"
-                , showDenyButton: true
-                , showCancelButton: true
-                , confirmButtonText: "Save"
-                , denyButtonText: `Don't save`
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('blog.delete') }}"
-                        , type: 'POST'
-                        , data: {
-                            _token: "{{ csrf_token() }}"
-                            , id: id
-
+                        type: 'POST',
+                        url: '{{ route('blog.delete') }}',
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
                         },
+                        dataType: 'json',
+                        success: function(res) {
+                            if (res.Error == false) {
+                                element.parent().parent().remove();
+                                $.growl.notice({
+                                    message: res.Message
+                                });
+                            }
+                        },
+                        error: function(e) {
+                            $.each(e.responseJSON.errors, function(index, item) {
 
+                                if (count == 0) {
+                                    first_error = item[0];
+                                }
 
-                        success: function(response) {
-                            Swal.fire("Slider has been deleted successfully", "", "success");
-
-                            $('#dataForm')[0].reset();
-
-
-                        }
-                        , error: function(xhr, status, error) {
-                            var err = eval("(" + xhr.responseText + ")");
+                                count++;
+                            });
+                            $.growl.error({
+                                message: first_error
+                            });
                         }
                     });
-
-                } else if (result.isDenied) {
-                    Swal.fire("Changes are not saved", "", "info");
                 }
-            });
+            })
         }
 
 
