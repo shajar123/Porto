@@ -21,7 +21,7 @@
             <div class="card ">
                 <div class="card-header d-flex justify-content-end">
 
-                    <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"
+                    <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductsModal"
                             href="javascript:void(0)">Add +</a></div>
                 </div>
                 <div class="card-body py-3">
@@ -30,6 +30,9 @@
                             <thead>
                                 <tr>
                                     <th class="wd-15p border-bottom-0">Title</th>
+                                    <th class="wd-15p border-bottom-0">Description</th>
+                                    <th class="wd-15p border-bottom-0">Price</th>
+                                    <th class="wd-15p border-bottom-0">Sale Price</th>
                                     <th class="wd-15p border-bottom-0">Image</th>
                                     <th class="wd-20p border-bottom-0">Action</th>
                                 </tr>
@@ -38,14 +41,17 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $product->title ?? '' }}</td>
+                                        <td>{{ $product->description ?? '' }}</td>
+                                        <td>{{ $product->price ?? ''}}</td>
+                                        <td>{{ $product->sale_price ?? '' }}</td>
                                         <td><img src="{{ asset($product->image) }}"
                                                 style="height: 50px;width: 50px;object-fit: cover" alt=""></td>
                                         <td>
                                             <button
                                                 onclick="setValues('{{ $product->id }}','{{ $product->title }}','{{ asset($product->image) }}')"
-                                                data-toggle="modal" data-target="#editCategoryModal" type="button"
+                                                data-toggle="modal" data-target="#editProductsModal" type="button"
                                                 class="btn btn-success"><i class="fa fa-edit"></i></button>
-                                            <button onclick="deleteCategory('{{ $product->id }}',$(this))" type="button"
+                                            <button onclick="deleteProducts('{{ $product->id }}',$(this))" type="button"
                                                 class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </td>
 
@@ -61,7 +67,7 @@
     </div>
 
     <!--/div-->
-    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel"
+    <div class="modal fade" id="addProductsModal" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -71,7 +77,7 @@
                         <span aria-bs-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="addCategoryForm">
+                <form id="addProductsForm">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -144,20 +150,28 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editProductsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Products</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editCategoryForm">
+                <form id="editProductsForm">
                     @csrf
-                    <input type="hidden" name="id" id="edit_category_id">
+                    <input type="hidden" name="id" id="edit_product_id">
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for=""><b>Title</b></label>
+                            <input id="edit_title" type="text" name="title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for=""><b>Categories</b></label>
+                            <input id="edit_category" type="text" name="category_id[]" class="form-control">
+                        </div>
                         <div class="form-group">
                             <label for=""><b>Title</b></label>
                             <input id="edit_title" type="text" name="title" class="form-control">
@@ -187,13 +201,16 @@
     new MultiSelectTag('categories')
     new MultiSelectTag('size')
     new MultiSelectTag('color')
+        $('#addProductsForm').on("submit", function(e) {
+    
     
 
 
 
         $('#addCategoryForm').on("submit", function(e) {
+
             e.preventDefault()
-            var form = $('#addCategoryForm')[0];
+            var form = $('#addProductsForm')[0];
             var formdata = new FormData(form);
             $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
             $('.submitBtn2').prop('disabled', true);
@@ -256,9 +273,9 @@
             $('#categoryImgPreview').attr('src', image);
         }
 
-        $('#editCategoryForm').on("submit", function(e) {
+        $('#editProductsForm').on("submit", function(e) {
             e.preventDefault()
-            var form = $('#editCategoryForm')[0];
+            var form = $('#editProductsForm')[0];
             var formdata = new FormData(form);
             $('.submitBtn3').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
             $('.submitBtn3').prop('disabled', true);
@@ -315,7 +332,7 @@
             });
         });
 
-        function deleteCategory(id, element) {
+        function deleteProducts(id, element) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
