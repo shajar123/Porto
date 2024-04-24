@@ -30,13 +30,20 @@ class ProductController extends Controller
         $create = Product::create([
 
             'title' => $request->title,
-            'image' => saveFiles($request->image, 'products_images')
+            'category_id' => json_encode($request->category_id),
+            'color_id' => json_encode($request->color_id),
+            'size_id' => json_encode($request->size_id),
+            'image' => saveFiles($request->image, 'products_images'),
+            'description'=> $request->description,
+            'sale_price'=> $request->sale_price,
+            'price'=> $request->price,
+
 
         ]);
 
         return json_encode([
             'Error' => false,
-            'Message' => 'Category added successfully'
+            'Message' => 'Products added successfully'
         ]);
 
     }
