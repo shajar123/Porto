@@ -201,14 +201,8 @@
     new MultiSelectTag('categories')
     new MultiSelectTag('size')
     new MultiSelectTag('color')
-        $('#addProductsForm').on("submit", function(e) {
-    
-    
 
-
-
-        $('#addCategoryForm').on("submit", function(e) {
-
+    $('#addProductsForm').on("submit", function(e) {
             e.preventDefault()
             var form = $('#addProductsForm')[0];
             var formdata = new FormData(form);
@@ -264,8 +258,8 @@
 
                 }
 
-            });
-        });
+            });
+        });
 
         function setValues(id, title, image) {
             $('#edit_category_id').val(id);
