@@ -334,10 +334,8 @@
                             <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                             <li><a href="{{ route('shopping.cart') }}">Shopping Cart</a></li>
                             <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
                             <li><a href="{{ route('about.us') }}">About Us</a></li>
 
-                            <li><a href="login.html">Login</a></li>
                             <li><a href="forgot-password.html">Forgot Password</a></li>
                         </ul>
                     </li>

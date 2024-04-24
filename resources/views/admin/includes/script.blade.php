@@ -15,6 +15,8 @@
     <script src="{{asset('admin_assets/js/app.js')}}"></script>
     <script src="{{asset('admin_assets/libs/growl/jquery.growl.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
     <script>
          function showSelectedImage(selectInput, imgTagId) {
         console.log(imgTagId);

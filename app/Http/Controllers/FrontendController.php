@@ -67,7 +67,7 @@ class FrontendController extends Controller
         ]);
         return json_encode([
             'Error' => false,
-            'Message' => 'Color added successfully'
+            'Message' => 'Email Saved successfully'
         ]);
     }
 }
