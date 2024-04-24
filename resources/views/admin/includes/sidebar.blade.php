@@ -61,7 +61,12 @@
                     </a>
                 </li>
 
-
+                <li>
+                    <a href="{{ route('get.products') }}" class="waves-effect">
+                        <i class="dripicons-calendar"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
 
             </ul>
         </div>

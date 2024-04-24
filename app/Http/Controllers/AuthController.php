@@ -62,12 +62,9 @@ class AuthController extends Controller
         }
     }
 
-
-
-
-
     public function user_login(Request $request)
     {
+
         $request->validate([
             'email' => ['required'],
             'password' => ['required']
@@ -75,8 +72,8 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
+                    if (Auth::attempt(['email' => $request->email, 'password' =>  $request->password])) {
 
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 if ($user->user_type == 1) {
                     $message = 'logged in successfully.';
                     return json_encode([
@@ -85,8 +82,6 @@ class AuthController extends Controller
                         'user_type' => $user->user_type
                     ]);
                 }
-
-
                 else {
                     $message = 'Email 0r Password is incorrect';
                     return json_encode([

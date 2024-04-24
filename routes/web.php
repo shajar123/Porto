@@ -10,6 +10,7 @@ use App\Http\Controllers\FooterController;
 use \App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 
 /*
@@ -68,14 +69,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/size-add', [SizeController::class, 'add'])->name('add.size');
         Route::post('/size-delete', [SizeController::class, 'delete'])->name('delete.size');
         Route::post('/size-update', [SizeController::class, 'update'])->name('update.size');
-
-        Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
-
         Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
         Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
         Route::get('/admin-footer', [FooterController::class, 'admin_footer'])->name('admin.footer');
         Route::post('/footer', [FooterController::class, 'admin_footer_create'])->name('admin.footer.create');
-
+        Route::get('/products', [ProductController::class, 'getProducts'])->name('get.products');
 
     });
 
@@ -91,7 +89,7 @@ Route::get('/register', [FrontendController::class, 'register'])->name('get.regi
  Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
  Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
  Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
- 
+
 
         Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.setting.create');
 
@@ -99,8 +97,6 @@ Route::get('/register', [FrontendController::class, 'register'])->name('get.regi
 
 
         Route::post('/delete', [BlogController::class, 'blog_delete'])->name('blog.delete');
-    });
-});
 
 Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
 Route::post('/attempt-login', [AuthController::class, 'attemptLogin'])->name('add.login');
