@@ -102,27 +102,7 @@ $footer = \App\Models\Footer::first();
 </footer>
 @section('custom-scripts')
 <script>
-    // $(document).ready(function() {
-    //         $('#email').submit(function(event) {
-    //             event.preventDefault();
-    //             $.ajax({
-    //                 type: 'POST',
-    //                 url: 'user-email',
-    //                 data: $(this).serialize(),
-    //                 success: function(response) {
-    //                     Swal.fire("E-mail has been Saved successfully", "", "success");
-
-    //                     $('#email')[0].reset();
-    //                     setTimeout(function() {
-    //                 window.location.reload();
-    //             }, 1000);
-    //                 },
-    //                 error: function(xhr, status, error) {
-    //                     console.error(xhr.responseText);
-    //                 }
-    //             });
-    //         });
-    //     });
+    
     $('#email').on("submit", function(e) {
             e.preventDefault()
             var form = $('#email')[0];

@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label for=""><b>Categories</b></label>
 
-                            <select class="form-select" name="category_id[]" aria-label="Default select example" multiple>
+                            <select class="form-select"  id="categories" name="category_id[]" aria-label="Default select example" multiple>
                                 @foreach ($categories as $category )
 
                                 <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <label for=""><b>Color</b></label>
 
-                            <select class="form-select" name="color_id[]" aria-label="Default select example" multiple>
+                            <select class="form-select" name="color_id[]" id="color" aria-label="Default select example" multiple>
                                 @foreach ($colors as $color )
 
                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
@@ -109,7 +109,7 @@
                         <div class="form-group">
                             <label for=""><b>Size</b></label>
 
-                            <select class="form-select" name="size_id[]" aria-label="Default select example" multiple>
+                            <select class="form-select" id="size" name="size_id[]" aria-label="Default select example" multiple>
                                 @foreach ($sizez as $size )
 
                                 <option value="{{ $size->id }}">{{ $size->name }}</option>
@@ -198,7 +198,17 @@
 
 @section('custom-scripts')
     <script>
+    new MultiSelectTag('categories')
+    new MultiSelectTag('size')
+    new MultiSelectTag('color')
         $('#addProductsForm').on("submit", function(e) {
+    
+    
+
+
+
+        $('#addCategoryForm').on("submit", function(e) {
+
             e.preventDefault()
             var form = $('#addProductsForm')[0];
             var formdata = new FormData(form);
