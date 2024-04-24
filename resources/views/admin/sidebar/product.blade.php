@@ -81,7 +81,7 @@
                         <div class="form-group">
                             <label for=""><b>Categories</b></label>
 
-                            <select class="form-select" name="category_id[]" aria-label="Default select example">
+                            <select class="form-select" name="category_id[]" aria-label="Default select example" multiple>
                                 @foreach ($categories as $category )
 
                                 <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <label for=""><b>Color</b></label>
 
-                            <select class="form-select" name="color_id[]" aria-label="Default select example">
+                            <select class="form-select" name="color_id[]" aria-label="Default select example" multiple>
                                 @foreach ($colors as $color )
 
                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
@@ -103,13 +103,25 @@
                         <div class="form-group">
                             <label for=""><b>Size</b></label>
 
-                            <select class="form-select" name="color_id[]" aria-label="Default select example">
+                            <select class="form-select" name="size_id[]" aria-label="Default select example" multiple>
                                 @foreach ($sizez as $size )
 
                                 <option value="{{ $size->id }}">{{ $size->name }}</option>
                                 @endforeach
                               </select>
 
+                        </div>
+                        <div class="form-group">
+                            <label for=""><b>Description</b></label>
+                            <input autocomplete="off" type="text" name="description" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for=""><b>Sale Price</b></label>
+                            <input autocomplete="off" type="text" name="sale_price" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for=""><b>Price</b></label>
+                            <input autocomplete="off" type="text" name="price" class="form-control">
                         </div>
 
 
@@ -180,7 +192,7 @@
             $('.submitBtn2').prop('disabled', true);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('add.category') }}',
+                url: '{{ route('add.products') }}',
                 dataType: 'json',
                 data: formdata,
                 contentType: false,
@@ -245,7 +257,7 @@
             $('.submitBtn3').prop('disabled', true);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('update.category') }}',
+                url: '{{ route('update.products') }}',
                 dataType: 'json',
                 data: formdata,
                 contentType: false,
@@ -309,7 +321,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'POST',
-                        url: '{{ route('delete.category') }}',
+                        url: '{{ route('delete.products') }}',
                         data: {
                             id: id,
                             _token: '{{ csrf_token() }}'
