@@ -1,3 +1,7 @@
+@php
+$footer = \App\Models\Footer::first();
+
+@endphp
 <footer class="footer bg-dark">
     <div class="footer-middle">
         <div class="container">
@@ -7,23 +11,22 @@
                         <h4 class="widget-title">Contact Info</h4>
                         <ul class="contact-info">
                             <li>
-                                <span class="contact-info-label">Address:</span>123 Street Name, City, England
+                                <span class="contact-info-label">Address:</span>{{ $footer->address }}
                             </li>
                             <li>
-                                <span class="contact-info-label">Phone:</span><a href="tel:">(123)
-                                    456-7890</a>
+                                <span class="contact-info-label">Phone:</span><a href="tel:">{{ $footer->phone }}</a>
                             </li>
                             <li>
-                                <span class="contact-info-label">Email:</span> <a href="https://portotheme.com/cdn-cgi/l/email-protection#e78a868e8ba7829f868a978b82c984888a"><span class="__cf_email__" data-cfemail="c7aaa6aeab87a2bfa6aab7aba2e9a4a8aa">[email&#160;protected]</span></a>
+                                <span class="contact-info-label">Email:</span> <a href="">{{ $footer->email }}</a>
                             </li>
                             <li>
                                 <span class="contact-info-label">Working Days/Hours:</span> Mon - Sun / 9:00 AM - 8:00 PM
                             </li>
                         </ul>
                         <div class="social-icons">
-                            <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
-                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
-                            <a href="#" class="social-icon social-instagram icon-instagram" target="_blank" title="Instagram"></a>
+                            <a href="" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
+                            <a href="" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
+                            <a href="" class="social-icon social-instagram icon-instagram" target="_blank" title="Instagram"></a>
                         </div>
                         <!-- End .social-icons -->
                     </div>
@@ -33,45 +36,25 @@
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="widget">
-                        <h4 class="widget-title">Customer Service</h4>
+                        <h4 class="widget-title">Our Pages</h4>
 
                         <ul class="links">
-                            <li><a href="#">Help & FAQs</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                            <li><a href="#">Shipping & Delivery</a></li>
-                            <li><a href="#">Orders History</a></li>
-                            <li><a href="#">Advanced Search</a></li>
-                            <li><a href="dashboard.html">My Account</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="#">Corporate Sales</a></li>
-                            <li><a href="#">Privacy</a></li>
+                            <li><a href="{{ route('products') }}">Products</a></li>
+                            <li><a href="{{ route('category') }}">Category</a></li>
+                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                            <li><a href="{{ route('checkout') }}">Checkout</a></li>
+                            <li><a href="{{ route('blogs') }}">Blogs</a></li>
+                            <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
+                            <li><a href="{{ route('about.us') }}">About Us</a></li>
+                            <li><a href="{{ route('shopping.cart') }}">Shopping Cart</a></li>
+
                         </ul>
                     </div>
                     <!-- End .widget -->
                 </div>
                 <!-- End .col-lg-3 -->
 
-                <div class="col-lg-3 col-sm-6">
-                    <div class="widget">
-                        <h4 class="widget-title">Popular Tags</h4>
 
-                        <div class="tagcloud">
-                            <a href="#">Bag</a>
-                            <a href="#">Black</a>
-                            <a href="#">Blue</a>
-                            <a href="#">Clothes</a>
-                            <a href="#">Fashion</a>
-                            <a href="#">Hub</a>
-                            <a href="#">Shirt</a>
-                            <a href="#">Shoes</a>
-                            <a href="#">Skirt</a>
-                            <a href="#">Sports</a>
-                            <a href="#">Sweater</a>
-                        </div>
-                    </div>
-                    <!-- End .widget -->
-                </div>
                 <!-- End .col-lg-3 -->
 
                 <div class="col-lg-3 col-sm-6">
@@ -79,10 +62,11 @@
                         <h4 class="widget-title">Subscribe newsletter</h4>
                         <p>Get all the latest information on events, sales and offers. Sign up for newsletter:
                         </p>
-                        <form action="#" class="mb-0">
-                            <input type="email" class="form-control m-b-3" placeholder="Email address" required>
+                        <form id="email" class="mb-0">
+                            @csrf
+                            <input name="email" type="email" class="form-control m-b-3" placeholder="Email address" required>
 
-                            <input type="submit" class="btn btn-primary shadow-none" value="Subscribe">
+                            <input type="submit" class="btn btn-primary shadow-none submitBtn2" value="Subscribe">
                         </form>
                     </div>
                     <!-- End .widget -->
@@ -116,3 +100,87 @@
     </div>
     <!-- End .container -->
 </footer>
+@section('custom-scripts')
+<script>
+    // $(document).ready(function() {
+    //         $('#email').submit(function(event) {
+    //             event.preventDefault();
+    //             $.ajax({
+    //                 type: 'POST',
+    //                 url: 'user-email',
+    //                 data: $(this).serialize(),
+    //                 success: function(response) {
+    //                     Swal.fire("E-mail has been Saved successfully", "", "success");
+
+    //                     $('#email')[0].reset();
+    //                     setTimeout(function() {
+    //                 window.location.reload();
+    //             }, 1000);
+    //                 },
+    //                 error: function(xhr, status, error) {
+    //                     console.error(xhr.responseText);
+    //                 }
+    //             });
+    //         });
+    //     });
+    $('#email').on("submit", function(e) {
+            e.preventDefault()
+            var form = $('#email')[0];
+            var formdata = new FormData(form);
+            $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
+            $('.submitBtn2').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('user.email') }}',
+                dataType: 'json',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                cache: false,
+                mimeType: 'multipart/form-data',
+
+                success: function(res) {
+                    if (res.Error == false) {
+                        $.growl.notice({
+                            message: res.Message
+                        });
+                        $('#addColorModal').modal('hide');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        $.growl.error({
+                            message: res.Message
+                        });
+                    }
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                },
+                error: function(e) {
+
+                    var first_error = '';
+                    var count = 0;
+
+                    $.each(e.responseJSON.errors, function(index, item) {
+
+                        if (count == 0) {
+                            first_error = item[0];
+                        }
+
+                        count++;
+                    });
+                    $.growl.error({
+                        message: first_error
+                    });
+
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                }
+
+            });
+        });
+
+</script>
+@endsection

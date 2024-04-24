@@ -8,6 +8,8 @@ use App\Models\City;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\State;
+use App\Models\Email;
+
 
 class FrontendController extends Controller
 {
@@ -54,5 +56,18 @@ class FrontendController extends Controller
         $city=City::get();
 
         return view('frontend.pages.register',compact('country','states','city'));
+    }
+
+    public function user_email(Request $request){
+        $validate = $request->validate([
+            'email' => ['required'],
+        ]);
+        $store =Email::create([
+            'email'=>$request->email,
+        ]);
+        return json_encode([
+            'Error' => false,
+            'Message' => 'Color added successfully'
+        ]);
     }
 }
