@@ -11,18 +11,41 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function getProducts(){
-        $products= Product::get();
-        $categories=Category::get();
-        $colors=Color::get();
-        $sizez=Size::get();
-        return view('admin.sidebar.product',compact('products','categories','colors','sizez'));
+    public function getProducts()
+    {
+        $products = Product::get();
+
+
+        return view('admin.sidebar.products.product', compact('products'));
     }
-    public function add(Request $request){
+    public function createProducts()
+    {
+        $categories = Category::get();
+        $colors = Color::get();
+        $sizez = Size::get();
+        return view('admin.sidebar.products.addproduct', compact('categories', 'colors', 'sizez'));
+    }
+    public function editProducts($slug)
+    {
+
+        $product = Product::where('slug', $slug)->first();
+        $categories = Category::get();
+        $colors = Color::get();
+        $sizez = Size::get();
+        return view('admin.sidebar.products.editproducts', compact('product', 'categories','colors','sizez'));
+    }
+    public function add(Request $request)
+    {
         $validate = $request->validate([
             'title' => ['required'],
-            'image'=>['required'],
-            'description'=>['required'],
+            'image' => ['required'],
+            'description' => ['required'],
+            'category_id'=>['required'],
+            'color_id'=>['required'],
+            'size_id'=>['required'],
+            'sale_price'=>['required'],
+            'price'=>['required'],
+            
 
 
         ]);
@@ -34,9 +57,9 @@ class ProductController extends Controller
             'color_id' => json_encode($request->color_id),
             'size_id' => json_encode($request->size_id),
             'image' => saveFiles($request->image, 'products_images'),
-            'description'=> $request->description,
-            'sale_price'=> $request->sale_price,
-            'price'=> $request->price,
+            'description' => $request->description,
+            'sale_price' => $request->sale_price,
+            'price' => $request->price,
 
 
         ]);
@@ -45,20 +68,36 @@ class ProductController extends Controller
             'Error' => false,
             'Message' => 'Products added successfully'
         ]);
-
     }
     public function update(Request $request)
     {
+        
         $validate = $request->validate([
             'title' => ['required'],
+            'description' => ['required'],
+            'category_id' => ['required'],
+            'size_id' => ['required'],
+            'sale_price' => ['required'],
+            'price' => ['required'],
+            'color_id' => ['required'],
+            
+
+            
 
 
 
         ]);
         $data = [
             'title' => $request->title,
+            'description'=>$request->description,
+            'category_id' => json_encode($request->category_id),
+            'color_id' => json_encode($request->color_id),
+            'size_id' => json_encode($request->size_id),
+            'sale_price' => $request->sale_price,
+            'price' => $request->price,
 
         ];
+        
         if ($request->has('image')) {
             $get_image = Product::where('id', $request->id)->first();
             if (file_exists(public_path($get_image->image))) {
@@ -67,7 +106,7 @@ class ProductController extends Controller
             }
             $data['image'] = saveFiles($request->image, 'products_images');
         }
-        $update =Product::where('id', $request->id)->update($data);
+        $update = Product::where('id', $request->id)->update($data);
 
 
         return json_encode([
@@ -75,7 +114,8 @@ class ProductController extends Controller
             'Message' => 'Products updated successfully'
         ]);
     }
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $delete = Product::where('id', $request->id)->first();
 
         if (file_exists(public_path($delete->image))) {

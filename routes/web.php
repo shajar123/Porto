@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin-footer', [FooterController::class, 'admin_footer'])->name('admin.footer');
         Route::post('/footer', [FooterController::class, 'admin_footer_create'])->name('admin.footer.create');
         Route::get('/products', [ProductController::class, 'getProducts'])->name('get.products');
+        Route::get('/products-create', [ProductController::class, 'createProducts'])->name('create.products');
+        Route::get('/products-edit/{slug}', [ProductController::class, 'editProducts'])->name('edit.products');
         Route::post('/product-add', [ProductController::class, 'add'])->name('add.products');
         Route::post('/product-delete', [ProductController::class, 'delete'])->name('delete.products');
         Route::post('/product-update', [ProductController::class, 'update'])->name('update.products');

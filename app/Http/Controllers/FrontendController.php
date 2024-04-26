@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blogs;
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\Email;
-
+use App\Models\Product;
 
 class FrontendController extends Controller
 {
@@ -29,10 +30,12 @@ class FrontendController extends Controller
         return view('frontend.pages.contact-us',compact('contacts'));
     }
     public function category(){
-        return view('frontend.pages.category');
+        $categories =Category::get();
+         return view('frontend.pages.category',compact('categories'));
     }
-    public function products(){
-        return view('frontend.pages.products');
+    public function products($slug){
+        $products=Product::where('slug',$slug)->first();
+        return view('frontend.pages.products',compact('products'));
     }
     public function wishlist(){
         return view('frontend.elements.wishlist');

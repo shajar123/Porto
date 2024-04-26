@@ -61,12 +61,20 @@
                     </a>
                 </li>
 
+
                 <li>
-                    <a href="{{ route('get.products') }}" class="waves-effect">
-                        <i class="dripicons-calendar"></i>
-                        <span>Products</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="dripicons-message"></i>
+                        <span> Products </span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('get.products') }}">List</a></li>
+                        <li><a href="{{ route('create.products') }}">Add Products</a></li>
+
+
+                    </ul>
                 </li>
+
 
             </ul>
         </div>
