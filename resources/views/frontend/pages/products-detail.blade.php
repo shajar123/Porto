@@ -46,7 +46,7 @@
 									<i class="icon-plus"></i>
 								</span>
                             </div>
-
+{{--
                             <div class="prod-thumbnail owl-dots">
                                 <div class="owl-dot">
                                     <img src="{{ asset('frontend/images/products/zoom/product-1.jpg') }}" width="110" height="110" alt="product-thumbnail" />
@@ -63,7 +63,7 @@
                                 <div class="owl-dot">
                                     <img src="{{ asset('/images/products/zoom/product-5.jpg') }}" width="110" height="110" alt="product-thumbnail" />
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- End .product-single-gallery -->
 
@@ -134,16 +134,31 @@
                             <ul class="single-info-list">
 
                                 <li>
-                                    SKU: <strong>654613612</strong>
+                                    Color: @foreach (json_decode($product->color_id) as $cat)
+                                    @php
+                                        $c = App\Models\Color::where('id', $cat)->first();
+                                    @endphp
+                                   <strong> <div class="badge bg-dark text-white " >{{ $c->name }}</div></strong>
+                                @endforeach
                                 </li>
 
                                 <li>
-                                    CATEGORY: <strong><a href="#" class="product-category">SHOES</a></strong>
+                                    CATEGORY: < @foreach (json_decode($product->category_id) as $cat)
+                                    @php
+                                        $c = App\Models\Category::where('id', $cat)->first();
+                                    @endphp
+                                   <strong> <div class="badge bg-dark text-white " >{{ $c->title }}</div></strong>
+                                @endforeach
                                 </li>
 
                                 <li>
-                                    TAGs: <strong><a href="#" class="product-category">CLOTHES</a></strong>,
-                                    <strong><a href="#" class="product-category">SWEATER</a></strong>
+                                    Size:  @foreach (json_decode($product->size_id) as $cat)
+                                    @php
+                                        $c = App\Models\Size::where('id', $cat)->first();
+                                    @endphp
+                                   <strong> <div class="badge bg-dark text-white " >{{ $c->name }}</div></strong>
+                                @endforeach
+
                                 </li>
                             </ul>
 
