@@ -39,7 +39,7 @@ $footer = \App\Models\Footer::first();
                         <h4 class="widget-title">Our Pages</h4>
 
                         <ul class="links">
-                            <li><a href="{{ route('products') }}">Products</a></li>
+                            <li><a href="">Products</a></li>
                             <li><a href="{{ route('category') }}">Category</a></li>
                             <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                             <li><a href="{{ route('checkout') }}">Checkout</a></li>
@@ -102,7 +102,7 @@ $footer = \App\Models\Footer::first();
 </footer>
 @section('custom-scripts')
 <script>
-    
+
     $('#email').on("submit", function(e) {
             e.preventDefault()
             var form = $('#email')[0];

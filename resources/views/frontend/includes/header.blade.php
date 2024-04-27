@@ -286,7 +286,7 @@
                         <!-- End .megamenu -->
                     </li>
                     <li>
-                        <a href="{{ route('products') }}">Products</a>
+                        <a href="">Products</a>
                         <div class="megamenu megamenu-fixed-width">
                             <div class="row">
                                 <div class="col-lg-4">

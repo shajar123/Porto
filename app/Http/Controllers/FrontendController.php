@@ -33,10 +33,30 @@ class FrontendController extends Controller
         $categories =Category::get();
          return view('frontend.pages.category',compact('categories'));
     }
-    public function products($slug){
-        $products=Product::where('slug',$slug)->first();
-        return view('frontend.pages.products',compact('products'));
+    public function products($id){
+
+        $products = Product::get();
+        $Ids = [];
+
+        foreach ($products as $product) {
+
+            if (in_array($id, json_decode($product->category_id))) {
+                $Ids[] = $product->id;
+            }
+        }
+
+
+        $allproducts=Product::whereIn('id',$Ids)->get();
+
+        return view('frontend.pages.products',compact('allproducts'));
     }
+    public function productsDetail($id){
+
+       $productsdetail=Product::where('id',$id)->get();
+
+        return view('frontend.pages.products-detail',compact('productsdetail'));
+    }
+
     public function wishlist(){
         return view('frontend.elements.wishlist');
     }

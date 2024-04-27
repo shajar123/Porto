@@ -15,10 +15,12 @@
                         <li class="breadcrumb-item"><a href="#">Products</a></li>
                     </ol>
                 </nav>
+@foreach ($productsdetail as $product )
+
 
                 <div class="product-single-container product-single-default">
                     <div class="cart-message d-none">
-                        <strong class="single-cart-notice">“Men Black Sports Shoes”</strong>
+                        <strong class="single-cart-notice"></strong>
                         <span>has been added to your cart.</span>
                     </div>
 
@@ -35,20 +37,9 @@
 
                                 <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                                     <div class="product-item">
-                                        <img class="product-single-image" src="{{ asset('frontend/images/products/zoom/product-1-big.jpg') }}" data-zoom-image="{{ asset('frontend/images/products/zoom/product-1-big.jpg') }}" width="468" height="468" alt="product" />
+                                        <img class="product-single-image" src="{{ asset($product->image) }}" data-zoom-image="{{ asset($product->image) }}" width="468" height="468" alt="product" />
                                     </div>
-                                    <div class="product-item">
-                                        <img class="product-single-image" src="{{ asset('frontend/images/products/zoom/product-2-big.jpg') }}" data-zoom-image="{{ asset('frontend/images/products/zoom/product-2-big.jpg') }}" width="468" height="468" alt="product" />
-                                    </div>
-                                    <div class="product-item">
-                                        <img class="product-single-image" src="{{ asset('frontend/images/products/zoom/product-3-big.jpg') }}" data-zoom-image="{{ asset('frontend/images/products/zoom/product-3-big.jpg') }}" width="468" height="468" alt="product" />
-                                    </div>
-                                    <div class="product-item">
-                                        <img class="product-single-image" src="{{ asset('frontend/images/products/zoom/product-4-big.jpg') }}" data-zoom-image="{{ asset('frontend/images/products/zoom/product-4-big.jpg') }}" width="468" height="468" alt="product" />
-                                    </div>
-                                    <div class="product-item">
-                                        <img class="product-single-image" src="{{ asset('frontend/images/products/zoom/product-5-big.jpg') }}" data-zoom-image="{{ asset('frontend/images/products/zoom/product-5-big.jpg') }}" width="468" height="468" alt="product" />
-                                    </div>
+
                                 </div>
                                 <!-- End .product-single-carousel -->
                                 <span class="prod-full-screen">
@@ -77,7 +68,7 @@
                         <!-- End .product-single-gallery -->
 
                         <div class="col-lg-7 col-md-6 product-single-details">
-                            <h1 class="product-title">Men Black Sports Shoes</h1>
+                            <h1 class="product-title">{{ $product->title }}</h1>
 
                             <div class="product-nav">
                                 <div class="product-prev">
@@ -128,15 +119,14 @@
                             <hr class="short-divider">
 
                             <div class="price-box">
-                                <span class="old-price">$1,999.00</span>
-                                <span class="new-price">$1,699.00</span>
+                                <span class="old-price">{{ $product->price }}</span>
+                                <span class="new-price">{{ $product->sale_price }}</span>
                             </div>
                             <!-- End .price-box -->
 
                             <div class="product-desc">
                                 <p>
-                                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                                    placerat eleifend leo.
+                                    {{ $product->description }}
                                 </p>
                             </div>
                             <!-- End .product-desc -->
@@ -195,7 +185,7 @@
                     <!-- End .row -->
                 </div>
                 <!-- End .product-single-container -->
-
+                @endforeach
                 <div class="product-single-tabs">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
@@ -1198,7 +1188,7 @@
     </div>
     <!-- End .mobile-menu-container -->
 
-   
+
 
     <!-- Plugins JS File -->
     @endsection

@@ -111,7 +111,8 @@
                         </nav>
 
                         <div class="row">
-                            @foreach ($products as $product )
+                            @foreach ($allproducts as $product )
+
 
 
                             <div class="col-6 col-sm-4">
@@ -145,15 +146,15 @@
                                         <!-- End .product-container -->
 
                                         <div class="price-box">
-                                            <span class="old-price">$90.00</span>
-                                            <span class="product-price">$70.00</span>
+                                            <span class="old-price">{{ $product->price }}</span>
+                                            <span class="product-price">{{ $product->sale_price }}</span>
                                         </div>
                                         <!-- End .price-box -->
 
                                         <div class="product-action">
                                             <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
 													class="icon-heart"></i></a>
-                                            <a href="product.html" class="btn-icon btn-add-cart"><i
+                                            <a href="{{ route('products.detail',$product->id) }}" class="btn-icon btn-add-cart"><i
 													class="fa fa-arrow-right"></i><span>SELECT
 													OPTIONS</span></a>
                                             <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
