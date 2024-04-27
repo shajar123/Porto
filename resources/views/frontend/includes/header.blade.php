@@ -1,4 +1,3 @@
-
 <div class="top-notice bg-primary text-white">
     <div class="container text-center">
         <h5 class="d-inline-block">Get Up to <b>40% OFF</b> New-Season Styles</h5>
@@ -27,7 +26,18 @@
                             <li><a href="">Blog</a></li>
                             <li><a href="wishlist.html">My Wishlist</a></li>
                             <li><a href="cart.html">Cart</a></li>
-                            <li><a href="login.html" class="login-link">Log In</a></li>
+                            <li>
+                              <a href="login.html" class="login-link">Log In</a>
+                            </li>
+                            <li>
+                                @if (auth()->check())
+
+                                        <a id="logoutBtn"href="/" class="login-link">Log Out</a>
+
+
+                                @endif
+                            </li>
+
                         </ul>
                     </div>
                     <!-- End .header-menu -->
@@ -83,17 +93,19 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a href="demo4.html" class="logo">
-                    <img src="{{asset('frontend/images/logo.png')}}" width="111" height="44" alt="Porto Logo">
+                    <img src="{{ asset('frontend/images/logo.png') }}" width="111" height="44" alt="Porto Logo">
                 </a>
             </div>
             <!-- End .header-left -->
 
             <div class="header-right w-lg-max">
-                <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
+                <div
+                    class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
                     <form action="#" method="get">
                         <div class="header-search-wrapper">
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search..." required>
+                            <input type="search" class="form-control" name="q" id="q"
+                                placeholder="Search..." required>
                             <div class="select-custom">
                                 <select id="cat" name="cat">
                                     <option value="">All Categories</option>
@@ -124,7 +136,8 @@
                 <!-- End .header-search -->
 
                 <div class="header-contact d-none d-lg-flex pl-4 pr-4">
-                    <img alt="phone" src="{{asset('frontend/images/phone.png')}}" width="30" height="30" class="pb-1">
+                    <img alt="phone" src="{{ asset('frontend/images/phone.png') }}" width="30" height="30"
+                        class="pb-1">
                     <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                 </div>
 
@@ -133,7 +146,9 @@
                 <a href="wishlist.html" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a>
 
                 <div class="dropdown cart-dropdown">
-                    <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        data-display="static">
                         <i class="minicart-icon"></i>
                         <span class="cart-count badge-circle">3</span>
                     </a>
@@ -162,10 +177,12 @@
 
                                     <figure class="product-image-container">
                                         <a href="product.html" class="product-image">
-                                            <img src="{{asset('frontend/images/products/product-1.jpg')}}" alt="product" width="80" height="80">
+                                            <img src="{{ asset('frontend/images/products/product-1.jpg') }}"
+                                                alt="product" width="80" height="80">
                                         </a>
 
-                                        <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                        <a href="#" class="btn-remove"
+                                            title="Remove Product"><span>×</span></a>
                                     </figure>
                                 </div>
                                 <!-- End .product -->
@@ -184,10 +201,12 @@
 
                                     <figure class="product-image-container">
                                         <a href="product.html" class="product-image">
-                                            <img src="{{asset('frontend/images/products/product-2.jpg')}}" alt="product" width="80" height="80">
+                                            <img src="{{ asset('frontend/images/products/product-2.jpg') }}"
+                                                alt="product" width="80" height="80">
                                         </a>
 
-                                        <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                        <a href="#" class="btn-remove"
+                                            title="Remove Product"><span>×</span></a>
                                     </figure>
                                 </div>
                                 <!-- End .product -->
@@ -206,9 +225,11 @@
 
                                     <figure class="product-image-container">
                                         <a href="product.html" class="product-image">
-                                            <img src="{{asset('frontend/images/products/product-3.jpg')}}" alt="product" width="80" height="80">
+                                            <img src="{{ asset('frontend/images/products/product-3.jpg') }}"
+                                                alt="product" width="80" height="80">
                                         </a>
-                                        <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                        <a href="#" class="btn-remove"
+                                            title="Remove Product"><span>×</span></a>
                                     </figure>
                                 </div>
                                 <!-- End .product -->
@@ -342,7 +363,8 @@
                     <li><a href="{{ route('blogs') }}">Blog</a></li>
 
                     <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
-                    <li class="float-right"><a href="https://1.envato.market/DdLk5" rel="noopener" class="pl-5" target="_blank">Buy Porto!</a></li>
+                    <li class="float-right"><a href="https://1.envato.market/DdLk5" rel="noopener" class="pl-5"
+                            target="_blank">Buy Porto!</a></li>
                     <li class="float-right"><a href="#" class="pl-5">Special Offer!</a></li>
                 </ul>
             </nav>
@@ -351,3 +373,27 @@
     </div>
     <!-- End .header-bottom -->
 </header>
+@section('custom-scripts')
+    <script>
+      $(document).ready(function(){
+    $('#logoutBtn').click(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: '{{ route("user.logout") }}',
+            type: 'POST',
+            data: {_token: '{{ csrf_token() }}'},
+            success: function(response) {
+                window.location.href = '{{ route('get.login') }}';
+            },
+
+            error: function(xhr) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
+
+    </script>
+@endsection

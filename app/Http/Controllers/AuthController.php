@@ -164,6 +164,15 @@ class AuthController extends Controller
             ]);
         }
 
+        public function user_logout(Request $request)
+        {
+            Auth::logout();
+
+
+
+            return response()->json(['message' => 'Data stored successfully']);
+        }
+
 
 
 }
