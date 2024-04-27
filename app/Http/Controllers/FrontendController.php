@@ -93,4 +93,6 @@ class FrontendController extends Controller
             'Message' => 'Email Saved successfully'
         ]);
     }
+   
+
 }
