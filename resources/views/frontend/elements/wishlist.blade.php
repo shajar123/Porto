@@ -40,11 +40,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($productDetails  as $productdetail)
+
                             <tr class="product-row">
                                 <td>
                                     <figure class="product-image-container">
                                         <a href="product.html" class="product-image">
-                                            <img src="assets/images/products/product-4.jpg" alt="product">
+                                            <img src="{{ asset($productdetail->image) }}" style="width: 200px" height="300px" alt="product">
                                         </a>
 
                                         <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
@@ -52,10 +54,10 @@
                                 </td>
                                 <td>
                                     <h5 class="product-title">
-                                        <a href="product.html">Men Watch</a>
+                                        <a href="product.html">{{ $productdetail->title }}</a>
                                     </h5>
                                 </td>
-                                <td class="price-box">$17.90</td>
+                                <td class="price-box">${{ $productdetail->price }}</td>
                                 <td>
                                     <span class="stock-status">In stock</span>
                                 </td>
@@ -68,64 +70,12 @@
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
 
-                            <tr class="product-row">
-                                <td>
-                                    <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="assets/images/products/product-5.jpg" alt="product">
-                                        </a>
 
-                                        <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                    </figure>
-                                </td>
-                                <td>
-                                    <h5 class="product-title">
-                                        <a href="product.html">Men Cap</a>
-                                    </h5>
-                                </td>
-                                <td class="price-box">$17.90</td>
-                                <td>
-                                    <span class="stock-status">In stock</span>
-                                </td>
-                                <td class="action">
-                                    <a href="ajax/product-quick-view.html" class="btn btn-quickview mt-1 mt-md-0"
-                                        title="Quick View">Quick
-                                        View</a>
-                                    <a href="product.html" class="btn btn-dark btn-add-cart btn-shop">
-                                        SELECT OPTION
-                                    </a>
-                                </td>
-                            </tr>
 
-                            <tr class="product-row">
-                                <td>
-                                    <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="assets/images/products/product-6.jpg" alt="product">
-                                        </a>
 
-                                        <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                    </figure>
-                                </td>
-                                <td>
-                                    <h5 class="product-title">
-                                        <a href="product.html">Men Black Gentle Belt</a>
-                                    </h5>
-                                </td>
-                                <td class="price-box">$17.90</td>
-                                <td>
-                                    <span class="stock-status">In stock</span>
-                                </td>
-                                <td class="action">
-                                    <a href="ajax/product-quick-view.html" class="btn btn-quickview mt-1 mt-md-0"
-                                        title="Quick View">Quick
-                                        View</a>
-                                    <a href="product.html" class="btn btn-dark btn-add-cart btn-shop">
-                                        SELECT OPTION
-                                    </a>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div><!-- End .cart-table-container -->

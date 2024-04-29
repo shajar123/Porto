@@ -143,7 +143,7 @@
 
                 <a href="login.html" class="header-icon" title="login"><i class="icon-user-2"></i></a>
 
-                <a href="wishlist.html" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a>
+                <a href="{{ route('wishlist') }}" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a>
 
                 <div class="dropdown cart-dropdown">
                     <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle"
@@ -154,6 +154,18 @@
                     </a>
 
                     <div class="cart-overlay"></div>
+                    @php
+                    $userId = auth()->id();
+                    $wishlistItems = App\Models\Cart::where('user_id', $userId)->get();
+                    $cartDetails = [];
+
+                    foreach ($wishlistItems as $wishlistItem) {
+                        $product = App\Models\Product::find($wishlistItem->product_id);
+                        if ($product) {
+                            $cartDetails[] = $product;
+                        }
+                    }
+                @endphp
 
                     <div class="dropdown-menu mobile-cart">
                         <a href="#" title="Close (Esc)" class="btn-close">×</a>
@@ -163,21 +175,23 @@
                             <!-- End .dropdown-cart-header -->
 
                             <div class="dropdown-cart-products">
+                                @foreach($cartDetails as  $cartdetail)
+
                                 <div class="product">
                                     <div class="product-details">
                                         <h4 class="product-title">
-                                            <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
+                                            <a href="product.html">{{ $cartdetail->title }}</a>
                                         </h4>
 
                                         <span class="cart-product-info">
-                                            <span class="cart-product-qty">1</span> × $99.00
+                                            <span class="cart-product-qty">1</span> × ${{ $cartdetail->price }}
                                         </span>
                                     </div>
                                     <!-- End .product-details -->
 
                                     <figure class="product-image-container">
                                         <a href="product.html" class="product-image">
-                                            <img src="{{ asset('frontend/images/products/product-1.jpg') }}"
+                                            <img src="{{asset($cartdetail->image)  }}"
                                                 alt="product" width="80" height="80">
                                         </a>
 
@@ -185,53 +199,11 @@
                                             title="Remove Product"><span>×</span></a>
                                     </figure>
                                 </div>
+                                @endforeach
+
                                 <!-- End .product -->
 
-                                <div class="product">
-                                    <div class="product-details">
-                                        <h4 class="product-title">
-                                            <a href="product.html">Brown Women Casual HandBag</a>
-                                        </h4>
 
-                                        <span class="cart-product-info">
-                                            <span class="cart-product-qty">1</span> × $35.00
-                                        </span>
-                                    </div>
-                                    <!-- End .product-details -->
-
-                                    <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="{{ asset('frontend/images/products/product-2.jpg') }}"
-                                                alt="product" width="80" height="80">
-                                        </a>
-
-                                        <a href="#" class="btn-remove"
-                                            title="Remove Product"><span>×</span></a>
-                                    </figure>
-                                </div>
-                                <!-- End .product -->
-
-                                <div class="product">
-                                    <div class="product-details">
-                                        <h4 class="product-title">
-                                            <a href="product.html">Circled Ultimate 3D Speaker</a>
-                                        </h4>
-
-                                        <span class="cart-product-info">
-                                            <span class="cart-product-qty">1</span> × $35.00
-                                        </span>
-                                    </div>
-                                    <!-- End .product-details -->
-
-                                    <figure class="product-image-container">
-                                        <a href="product.html" class="product-image">
-                                            <img src="{{ asset('frontend/images/products/product-3.jpg') }}"
-                                                alt="product" width="80" height="80">
-                                        </a>
-                                        <a href="#" class="btn-remove"
-                                            title="Remove Product"><span>×</span></a>
-                                    </figure>
-                                </div>
                                 <!-- End .product -->
                             </div>
                             <!-- End .cart-product -->

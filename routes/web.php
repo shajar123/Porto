@@ -12,6 +12,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CartController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +46,11 @@ Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login')
 Route::post('/user-login', [AuthController::class, 'user_login'])->name('user.login');
 Route::post('/user-email', [FrontendController::class, 'user_email'])->name('user.email');
 Route::post('/user-logout', [AuthController::class, 'user_logout'])->name('user.logout');
+Route::post('/add-to-wishlist', [WishlistController::class, 'wishlist'])->name('wish.list');
+Route::post('/add-to-cart', [CartController::class, 'cart'])->name('add.to.cart');
+
+
+
 
 
 Route::middleware('auth')->group(function () {

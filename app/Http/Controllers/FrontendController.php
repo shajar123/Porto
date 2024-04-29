@@ -11,6 +11,10 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\Email;
 use App\Models\Product;
+use App\Models\Wishlist;
+use App\Models\Cart;
+
+
 
 class FrontendController extends Controller
 {
@@ -64,11 +68,37 @@ class FrontendController extends Controller
     }
 
     public function wishlist(){
-        return view('frontend.elements.wishlist');
+        $userId = auth()->id();
+        $wishlistItems = Wishlist::where('user_id', $userId)->get();
+        $productDetails = [];
+
+        foreach ($wishlistItems as $wishlistItem) {
+            $product = Product::find($wishlistItem->product_id);
+            if ($product) {
+                $productDetails[] = $product;
+            }
+        }
+        return view('frontend.elements.wishlist', ['productDetails' => $productDetails]);
     }
+
+
+
+
     public function shopping_cart(){
-        return view('frontend.elements.shopping-cart');
+        $userId = auth()->id();
+        $wishlistItems = Cart::where('user_id', $userId)->get();
+        $cartdetails = [];
+
+        foreach ($wishlistItems as $wishlistItem) {
+            $product = Product::find($wishlistItem->product_id);
+            if ($product) {
+                $cartdetails[] = $product;
+            }
+        }
+        return view('frontend.elements.shopping-cart', ['cartdetails' => $cartdetails]);
     }
+
+
     public function about_us(){
         return view('frontend.elements.about-us');
     }
@@ -99,6 +129,6 @@ class FrontendController extends Controller
             'Message' => 'Email Saved successfully'
         ]);
     }
-   
+
 
 }
