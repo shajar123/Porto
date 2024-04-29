@@ -242,9 +242,15 @@
                     <li><a href="{{ route('blogs') }}">Blog</a></li>
 
                     <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
-                    <li class="float-right"><a href="https://1.envato.market/DdLk5" rel="noopener" class="pl-5"
-                            target="_blank">Buy Porto!</a></li>
-                    <li class="float-right"><a href="#" class="pl-5">Special Offer!</a></li>
+                    <li class="float-right ">
+                        @auth
+
+
+                        <a id="logoutBtn" href="/" rel="noopener" class="pl-5"
+                            target="_blank">Log Out</a>
+                            @endauth
+
+                        </li>
                 </ul>
             </nav>
         </div>

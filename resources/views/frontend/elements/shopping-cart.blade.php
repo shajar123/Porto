@@ -29,11 +29,16 @@
 										<th class="thumbnail-col"></th>
 										<th class="product-col">Product</th>
 										<th class="price-col">Price</th>
+                                        <th class="price-col">Sales Price</th>
+
 										<th class="qty-col">Quantity</th>
 										<th class="text-right">Subtotal</th>
 									</tr>
 								</thead>
 								<tbody>
+                                    @php
+                                        $totalprice = 0;
+                                    @endphp
 									@foreach($cartdetails   as  $cartdetail)
 
 
@@ -52,7 +57,18 @@
 												<a href="product.html">{{ $cartdetail->title }}</a>
 											</h5>
 										</td>
-										<td>${{ $cartdetail->price }}</td>
+
+                                        <td>
+                                            <span class="old-price">{{ $cartdetail->price }}</span>
+                                         </td>
+
+                                        <td>{{ $cartdetail->sale_price }}</td>
+                                        @php
+                                            $totalprice +=$cartdetail->sale_price;
+
+                                        @endphp
+
+
 										<td>
 											<div class="product-single-qty">
 												<input class="horizontal-quantity form-control" type="text">
@@ -61,6 +77,7 @@
 										<td class="text-right"><span class="subtotal-price">$17.90</span></td>
 									</tr>
                                     @endforeach
+
 
 
 
@@ -105,7 +122,7 @@
 								<tbody>
 									<tr>
 										<td>Subtotal</td>
-										<td>$17.90</td>
+										<td>{{ $totalprice}}</td>
 									</tr>
 
 									<tr>
@@ -171,7 +188,7 @@
 								<tfoot>
 									<tr>
 										<td>Total</td>
-										<td>$17.90</td>
+										<td>{{ $totalprice }}</td>
 									</tr>
 								</tfoot>
 							</table>

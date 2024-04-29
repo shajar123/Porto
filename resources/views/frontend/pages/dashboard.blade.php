@@ -154,7 +154,7 @@
             @foreach ($products as $product )
                 <div class="product-default appear-animate" data-animation-name="fadeInRightShorter">
                     <figure>
-                        <a href="product.html">
+                        <a href="{{ route('products.detail',$product->id) }}">
                             <img src="{{asset($product->image)}}" width="280" height="280" alt="product">
 
                         </a>
@@ -165,10 +165,10 @@
                     </figure>
                     <div class="product-details">
                         <div class="category-list">
-                            <a href="category.html" class="product-category">Category</a>
+                            <a href="{{ route('category') }}" class="product-category">Category</a>
                         </div>
                         <h3 class="product-title">
-                            <a href="product.html">{{ $product->title }}</a>
+                            <a href="{{ route('products.detail',$product->id) }}">{{ $product->title }}</a>
                         </h3>
                         <div class="ratings-container">
                             <div class="product-ratings">
@@ -187,7 +187,7 @@
                         <div class="product-action">
                             <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
                                     class="icon-heart"></i></a>
-                            <a href="product.html" class="btn-icon btn-add-cart"><i
+                            <a href="{{ route('products.detail',$product->id) }}" class="btn-icon btn-add-cart"><i
                                     class="fa fa-arrow-right"></i><span>Details</span></a>
                             <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i
                                     class="fas fa-external-link-alt"></i></a>
@@ -497,7 +497,7 @@
 
 
 
-                    <a href="category.html">
+                    <a href="{{ route('category') }}">
                         <figure>
                             <img style="height: 300px" src="{{asset($category->image)}}" alt="category" width="280" height="270" />
                         </figure>
@@ -598,7 +598,7 @@
     <section class="blog-section pb-0">
         <div class="container">
             <h2 class="section-title heading-border border-0 appear-animate" data-animation-name="fadeInUp">
-                Latest News</h2>
+                Latest BLOGS</h2>
 
             <div class="owl-carousel owl-theme appear-animate" data-animation-name="fadeIn" data-owl-options="{
                 'loop': false,
@@ -622,10 +622,15 @@
                     }
                 }
             }">
+            @php
+                $blogs = App\Models\Blogs::latest()->take(4)->get();
+            @endphp
+            @foreach ($blogs as $blog)
+
                 <article class="post">
                     <div class="post-media">
-                        <a href="single.html">
-                            <img src="{{asset('frontend/images/blog/home/post-1.jpg')}}" alt="Post" width="225" height="280">
+                        <a href="{{ route('blog.details',$blog->id) }}">
+                            <img src="{{asset( $blog->image) }}" alt="Post" width="225" height="280">
                         </a>
                         <div class="post-date">
                             <span class="day">26</span>
@@ -636,94 +641,21 @@
 
                     <div class="post-body">
                         <h2 class="post-title">
-                            <a href="single.html">Top New Collection</a>
+                            <a href="{{ route('blog.details',$blog->id) }}">{{ $blog->title }}</a>
                         </h2>
                         <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
+                            <p>{{ $blog->description }}</p>
                         </div>
                         <!-- End .post-content -->
                         <a href="single.html" class="post-comment">0 Comments</a>
                     </div>
                     <!-- End .post-body -->
                 </article>
+                @endforeach
+
                 <!-- End .post -->
 
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="{{asset('frontend/images/blog/home/post-2.jpg')}}" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div>
-                    <!-- End .post-media -->
 
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Fashion Trends</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of...</p>
-                        </div>
-                        <!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div>
-                    <!-- End .post-body -->
-                </article>
-                <!-- End .post -->
-
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="{{asset('frontend/images/blog/home/post-3.jpg')}}" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div>
-                    <!-- End .post-media -->
-
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Right Choices</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the...</p>
-                        </div>
-                        <!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div>
-                    <!-- End .post-body -->
-                </article>
-                <!-- End .post -->
-
-                <article class="post">
-                    <div class="post-media">
-                        <a href="single.html">
-                            <img src="{{asset('frontend/images/blog/home/post-4.jpg')}}" alt="Post" width="225" height="280">
-                        </a>
-                        <div class="post-date">
-                            <span class="day">26</span>
-                            <span class="month">Feb</span>
-                        </div>
-                    </div>
-                    <!-- End .post-media -->
-
-                    <div class="post-body">
-                        <h2 class="post-title">
-                            <a href="single.html">Perfect Accessories</a>
-                        </h2>
-                        <div class="post-content">
-                            <p>Leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of...</p>
-                        </div>
-                        <!-- End .post-content -->
-                        <a href="single.html" class="post-comment">0 Comments</a>
-                    </div>
-                    <!-- End .post-body -->
-                </article>
                 <!-- End .post -->
             </div>
 

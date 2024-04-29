@@ -9,12 +9,8 @@
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h6 class="page-title">Form Mask</h6>
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="#">Foxia</a></li>
-                            <li class="breadcrumb-item"><a href="#">Form</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Form Mask</li>
-                        </ol>
+                        <h6 class="page-title">ADD BLOGS</h6>
+
                     </div>
 
                 </div>
@@ -25,7 +21,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">ADD BLOGS</h4>
+                            <h4 class="card-title mb-4"></h4>
                             <form id="blog-create">
                                 @csrf
                                 <div class="row">
