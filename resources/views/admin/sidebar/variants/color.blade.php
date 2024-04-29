@@ -6,16 +6,15 @@
 
     <div class="page-content">
         <div class="container-fluid">
-            <div class="page-title-box ">
+            <div class="page-title-box d-flex justify-content-between">
                 <h2> Colors Page</h2>
+                <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addColorModal"
+                    href="javascript:void(0)">Add +</a></div>
+
             </div>
 
             <div class="card ">
-                <div class="card-header d-flex justify-content-end">
 
-                    <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addColorModal"
-                            href="javascript:void(0)">Add +</a></div>
-                </div>
                 <div class="card-body py-3">
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap" id="example2">

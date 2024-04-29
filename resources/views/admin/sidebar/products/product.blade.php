@@ -3,33 +3,25 @@
     Products
 @endsection
 @section('body')
-    <style>
-        .pagination {
-            justify-content: end;
-        }
 
-        .dataTables_filter {
-            text-align: end;
-        }
-    </style>
     <div class="page-content">
         <div class="container-fluid">
-            <div class="page-title-box ">
+            <div class="page-title-box d-flex justify-content-between">
+
                 <h2> Products Page</h2>
+                <div><a class="btn btn-primary" href="{{ route('create.products') }}">Add +</a></div>
+                
             </div>
 
             <div class="card ">
-                <div class="card-header d-flex justify-content-end">
 
-                    <div><a class="btn btn-primary" href="{{ route('create.products') }}">Add +</a></div>
-                </div>
                 <div class="card-body py-3">
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap" id="example2">
                             <thead>
                                 <tr>
                                     <th class="wd-15p border-bottom-0">Title</th>
-                                    
+
                                     <th class="wd-15p border-bottom-0">Price</th>
                                     <th class="wd-15p border-bottom-0">Sale Price</th>
                                     <th class="wd-15p border-bottom-0">Image</th>

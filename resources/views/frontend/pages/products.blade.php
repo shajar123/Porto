@@ -2,10 +2,6 @@
 @section('body')
     <div class="page-wrapper">
 
-        <!-- End .top-notice -->
-
-
-        <!-- End .header -->
 
         <main class="main">
             <div class="category-banner-container bg-gray">
