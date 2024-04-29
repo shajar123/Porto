@@ -32,34 +32,23 @@ Route::get('/blog-details/{id}', [FrontendController::class, 'blog_details'])->n
 Route::get('/contact-us', [FrontendController::class, 'contact_us'])->name('contact.us');
 Route::get('/Category', [FrontendController::class, 'category'])->name('category');
 Route::get('/products/{id}', [FrontendController::class, 'products'])->name('products');
+Route::get('/all-products', [FrontendController::class, 'productsAll'])->name('all.products');
 Route::get('/products-detail/{id}', [FrontendController::class, 'productsDetail'])->name('products.detail');
 Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
 Route::get('/shopping-cart', [FrontendController::class, 'shopping_cart'])->name('shopping.cart');
 Route::get('/about-us', [FrontendController::class, 'about_us'])->name('about.us');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
-
-
 Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
 Route::post('/user-login', [AuthController::class, 'user_login'])->name('user.login');
 Route::post('/user-email', [FrontendController::class, 'user_email'])->name('user.email');
 Route::post('/user-logout', [AuthController::class, 'user_logout'])->name('user.logout');
 
 
-
-
-
-
 Route::middleware('auth')->group(function () {
-
-
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
         Route::get('/blogs', [AdminController::class, 'admin_blogs']);
         Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.store');
-
-
-
         Route::get('/contact', [AdminController::class, 'admin_contact']);
         Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');
         Route::get('/category', [CategoryController::class, 'getCategory'])->name('get.category');
@@ -84,30 +73,20 @@ Route::middleware('auth')->group(function () {
         Route::post('/product-add', [ProductController::class, 'add'])->name('add.products');
         Route::post('/product-delete', [ProductController::class, 'delete'])->name('delete.products');
         Route::post('/product-update', [ProductController::class, 'update'])->name('update.products');
-
     });
-
 });
 Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
 Route::post('/attempt-login', [AuthController::class, 'attemptLogin'])->name('add.login');
 
 Route::get('/register', [FrontendController::class, 'register'])->name('get.register');
 
-
-
-                    //   ADMIN ROUTES
- Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
- Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
- Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
-
-
-        Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.setting.create');
-
-        Route::post('/edit', [BlogController::class, 'blog_edit_create'])->name('edit.blogs');
-
-
-        Route::post('/delete', [BlogController::class, 'blog_delete'])->name('blog.delete');
-
+//   ADMIN ROUTES
+Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
+Route::get('/admin-blogs', [AdminController::class, 'admin_blogs'])->name('admin.blogs');
+Route::get('/blog-edit', [AdminController::class, 'blogs_edit'])->name('blogs.edit.page');
+Route::post('/blogs-store', [BlogController::class, 'blogs_create'])->name('blogs.setting.create');
+Route::post('/edit', [BlogController::class, 'blog_edit_create'])->name('edit.blogs');
+Route::post('/delete', [BlogController::class, 'blog_delete'])->name('blog.delete');
 Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
 Route::post('/attempt-login', [AuthController::class, 'attemptLogin'])->name('add.login');
 
@@ -115,12 +94,5 @@ Route::get('/register', [FrontendController::class, 'register'])->name('get.regi
 Route::post('/attempt-register', [AuthController::class, 'createRegister'])->name('create.register');
 Route::post('register-select-country', [AuthController::class, 'selectCountry'])->name('register.select_country');
 Route::post('register-select-state', [AuthController::class, 'selectState'])->name('register.select_state');
-
-//   ADMIN ROUTES
-
-
-
-
-
 Route::get('/admin-contact', [AdminController::class, 'admin_contact'])->name('admin.contacts');
 Route::post('/admin-create', [ContactController::class, 'contact_create'])->name('admin.create');

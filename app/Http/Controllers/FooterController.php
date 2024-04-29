@@ -8,20 +8,16 @@ use App\Models\Footer;
 class FooterController extends Controller
 {
     public function admin_footer(){
-        return view('admin.sidebar.footer');
+        $footer =Footer::first();
+        return view('admin.sidebar.footer',compact('footer'));
     }
 
     public function admin_footer_create(Request $request){
 
-        $validate = $request->validate([
-            'email' => ['required'],
-            'address'=>['required'],
-            'email'=>['required'],
-            'facebook'=>['required'],
-            'instagram'=>['required'],
-            'twitter'=>['required'],
-        ]);
-        $store =Footer::create([
+
+        $footer = Footer::first();
+        if ($footer) {
+            $footer->update([
 
             'address'=> $request->address,
             'email'=> $request->email,
@@ -29,8 +25,19 @@ class FooterController extends Controller
             'facebook'=> $request->facebook,
             'twitter'=> $request->twitter,
             'instagram'=> $request->instagram,
+            ]);
+        } else {
+            Footer::create([
 
-        ]);
+            'address'=> $request->address,
+            'email'=> $request->email,
+            'phone'=> $request->phone,
+            'facebook'=> $request->facebook,
+            'twitter'=> $request->twitter,
+            'instagram'=> $request->instagram,
+            ]);
+        }
+
         return response()->json(['success'=>'Footer Has Been Saved Successfully']);
     }
 }

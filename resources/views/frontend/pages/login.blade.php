@@ -61,6 +61,8 @@
                                 <button type="submit submitBtn2" class="btn btn-dark btn-md w-100">
                                     LOGIN
                                 </button>
+                                <h3 class="text-center">OR</h3>
+                                <a class="btn btn-primary w-100" href="{{ route('get.register') }}">Sign up</a>
                             </form>
                         </div>
                         {{-- <div class="col-md-6">

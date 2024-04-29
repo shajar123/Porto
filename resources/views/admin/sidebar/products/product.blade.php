@@ -29,7 +29,7 @@
                             <thead>
                                 <tr>
                                     <th class="wd-15p border-bottom-0">Title</th>
-                                    <th class="wd-15p border-bottom-0">Description</th>
+                                    
                                     <th class="wd-15p border-bottom-0">Price</th>
                                     <th class="wd-15p border-bottom-0">Sale Price</th>
                                     <th class="wd-15p border-bottom-0">Image</th>
@@ -40,7 +40,7 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $product->title ?? '' }}</td>
-                                        <td>{{ $product->description ?? '' }}</td>
+
                                         <td>{{ $product->price ?? '' }}</td>
                                         <td>{{ $product->sale_price ?? '' }}</td>
                                         <td><img src="{{ asset($product->image) }}"
@@ -65,7 +65,7 @@
 
     <!--/div-->
 
-    
+
 @endsection
 
 @section('custom-scripts')

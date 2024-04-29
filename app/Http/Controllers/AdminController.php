@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blogs;
+use App\Models\Contact;
 
 class AdminController extends Controller
 {
@@ -15,11 +16,12 @@ class AdminController extends Controller
         return view('admin.sidebar.blogs.edit-blogs',compact('blogs'));
     }
     public function admin_contact(){
-        return view('admin.sidebar.contact');
+        $contact =Contact::first();
+        return view('admin.sidebar.contact',compact('contact'));
     }
     public function admin_login(){
         return view('admin.login.login');
     }
-    
+
 
 }

@@ -15,7 +15,9 @@ use App\Models\Product;
 class FrontendController extends Controller
 {
     public function dashboard(){
-        return view('frontend.pages.dashboard');
+       $products=  Product::latest()->get();
+       $categories= Category::latest()->get();
+        return view('frontend.pages.dashboard',compact('products','categories'));
     }
     public function blogs(){
         $blogs=Blogs::get();
@@ -55,6 +57,10 @@ class FrontendController extends Controller
        $productsdetail=Product::where('id',$id)->get();
 
         return view('frontend.pages.products-detail',compact('productsdetail'));
+    }
+    public function productsAll(){
+        $allproducts =Product::get();
+        return view('frontend.pages.all-products',compact('allproducts'));
     }
 
     public function wishlist(){

@@ -51,7 +51,7 @@
                                     Password
                                     <span class="required">*</span>
                                 </label>
-                                <input type="password" class="form-input form-wide" id="register-password" required />
+                                <input type="password" name="password" class="form-input form-wide" id="register-password" required />
                                 <label for="register-password">
                                     Country
                                     <span class="required">*</span>
@@ -91,6 +91,8 @@
                                         Register
                                     </button>
                                 </div>
+                                <h3 class="text-center">OR</h3>
+                                <a class="btn btn-primary mr-0 w-100" href="{{ route('get.login') }}">Log in</a>
                             </form>
                         </div>
                     </div>

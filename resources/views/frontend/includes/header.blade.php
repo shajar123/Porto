@@ -307,25 +307,16 @@
                         <!-- End .megamenu -->
                     </li>
                     <li>
-                        <a href="">Products</a>
+                        <a href="{{ route('all.products') }}">Products</a>
                         <div class="megamenu megamenu-fixed-width">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <a href="#" class="nolink">PRODUCT PAGES</a>
-                                    <ul class="submenu">
-                                        <li><a href="product.html">SIMPLE PRODUCT</a></li>
+                                    <a href="" class="">PRODUCT PAGES</a>
 
-                                    </ul>
                                 </div>
                                 <!-- End .col-lg-4 -->
 
-                                <div class="col-lg-4">
-                                    <a href="#" class="nolink">PRODUCT LAYOUTS</a>
-                                    <ul class="submenu">
-                                        <li><a href="product-extended-layout.html">EXTENDED LAYOUT</a></li>
-
-                                    </ul>
-                                </div>
+                               \
                                 <!-- End .col-lg-4 -->
 
                                 {{-- <div class="col-lg-4 p-0">
