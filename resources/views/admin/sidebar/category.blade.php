@@ -3,57 +3,51 @@
     Categories
 @endsection
 @section('body')
-    <style>
-        .pagination {
-            justify-content: end;
-        }
-
-        .dataTables_filter {
-            text-align: end;
-        }
-    </style>
     <div class="page-content">
         <div class="container-fluid">
-            <div class="page-title-box ">
-                <h2> Category Page</h2>
+            <div class="page-title-box d-flex justify-content-between ">
+                <h3> Category Page</h3>
+                <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"
+                    href="javascript:void(0)">Add +</a></div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card ">
 
-            <div class="card ">
-                <div class="card-header d-flex justify-content-end">
+                        <div class="card-body py-3">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-nowrap" id="example2">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-15p border-bottom-0">Title</th>
+                                            <th class="wd-15p border-bottom-0">Image</th>
+                                            <th class="wd-20p border-bottom-0">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <td>{{ $category->title ?? '' }}</td>
+                                                <td><img src="{{ asset($category->image) }}"
+                                                        style="height: 50px;width: 50px;object-fit: cover" alt="">
+                                                </td>
+                                                <td>
+                                                    <button
+                                                        onclick="setValues('{{ $category->id }}','{{ $category->title }}','{{ asset($category->image) }}')"
+                                                        data-toggle="modal" data-target="#editCategoryModal" type="button"
+                                                        class="btn btn-success"><i class="fa fa-edit"></i></button>
+                                                    <button onclick="deleteCategory('{{ $category->id }}',$(this))"
+                                                        type="button" class="btn btn-danger"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </td>
 
-                    <div><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"
-                            href="javascript:void(0)">Add +</a></div>
-                </div>
-                <div class="card-body py-3">
-                    <div class="table-responsive">
-                        <table class="table table-bordered text-nowrap" id="example2">
-                            <thead>
-                                <tr>
-                                    <th class="wd-15p border-bottom-0">Title</th>
-                                    <th class="wd-15p border-bottom-0">Image</th>
-                                    <th class="wd-20p border-bottom-0">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($categories as $category)
-                                    <tr>
-                                        <td>{{ $category->title ?? '' }}</td>
-                                        <td><img src="{{ asset($category->image) }}"
-                                                style="height: 50px;width: 50px;object-fit: cover" alt=""></td>
-                                        <td>
-                                            <button
-                                                onclick="setValues('{{ $category->id }}','{{ $category->title }}','{{ asset($category->image) }}')"
-                                                data-toggle="modal" data-target="#editCategoryModal" type="button"
-                                                class="btn btn-success"><i class="fa fa-edit"></i></button>
-                                            <button onclick="deleteCategory('{{ $category->id }}',$(this))" type="button"
-                                                class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                        </td>
+                                            </tr>
+                                        @endforeach
 
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

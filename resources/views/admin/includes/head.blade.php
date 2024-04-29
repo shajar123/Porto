@@ -2,7 +2,7 @@
 
 
     <meta charset="utf-8">
-    <title>Dashboard | Foxia - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
     <meta content="Themesbrand" name="author">
@@ -19,7 +19,7 @@
     <!-- Icons Css -->
     <link href="{{asset('admin_assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin_assets/select2/select2.min.css')}}" rel="stylesheet"/>
- 
+
     <!-- App Css-->
     <link href="{{asset('admin_assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('admin_assets/libs/growl/jquery.growl.css')}}">

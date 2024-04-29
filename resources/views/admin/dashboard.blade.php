@@ -16,24 +16,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </div>
-                <div class="col-md-4">
-                    <div class="float-end d-none d-md-block">
-                        <div class="dropdown">
-                            <button class="btn btn-primary btn-rounded dropdown-toggle" type="button"
-                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti-settings me-1"></i> Settings <i
-                                    class="mdi mdi-chevron-down"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
@@ -54,8 +37,8 @@
                     <div class="mx-3">
                         <div class="card mb-0 border p-3 mini-stats-desc">
                             <div class="d-flex">
-                                <h6 class="mt-0 mb-3">Orders</h6>
-                                <h5 class="ms-auto mt-0">1758</h5>
+                                <h6 class="mt-0 mb-3">Category</h6>
+                                <h5 class="ms-auto mt-0">{{ $categories }}</h5>
                             </div>
                             <p class="text-muted mb-0">Sed ut perspiciatis unde iste</p>
                         </div>
@@ -78,8 +61,8 @@
                     <div class="mx-3">
                         <div class="card mb-0 border p-3 mini-stats-desc">
                             <div class="d-flex">
-                                <h6 class="mt-0 mb-3">Revenue</h6>
-                                <h5 class="ms-auto mt-0">48259</h5>
+                                <h6 class="mt-0 mb-3">Products</h6>
+                                <h5 class="ms-auto mt-0">{{ $products }}</h5>
                             </div>
                             <p class="text-muted mb-0">Sed ut perspiciatis unde iste</p>
                         </div>
