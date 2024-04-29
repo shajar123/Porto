@@ -34,11 +34,14 @@
 									</tr>
 								</thead>
 								<tbody>
+									@foreach($cartdetails   as  $cartdetail)
+
+
 									<tr class="product-row">
 										<td>
 											<figure class="product-image-container">
 												<a href="product.html" class="product-image">
-													<img src="{{asset('frontend/images/products/product-4.jpg')}}" alt="product">
+													<img src="{{ asset($cartdetail->image) }}" style="width: 200px" height="200px" alt="product">
 												</a>
 
 												<a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
@@ -46,10 +49,10 @@
 										</td>
 										<td class="product-col">
 											<h5 class="product-title">
-												<a href="product.html">Men Watch</a>
+												<a href="product.html">{{ $cartdetail->title }}</a>
 											</h5>
 										</td>
-										<td>$17.90</td>
+										<td>${{ $cartdetail->price }}</td>
 										<td>
 											<div class="product-single-qty">
 												<input class="horizontal-quantity form-control" type="text">
@@ -57,54 +60,10 @@
 										</td>
 										<td class="text-right"><span class="subtotal-price">$17.90</span></td>
 									</tr>
+                                    @endforeach
 
-									<tr class="product-row">
-										<td>
-											<figure class="product-image-container">
-												<a href="product.html" class="product-image">
-													<img src="{{asset('frontend/images/products/product-3.jpg')}}" alt="product">
-												</a>
 
-												<a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-											</figure>
-										</td>
-										<td class="product-col">
-											<h5 class="product-title">
-												<a href="product.html">Men Watch</a>
-											</h5>
-										</td>
-										<td>$17.90</td>
-										<td>
-											<div class="product-single-qty">
-												<input class="horizontal-quantity form-control" type="text">
-											</div><!-- End .product-single-qty -->
-										</td>
-										<td class="text-right"><span class="subtotal-price">$17.90</span></td>
-									</tr>
 
-									<tr class="product-row">
-										<td>
-											<figure class="product-image-container">
-												<a href="product.html" class="product-image">
-													<img src="{{asset('frontend/images/products/product-6.jpg')}}" alt="product">
-												</a>
-
-												<a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-											</figure>
-										</td>
-										<td class="product-col">
-											<h5 class="product-title">
-												<a href="product.html">Men Black Gentle Belt</a>
-											</h5>
-										</td>
-										<td>$17.90</td>
-										<td>
-											<div class="product-single-qty">
-												<input class="horizontal-quantity form-control" type="text">
-											</div><!-- End .product-single-qty -->
-										</td>
-										<td class="text-right"><span class="subtotal-price">$17.90</span></td>
-									</tr>
 								</tbody>
 
 

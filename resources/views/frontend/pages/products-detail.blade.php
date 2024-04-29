@@ -168,10 +168,10 @@
                                 </div>
                                 <!-- End .product-single-qty -->
 
-                                <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
+                                <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}" href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
 									Cart</a>
 
-                                <a href="cart.html" class="btn btn-gray view-cart d-none">View cart</a>
+                                <a href="{{ route('shopping.cart') }}" class="btn btn-gray view-cart d-none">View cart</a>
                             </div>
                             <!-- End .product-action -->
 
@@ -189,7 +189,7 @@
                                 </div>
                                 <!-- End .social-icons -->
 
-                                <a href="wishlist.html" class="btn-icon-wish add-wishlist" title="Add to Wishlist"><i
+                                <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html" class="btn-icon-wish "  data-product="{{ $product->id }}"  title="Add to Wishlist"><i
 										class="icon-wishlist-2"></i><span>Add to
 										Wishlist</span></a>
                             </div>
@@ -1206,5 +1206,52 @@
 
 
     <!-- Plugins JS File -->
+    @endsection
+    @section('custom-scripts')
+    <script>
+          $(document).ready(function(){
+            $('#addToWishlistBtn').click(function(){
+                var userId = $(this).data('user');
+                var productId = $(this).data('product');
+
+                $.ajax({
+                    url: "{{ route('wish.list') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        user_id: userId,
+                        product_id: productId
+                    },
+
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $('#addToCartBtn').click(function(){
+                var userId = $(this).data('user');
+                var productId = $(this).data('product');
+
+                $.ajax({
+                    url: "{{ route('add.to.cart') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        user_id: userId,
+                        product_id: productId
+                    },
+
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+
+    </script>
     @endsection
 
