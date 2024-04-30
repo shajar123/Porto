@@ -48,6 +48,12 @@ Route::post('/user-email', [FrontendController::class, 'user_email'])->name('use
 Route::post('/user-logout', [AuthController::class, 'user_logout'])->name('user.logout');
 Route::post('/add-to-wishlist', [WishlistController::class, 'wishlist'])->name('wish.list');
 Route::post('/add-to-cart', [CartController::class, 'cart'])->name('add.to.cart');
+Route::post('/user-message', [FrontendController::class, 'user_message'])->name('user.message');
+Route::get('/forgot-password-page', [FrontendController::class, 'forgot_password_page'])->name('forgot.password.page');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('forgot.password.form');
+
+
+
 
 
 

@@ -82,18 +82,19 @@
 					<div class="col-lg-6">
 						<h2 class="mt-6 mb-2">Send Us a Message</h2>
 
-						<form class="mb-0" action="#">
+						<form id="user-message" class="mb-0" action="#">
+                            @csrf
 							<div class="form-group">
 								<label class="mb-1" for="contact-name">Your Name
 									<span class="required">*</span></label>
-								<input type="text" class="form-control" id="contact-name" name="contact-name"
+								<input  type="text" class="form-control" id="contact-name" name="name"
 									required />
 							</div>
 
 							<div class="form-group">
 								<label class="mb-1" for="contact-email">Your E-mail
 									<span class="required">*</span></label>
-								<input type="email" class="form-control" id="contact-email" name="contact-email"
+								<input type="email" class="form-control" id="contact-email" name="email"
 									required />
 							</div>
 
@@ -101,7 +102,7 @@
 								<label class="mb-1" for="contact-message">Your Message
 									<span class="required">*</span></label>
 								<textarea cols="30" rows="1" id="contact-message" class="form-control"
-									name="contact-message" required></textarea>
+									name="message" required></textarea>
 							</div>
 
 							<div class="form-footer mb-0">
@@ -262,17 +263,69 @@
 	</div><!-- End .page-wrapper -->
 
 
-
-	<!-- End .mobil-menu-overlay -->
-
-	<!-- End .mobile-menu-container -->
-
-
-
-
-
-
-
-
 	@endsection
+
+    @section('custom-scripts')
+    <script>
+         $('#user-message').on("submit", function(e) {
+            e.preventDefault()
+            var form = $('#user-message')[0];
+            var formdata = new FormData(form);
+            $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
+            $('.submitBtn2').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('user.message') }}',
+                dataType: 'json',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                cache: false,
+                mimeType: 'multipart/form-data',
+
+                success: function(res) {
+                    if (res.Error == false) {
+                        $.growl.notice({
+                            message: res.Message
+                        });
+                        $('#addColorModal').modal('hide');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        $.growl.error({
+                            message: res.Message
+                        });
+                    }
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                },
+                error: function(e) {
+
+                    var first_error = '';
+                    var count = 0;
+
+                    $.each(e.responseJSON.errors, function(index, item) {
+
+                        if (count == 0) {
+                            first_error = item[0];
+                        }
+
+                        count++;
+                    });
+                    $.growl.error({
+                        message: first_error
+                    });
+
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                }
+
+            });
+        });
+
+    </script>
+    @endsection
 

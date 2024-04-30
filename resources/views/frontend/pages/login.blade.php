@@ -54,7 +54,7 @@
                                             me</label>
                                     </div>
 
-                                    <a href="forgot-password.html"
+                                    <a href="{{ route('forgot.password.page') }}"
                                         class="forget-password text-dark form-footer-right">Forgot
                                         Password?</a>
                                 </div>
