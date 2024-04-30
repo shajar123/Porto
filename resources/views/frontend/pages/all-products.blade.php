@@ -2,11 +2,6 @@
 @section('body')
     <div class="page-wrapper">
 
-        <!-- End .top-notice -->
-
-
-        <!-- End .header -->
-
         <main class="main">
             <div class="category-banner-container bg-gray">
                 <div class="category-banner banner text-uppercase" style="background: no-repeat 60%/cover url('assets/images/banners/banner-top.jpg');">
@@ -118,7 +113,7 @@
                             <div class="col-6 col-sm-4">
                                 <div class="product-default">
                                     <figure>
-                                        <a href="product.html">
+                                        <a href="{{ route('products.detail',$product->id) }}">
                                             <img style="width:300px; height:300px " src="{{asset($product->image)}}" width="280" height="280" alt="product" />
 
                                         </a>
@@ -150,14 +145,18 @@
                                             <span class="product-price">{{ $product->sale_price }}</span>
                                         </div>
                                         <!-- End .price-box -->
-
+                                        @auth
                                         <div class="product-action">
-                                            <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i
+                                            <a  id="addToWishlistBtn" data-user="{{ Auth::user()->id }}"  class="btn-icon-wish" title="wishlist"><i
 													class="icon-heart"></i></a>
-                                            <a href="{{ route('products.detail',$product->id) }}" class="btn-icon btn-add-cart"><i
-													class="fa fa-arrow-right"></i><span>Details</span></a>
-                                            <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+
+
+                                            <a href="addToCartBtn" data-user="{{ Auth::user()->id }}"  class="btn-icon btn-add-cart"><i
+													class="fa fa-arrow-right"></i><span>Add to Cart</span></a>
+
+
                                         </div>
+                                        @endauth
                                     </div>
                                     <!-- End .product-details -->
                                 </div>
@@ -556,4 +555,50 @@
 
 
     <!-- Plugins JS File -->
+@endsection
+@section('custom-script')
+<script>
+     $(document).ready(function(){
+            $('#addToCartBtn').click(function(){
+                var userId = $(this).data('user');
+                var productId = $(this).data('product');
+
+                $.ajax({
+                    url: "{{ route('add.to.cart') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        user_id: userId,
+                        product_id: productId
+                    },
+
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $('#addToWishlistBtn').click(function(){
+                var userId = $(this).data('user');
+                var productId = $(this).data('product');
+
+                $.ajax({
+                    url: "{{ route('wish.list') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        user_id: userId,
+                        product_id: productId
+                    },
+
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+</script>
 @endsection
