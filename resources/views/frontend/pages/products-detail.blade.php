@@ -167,11 +167,14 @@
                                     <input class="horizontal-quantity form-control" type="text">
                                 </div>
                                 <!-- End .product-single-qty -->
+@auth
+
 
                                 <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}" href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
 									Cart</a>
 
                                 <a href="{{ route('shopping.cart') }}" class="btn btn-gray view-cart d-none">View cart</a>
+                                @endauth
                             </div>
                             <!-- End .product-action -->
 
@@ -188,10 +191,13 @@
                                     <a href="#" class="social-icon social-mail icon-mail-alt" target="_blank" title="Mail"></a>
                                 </div>
                                 <!-- End .social-icons -->
+@auth
+
 
                                 <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html" class="btn-icon-wish "  data-product="{{ $product->id }}"  title="Add to Wishlist"><i
 										class="icon-wishlist-2"></i><span>Add to
 										Wishlist</span></a>
+                                        @endauth
                             </div>
                             <!-- End .product single-share -->
                         </div>
