@@ -132,9 +132,9 @@
                             <!-- End .dropdown-cart-total -->
 
                             <div class="dropdown-cart-action">
-                                <a href="cart.html" class="btn btn-gray btn-block view-cart">View
+                                <a href="{{ route('shopping.cart') }}" class="btn btn-gray btn-block view-cart">View
                                     Cart</a>
-                                <a href="checkout.html" class="btn btn-dark btn-block">Checkout</a>
+                                <a href="{{ route('checkout') }}" class="btn btn-dark btn-block">Checkout</a>
                             </div>
                             <!-- End .dropdown-cart-total -->
                         </div>
@@ -159,73 +159,12 @@
                     </li>
                     <li>
                         <a href="{{ route('category') }}">Categories</a>
-                        <div class="megamenu megamenu-fixed-width megamenu-3cols">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <a href="#" class="nolink">VARIATION 1</a>
-                                    <ul class="submenu">
-                                        <li><a href="category.html">Fullwidth Banner</a></li>
 
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a href="#" class="nolink">VARIATION 2</a>
-                                    <ul class="submenu">
-                                        <li><a href="category-list.html">List Types</a></li>
-
-                                    </ul>
-                                </div>
-                                {{-- <div class="col-lg-4 p-0">
-                                    <div class="menu-banner">
-                                        <figure>
-                                            <img src="{{asset('frontend')}}/images/menu-banner.jpg" width="192" height="313" alt="Menu banner">
-                                        </figure>
-                                        <div class="banner-content">
-                                            <h4>
-                                                <span class="">UP TO</span><br />
-                                                <b class="">50%</b>
-                                                <i>OFF</i>
-                                            </h4>
-                                            <a href="category.html" class="btn btn-sm btn-dark">SHOP NOW</a>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                            </div>
-                        </div>
                         <!-- End .megamenu -->
                     </li>
                     <li>
                         <a href="{{ route('all.products') }}">Products</a>
-                        <div class="megamenu megamenu-fixed-width">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <a href="" class="">PRODUCT PAGES</a>
 
-                                </div>
-                                <!-- End .col-lg-4 -->
-
-                               \
-                                <!-- End .col-lg-4 -->
-
-                                {{-- <div class="col-lg-4 p-0">
-                                    <div class="menu-banner menu-banner-2">
-                                        <figure>
-                                            <img src="{{asset('frontend/images/menu-banner-1.jpg')}}" width="182" height="317" alt="Menu banner" class="product-promo">
-                                        </figure>
-                                        <i>OFF</i>
-                                        <div class="banner-content">
-                                            <h4>
-                                                <span class="">UP TO</span><br />
-                                                <b class="">50%</b>
-                                            </h4>
-                                        </div>
-                                        <a href="category.html" class="btn btn-sm btn-dark">SHOP NOW</a>
-                                    </div>
-                                </div> --}}
-                                <!-- End .col-lg-4 -->
-                            </div>
-                            <!-- End .row -->
-                        </div>
                         <!-- End .megamenu -->
                     </li>
                     <li>

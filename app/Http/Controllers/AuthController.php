@@ -6,6 +6,8 @@ use App\Models\City;
 use App\Models\Customer;
 use App\Models\State;
 use App\Models\User;
+use App\Models\Password;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -180,6 +182,21 @@ class AuthController extends Controller
 
 
             return response()->json(['message' => 'Data stored successfully']);
+        }
+
+
+        public function sendResetLinkEmail(Request $request)
+        {
+            dd($request->all());
+            $request->validate(['email' => 'required|email']);
+
+            $response = Password::sendResetLink($request->only('email'));
+
+            if ($response === Password::RESET_LINK_SENT) {
+                return response()->json(['message' => trans($response)], 200);
+            } else {
+                return response()->json(['error' => trans($response)], 422);
+            }
         }
 
 

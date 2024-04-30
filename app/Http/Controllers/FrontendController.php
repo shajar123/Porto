@@ -13,6 +13,8 @@ use App\Models\Email;
 use App\Models\Product;
 use App\Models\Wishlist;
 use App\Models\Cart;
+use App\Models\User_message;
+
 
 
 
@@ -128,6 +130,23 @@ class FrontendController extends Controller
             'Error' => false,
             'Message' => 'Email Saved successfully'
         ]);
+    }
+
+    public function user_message(Request $request){
+        $store = User_message::create([
+            'name'=> $request -> name,
+            'email'=> $request -> email,
+            'message'=> $request -> message,
+
+        ]);
+        return json_encode([
+            'Error' => false,
+            'Message' => 'Message Saved successfully'
+        ]);
+
+    }
+    public function forgot_password_page(){
+        return view('frontend.pages.forgot-password');
     }
 
 
