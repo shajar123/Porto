@@ -11,3 +11,44 @@
 <script src="{{asset('/frontend/js/main.min.js')}}"></script>
 <script src="{{asset('frontend/libs/growl/jquery.growl.js')}}"></script>
 
+$(document).ready(function(){
+    $('#addToCartBtn').click(function(){
+        var userId = $(this).data('user');
+        var productId = $(this).data('product');
+
+        $.ajax({
+            url: "{{ route('add.to.cart') }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                user_id: userId,
+                product_id: productId
+            },
+
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
+$(document).ready(function(){
+    $('#addToWishlistBtn').click(function(){
+        var userId = $(this).data('user');
+        var productId = $(this).data('product');
+
+        $.ajax({
+            url: "{{ route('wish.list') }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                user_id: userId,
+                product_id: productId
+            },
+
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
