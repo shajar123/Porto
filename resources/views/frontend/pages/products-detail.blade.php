@@ -1269,7 +1269,7 @@
     <!-- Plugins JS File -->
 @endsection
 @section('custom-scripts')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#addToWishlistBtn').click(function() {
                 var userId = $(this).data('user');
@@ -1311,5 +1311,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

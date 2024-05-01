@@ -14,16 +14,19 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use App\Models\Cart;
 use App\Models\User_message;
-
+use Illuminate\Support\Facades\Auth;
 
 
 
 class FrontendController extends Controller
 {
     public function dashboard(){
+
        $products=  Product::latest()->get();
        $categories= Category::latest()->get();
-        return view('frontend.pages.dashboard',compact('products','categories'));
+       $userId = Auth::id();
+
+        return view('frontend.pages.dashboard',compact('products','categories','userId'));
     }
     public function blogs(){
         $blogs=Blogs::get();
