@@ -42,6 +42,8 @@ Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist
 Route::get('/shopping-cart', [FrontendController::class, 'shopping_cart'])->name('shopping.cart');
 Route::get('/about-us', [FrontendController::class, 'about_us'])->name('about.us');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
+Route::post('/checkout-form', [CheckoutController::class, 'checkout_form'])->name('checkout.form');
+
 Route::get('/login', [FrontendController::class, 'getLogin'])->name('get.login');
 Route::post('/user-login', [AuthController::class, 'user_login'])->name('user.login');
 Route::post('/user-email', [FrontendController::class, 'user_email'])->name('user.email');

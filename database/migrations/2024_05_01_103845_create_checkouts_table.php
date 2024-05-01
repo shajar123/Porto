@@ -27,8 +27,6 @@ return new class extends Migration
             $table->text('description');
             $table->string('product_id');
             $table->string('user_id');
-
-
             $table->timestamps();
         });
     }

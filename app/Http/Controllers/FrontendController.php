@@ -117,15 +117,29 @@ class FrontendController extends Controller
 
         return view('frontend.pages.register',compact('country','states','city'));
     }
-    public function checkout(){
-        
-        $countries=Country::get();
-        $states=State::get();
-        $cities=City::get();
+//     public function checkout(){
+
+//         $countries=Country::get();
+//         $states=State::get();
+//         $cities=City::get();
 
 
-     return view('frontend.elements.checkout',compact('countries','states','cities'));
+//      return view('frontend.elements.checkout',compact('countries','states','cities'));
 
+// }
+public function checkout()
+{
+    $userId = auth()->id();
+
+    $countries = Country::get();
+    $states = State::get();
+    $cities = City::get();
+
+    $cartItems = Cart::where('user_id', $userId)->get();
+    $productIds = $cartItems->pluck('product_id');
+    $productTitles = Product::whereIn('id', $productIds)->pluck('title');
+
+    return view('frontend.elements.checkout', compact('countries', 'states', 'cities', 'productTitles'));
 }
 
     public function user_email(Request $request){

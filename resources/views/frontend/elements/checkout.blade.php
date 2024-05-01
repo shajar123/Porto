@@ -100,7 +100,11 @@
                             <li>
                                 <h2 class="step-title">Billing details</h2>
 
-                                <form action="#" id="checkout-form">
+                                <form  id="checkout-form">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="">
+                                    <input type="hidden" name="user_id" value="">
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -161,7 +165,7 @@
                                             <abbr class="required" title="required">*</abbr></label>
                                         <input name="address" type="text" class="form-control" placeholder="House number and street name" required />
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Postcode / Zip
                                             <abbr class="required" title="required">*</abbr></label>
@@ -181,9 +185,8 @@
 
                                     <div class="form-group">
                                         <label class="order-comments">Order notes (optional)</label>
-                                        <textarea class="form-control" placeholder="Notes about your order, e.g. special notes for delivery." required></textarea>
+                                        <textarea name="description" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery." required></textarea>
                                     </div>
-                                </form>
                             </li>
                         </ul>
                     </div>
@@ -200,31 +203,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($productTitles as $title)
+
+
                                     <tr>
+
                                         <td class="product-col">
+
+
                                             <h3 class="product-title">
-                                                Circled Ultimate 3D Speaker ×
-                                                <span class="product-qty">4</span>
+
+                                                {{ $title }}
+
+
                                             </h3>
                                         </td>
+
 
                                         <td class="price-col">
                                             <span>$1,040.00</span>
                                         </td>
                                     </tr>
+                                    @endforeach
 
-                                    <tr>
-                                        <td class="product-col">
-                                            <h3 class="product-title">
-                                                Fashion Computer Bag ×
-                                                <span class="product-qty">2</span>
-                                            </h3>
-                                        </td>
 
-                                        <td class="price-col">
-                                            <span>$418.00</span>
-                                        </td>
-                                    </tr>
+
                                 </tbody>
                                 <tfoot>
 
@@ -254,6 +257,9 @@
                                 Place order
                             </button>
                         </div>
+                    </form>
+
+
                         <!-- End .cart-summary -->
                     </div>
                     <!-- End .col-lg-4 -->
@@ -319,6 +325,65 @@
                 }
             });
         });
+        $('#checkout-form').on("submit", function(e) {
+            e.preventDefault()
+            var form = $('#checkout-form')[0];
+            var formdata = new FormData(form);
+            $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
+            $('.submitBtn2').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('checkout.form') }}',
+                dataType: 'json',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                cache: false,
+                mimeType: 'multipart/form-data',
+
+                success: function(res) {
+                    if (res.Error == false) {
+                        $.growl.notice({
+                            message: res.Message
+                        });
+                        $('#addColorModal').modal('hide');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        $.growl.error({
+                            message: res.Message
+                        });
+                    }
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                },
+                error: function(e) {
+
+                    var first_error = '';
+                    var count = 0;
+
+                    $.each(e.responseJSON.errors, function(index, item) {
+
+                        if (count == 0) {
+                            first_error = item[0];
+                        }
+
+                        count++;
+                    });
+                    $.growl.error({
+                        message: first_error
+                    });
+
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+
+                }
+
+            });
+        });
+
 
     </script>
     @endsection
