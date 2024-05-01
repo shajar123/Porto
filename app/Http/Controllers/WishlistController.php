@@ -12,6 +12,7 @@ use App\Models\User;
 class WishlistController extends Controller
 {
             public function wishlist(Request $request) {
+                dd($request->all());
                 $userId = $request->input('user_id');
                 $productId = $request->input('product_id');
                 $existingWishlist = Wishlist::where('user_id', $userId)

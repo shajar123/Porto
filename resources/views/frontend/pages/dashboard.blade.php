@@ -187,9 +187,13 @@
                         @auth
 
                         <div class="product-action">
+                            @foreach ($products as $product)
+    <input type="hidden" name="product_ids[]" value="{{ $product->id }}">
+@endforeach
+<input type="hidden" name="user_id" value="{{ $userId }}">
 
 
-                            <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html"
+                            <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}"
                                 class="btn-icon-wish " data-product="{{ $product->id }}" title="Add to Wishlist"><i
                                     class="icon-wishlist-2"></i><span>Add to
                                     Wishlist</span></a>

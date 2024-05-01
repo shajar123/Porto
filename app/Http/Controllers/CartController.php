@@ -8,12 +8,12 @@ use App\Models\Cart;
 class CartController extends Controller
 {
     public function cart(Request $request) {
+        dd($request->all());
         $userId = $request->input('user_id');
         $productId = $request->input('product_id');
         $existingWishlist = Cart::where('user_id', $userId)
         ->where('product_id', $productId)
         ->first();
-
            if ($existingWishlist) {
            return response()->json(['message' => 'Product already exists in your wishlist'], 422);
            }
