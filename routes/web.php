@@ -14,7 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\CheckoutController;
 
 
 /*
@@ -56,6 +56,8 @@ Route::post('/verify-code', [AuthController::class, 'VerifyCode'])->name('verify
 Route::post('/verify-pass', [AuthController::class, 'VerifyPass'])->name('verify.pass');
 Route::get('/new-password', [FrontendController::class, 'newPassword'])->name('new.password');
 Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change.password');
+// Route::get('', [CheckoutController::class, 'changePassword'])->name('change.password');
+
 
 
 
