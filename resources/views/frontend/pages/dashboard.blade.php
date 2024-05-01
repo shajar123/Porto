@@ -187,11 +187,19 @@
                         @auth
 
                         <div class="product-action">
-                            <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html" class="btn-icon-wish "  data-product="{{ $product->id }}"  title="Add to Wishlist"><i
-                                class="icon-wishlist-2"></i><span>Add to
-                                Wishlist</span></a>
-                                    <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}" href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
+
+
+                            <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html"
+                                class="btn-icon-wish " data-product="{{ $product->id }}" title="Add to Wishlist"><i
+                                    class="icon-wishlist-2"></i><span>Add to
+                                    Wishlist</span></a>
+
+
+                                    <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
+                                        href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
                                         Cart</a>
+
+                                    <a href="{{ route('shopping.cart') }}" class="btn btn-gray view-cart d-none">View cart</a>
 
                         </div>
                         @endauth
@@ -1050,49 +1058,4 @@
     </section>
 </main>
 @endsection
-@section('custom-scripts')
-<script>
-     $(document).ready(function(){
-            $('#addToCartBtn').click(function(){
-                var userId = $(this).data('user');
-                var productId = $(this).data('product');
 
-                $.ajax({
-                    url: "{{ route('add.to.cart') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        user_id: userId,
-                        product_id: productId
-                    },
-
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-
-        $(document).ready(function(){
-            $('#addToWishlistBtn').click(function(){
-                var userId = $(this).data('user');
-                var productId = $(this).data('product');
-
-                $.ajax({
-                    url: "{{ route('wish.list') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        user_id: userId,
-                        product_id: productId
-                    },
-
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-
-</script>
-@endsection
