@@ -23,7 +23,8 @@
 
                 <div class="login-form-container">
                     <h4>Returning customer?
-                        <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link btn-toggle">Login</button>
+                        <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne" class="btn btn-link btn-toggle">Login</button>
                     </h4>
 
                     <div id="collapseOne" class="collapse">
@@ -31,7 +32,8 @@
                             <div class="feature-box-content">
                                 <form action="#" id="login-form">
                                     <p>
-                                        If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing & Shipping section.
+                                        If you have shopped with us before, please enter your details below. If you are a
+                                        new customer, please proceed to the Billing & Shipping section.
                                     </p>
 
                                     <div class="row">
@@ -45,8 +47,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="mb-0 pb-1">Password <span
-                                                        class="required">*</span></label>
+                                                <label class="mb-0 pb-1">Password <span class="required">*</span></label>
                                                 <input type="password" class="form-control" required />
                                             </div>
                                         </div>
@@ -71,7 +72,8 @@
 
                 <div class="checkout-discount">
                     <h4>Have a coupon?
-                        <button data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link btn-toggle">ENTER YOUR CODE</button>
+                        <button data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                            aria-controls="collapseOne" class="btn btn-link btn-toggle">ENTER YOUR CODE</button>
                     </h4>
 
                     <div id="collapseTwo" class="collapse">
@@ -81,7 +83,8 @@
 
                                 <form action="#">
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm w-auto" placeholder="Coupon code" required="" />
+                                        <input type="text" class="form-control form-control-sm w-auto"
+                                            placeholder="Coupon code" required="" />
                                         <div class="input-group-append">
                                             <button class="btn btn-sm mt-0" type="submit">
                                                 Apply Coupon
@@ -100,10 +103,12 @@
                             <li>
                                 <h2 class="step-title">Billing details</h2>
 
-                                <form  id="checkout-form">
+                                <form id="checkout-form">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="">
-                                    <input type="hidden" name="user_id" value="">
+                                    @foreach ($productIds as $productId)
+                                        <input type="hidden" name="product_id[]" value="{{ $productId }}">
+                                    @endforeach
+                                    <input type="hidden" name="user_id" value="{{ $userId }}">
 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -130,10 +135,9 @@
                                         <label>Country / Region
                                             <abbr class="required" title="required">*</abbr></label>
                                         <select name="country_id" id="select_country" name="orderby" class="form-control">
-                                            @foreach($countries as  $country)
-
-                                            <option  value="{{ $country->id }}" selected="selected">{{ $country->name }}
-                                            </option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}" selected="selected">{{ $country->name }}
+                                                </option>
                                             @endforeach
 
                                         </select>
@@ -145,8 +149,8 @@
 
                                         <select name="state_id" id="select_state" name="orderby" class="form-control">
                                             @foreach ($states as $state)
-
-                                            <option value="{{ $state->id }}" selected="selected">{{ $state->name }}</option>
+                                                <option value="{{ $state->id }}" selected="selected">
+                                                    {{ $state->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -163,7 +167,8 @@
                                     <div class="form-group mb-1 pb-2">
                                         <label>Street address
                                             <abbr class="required" title="required">*</abbr></label>
-                                        <input name="address" type="text" class="form-control" placeholder="House number and street name" required />
+                                        <input name="address" type="text" class="form-control"
+                                            placeholder="House number and street name" required />
                                     </div>
 
                                     <div class="form-group">
@@ -185,7 +190,8 @@
 
                                     <div class="form-group">
                                         <label class="order-comments">Order notes (optional)</label>
-                                        <textarea name="description" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery." required></textarea>
+                                        <textarea name="description" class="form-control"
+                                            placeholder="Notes about your order, e.g. special notes for delivery." required></textarea>
                                     </div>
                             </li>
                         </ul>
@@ -204,26 +210,24 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($productTitles as $title)
+                                        <tr>
+
+                                            <td class="product-col">
 
 
-                                    <tr>
+                                                <h3 class="product-title">
 
-                                        <td class="product-col">
-
-
-                                            <h3 class="product-title">
-
-                                                {{ $title }}
+                                                    {{ $title }}
 
 
-                                            </h3>
-                                        </td>
+                                                </h3>
+                                            </td>
 
 
-                                        <td class="price-col">
-                                            <span>$1,040.00</span>
-                                        </td>
-                                    </tr>
+                                            <td class="price-col">
+                                                <span>$1,040.00</span>
+                                            </td>
+                                        </tr>
                                     @endforeach
 
 
@@ -248,7 +252,8 @@
                                 <h4 class="">Payment methods</h4>
                                 <div class="info-box with-icon p-0">
                                     <p>
-                                        Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.
+                                        Sorry, it seems that there are no available payment methods for your state. Please
+                                        contact us if you require assistance or wish to make alternate arrangements.
                                     </p>
                                 </div>
                             </div>
@@ -257,7 +262,7 @@
                                 Place order
                             </button>
                         </div>
-                    </form>
+                        </form>
 
 
                         <!-- End .cart-summary -->
@@ -280,8 +285,8 @@
 
 
     <!-- Plugins JS File -->
-    @endsection
-    @section('custom-scripts')
+@endsection
+@section('custom-scripts')
     <script>
         $('#select_country').on("change", function() {
             var country = $(this).val();
@@ -383,8 +388,5 @@
 
             });
         });
-
-
     </script>
-    @endsection
-
+@endsection

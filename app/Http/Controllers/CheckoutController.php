@@ -30,7 +30,7 @@ class CheckoutController extends Controller
             'city_id' => $request->city_id,
             'address' => $request->address,
             'postcode' => $request->postcode,
-            'product_id' => $request->product_id,
+            'product_id' => json_encode($request->product_id),
             'user_id' => $request->user_id,
         ]);
 

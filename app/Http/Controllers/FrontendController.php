@@ -139,7 +139,7 @@ public function checkout()
     $productIds = $cartItems->pluck('product_id');
     $productTitles = Product::whereIn('id', $productIds)->pluck('title');
 
-    return view('frontend.elements.checkout', compact('countries', 'states', 'cities', 'productTitles'));
+    return view('frontend.elements.checkout', compact('countries', 'states', 'cities', 'productTitles','userId','productIds'));
 }
 
     public function user_email(Request $request){
