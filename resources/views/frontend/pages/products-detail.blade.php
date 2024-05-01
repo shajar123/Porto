@@ -194,9 +194,7 @@
 @auth
 
 
-                                <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html" class="btn-icon-wish "  data-product="{{ $product->id }}"  title="Add to Wishlist"><i
-										class="icon-wishlist-2"></i><span>Add to
-										Wishlist</span></a>
+                                <a z
                                         @endauth
                             </div>
                             <!-- End .product single-share -->

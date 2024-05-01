@@ -7,7 +7,7 @@ use App\Models\Customer;
 use App\Models\State;
 use App\Models\User;
 use App\Models\Password;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,24 +32,19 @@ class AuthController extends Controller
                         'Message' => $message,
                         'user_type' => $user->user_type
                     ]);
-                }
-
-
-                else {
+                } else {
                     $message = 'Email 0r Password is incorrect';
                     return json_encode([
                         'Error' => true,
                         'Message' => $message,
                         'user_type' => $user->user_type
                     ]);
-
                 }
                 return json_encode([
                     'Error' => true,
                     'Message' => $message,
                     'user_type' => $user->user_type
                 ]);
-
             } else {
                 return json_encode([
                     'Error' => true,
@@ -64,6 +59,72 @@ class AuthController extends Controller
         }
     }
 
+    public function VerifyPass(Request $request)
+    {
+
+        if ($request->code == session('verification_code')) {
+            return json_encode([
+                'Error' => false,
+                'Message' => 'add new password'
+            ]);
+        } else {
+            return json_encode([
+                'Error' => true,
+                'Message' => 'invalid code'
+            ]);
+        }
+    }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ], [
+
+            'password.required' => 'The new password field is required.',
+
+            'confirm_password.required' => 'The confirm password field is required.',
+
+        ]);
+
+        $email = session('email');
+
+        User::where('email', $email->email)->update([
+            'password' => Hash::make( $request->password)
+        ]);
+
+
+
+
+
+        return json_encode([
+            'Error' => false,
+            'Message' => 'password changed '
+        ]);
+    }
+    public function forgot(Request $request)
+    {
+
+        $user = User::where('email', $request->email)->first();
+        Session::put('email', $user);
+        if ($user) {
+
+            $code = rand(1111, 9999);
+            Session::put('verification_code', $code);
+
+            return json_encode([
+                'Error' => false,
+                'Message' => 'Check your Email Verification Code is send '
+            ]);
+        } else {
+            return json_encode([
+                'Error' => true,
+                'Message' => 'User not found'
+            ]);
+        }
+    }
+
     public function user_login(Request $request)
     {
 
@@ -74,7 +135,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
-                    if (Auth::attempt(['email' => $request->email, 'password' =>  $request->password])) {
+            if (Auth::attempt(['email' => $request->email, 'password' =>  $request->password])) {
 
                 if ($user->user_type == 1) {
                     $message = 'logged in successfully.';
@@ -83,15 +144,13 @@ class AuthController extends Controller
                         'Message' => $message,
                         'user_type' => $user->user_type
                     ]);
-                }
-                else {
+                } else {
                     $message = 'Email 0r Password is incorrect';
                     return json_encode([
                         'Error' => true,
                         'Message' => $message,
                         'user_type' => $user->user_type
                     ]);
-
                 }
                 return json_encode([
                     'Error' => true,
@@ -123,13 +182,13 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
         $create = User::create([
-            'user_type'=> 1,
+            'user_type' => 1,
             'name' => $request->name,
             'email' => $request->email,
-            'password'=>Hash::make($request->password),
-            'country'=>$request->country,
-            'city'=>$request->city,
-            'state'=>$request->state,
+            'password' => Hash::make($request->password),
+            'country' => $request->country,
+            'city' => $request->city,
+            'state' => $request->state,
         ]);
         return json_encode([
             'Error' => false,
@@ -138,7 +197,7 @@ class AuthController extends Controller
     }
     public function selectCountry(Request $request)
 
-{
+    {
 
         $states = State::where('country_id', $request->country)->get();
         $html = '';
@@ -159,46 +218,28 @@ class AuthController extends Controller
 
     {
 
-            $city = City::where('state_id', $request->city)->get();
-            $html = '';
-            if (count($city) > 0) {
-                foreach ($city as $c) {
-                    $html .= '  <option value="' . $c->id . '">' . $c->name . '</option>';
-                }
-            } else {
-                $html .= '  <option value="" selected disabled readonly="">--Select--</option>';
+        $city = City::where('state_id', $request->city)->get();
+        $html = '';
+        if (count($city) > 0) {
+            foreach ($city as $c) {
+                $html .= '  <option value="' . $c->id . '">' . $c->name . '</option>';
             }
-
-            return json_encode([
-                'Error' => false,
-                'html' => $html
-            ]);
+        } else {
+            $html .= '  <option value="" selected disabled readonly="">--Select--</option>';
         }
 
-        public function user_logout(Request $request)
-        {
-            Auth::logout();
+        return json_encode([
+            'Error' => false,
+            'html' => $html
+        ]);
+    }
+
+    public function user_logout(Request $request)
+    {
+        Auth::logout();
 
 
 
-            return response()->json(['message' => 'Data stored successfully']);
-        }
-
-
-        public function sendResetLinkEmail(Request $request)
-        {
-            dd($request->all());
-            $request->validate(['email' => 'required|email']);
-
-            $response = Password::sendResetLink($request->only('email'));
-
-            if ($response === Password::RESET_LINK_SENT) {
-                return response()->json(['message' => trans($response)], 200);
-            } else {
-                return response()->json(['error' => trans($response)], 422);
-            }
-        }
-
-
-
+        return response()->json(['message' => 'Data stored successfully']);
+    }
 }

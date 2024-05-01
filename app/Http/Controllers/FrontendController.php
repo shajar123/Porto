@@ -69,6 +69,7 @@ class FrontendController extends Controller
         return view('frontend.pages.all-products',compact('allproducts'));
     }
 
+
     public function wishlist(){
         $userId = auth()->id();
         $wishlistItems = Wishlist::where('user_id', $userId)->get();
@@ -148,6 +149,14 @@ class FrontendController extends Controller
     public function forgot_password_page(){
         return view('frontend.pages.forgot-password');
     }
+    public function VerifyPage(){
 
+        return view('frontend.pages.verify');
+    }
+public function newPassword(){
+   
+    return view('frontend.pages.new-password');
+
+}
 
 }

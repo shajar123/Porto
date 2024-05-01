@@ -22,25 +22,22 @@
 					<div class="col-lg-6 offset-lg-3">
 						<div class="feature-box border-top-primary">
 							<div class="feature-box-content">
-								<form id="forgot" class="mb-0" action="#">
+								<form id="verify-password-form" class="mb-0" action="#">
                                     @csrf
-									<p>
-										Lost your password? Please enter your
-										username or email address. You will receive
-										a link to create a new password via email.
-									</p>
+
 									<div class="form-group mb-0">
-										<label for="reset-email" class="font-weight-normal">Username or email</label>
-										<input type="email"  class="form-control" id="reset-email" name="email"
+										<label for="reset-email" class="font-weight-normal">Enter Code</label>
+										<input type="text"  class="form-control" id="reset-email" name="code"
 											required />
 									</div>
+                                    <p>{{ session('verification_code') ?? '' }}</p>
 
 									<div class="form-footer mb-0">
-										<a href="login.html">Click here to login</a>
+
 
 										<button type="submit"
 											class="btn btn-md btn-primary form-footer-right font-weight-normal text-transform-none mr-0">
-											Reset Password
+											verify
 										</button>
 									</div>
 								</form>
@@ -57,15 +54,15 @@
     @endsection
     @section('custom-scripts')
     <script>
-        $('#forgot').on("submit", function(e) {
+ $('#verify-password-form').on("submit", function(e) {
             e.preventDefault()
-            var form = $('#forgot')[0];
+            var form = $('#verify-password-form')[0];
             var formdata = new FormData(form);
             $('.submitBtn2').html('<span class="me-2"><i class="fa fa-spinner fa-spin"></i></span> Processing');
             $('.submitBtn2').prop('disabled', true);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('forgot') }}',
+                url: '{{ route('verify.pass') }}',
                 dataType: 'json',
                 data: formdata,
                 contentType: false,
@@ -78,9 +75,9 @@
                         $.growl.notice({
                             message: res.Message
                         });
-                        $('#addCategoryModal').modal('hide');
+                     
                         setTimeout(function() {
-                            window.location.href='{{route('verify.page')  }}';
+                            window.location.href='{{route('new.password')  }}';
 
                         }, 1000);
                     } else {

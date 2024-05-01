@@ -74,7 +74,7 @@
 												<input class="horizontal-quantity form-control" type="text">
 											</div><!-- End .product-single-qty -->
 										</td>
-										<td class="text-right"><span class="subtotal-price">$17.90</span></td>
+										<td class="text-right"><span class="subtotal-price"></span></td>
 									</tr>
                                     @endforeach
 

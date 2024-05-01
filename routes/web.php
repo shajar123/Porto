@@ -50,8 +50,12 @@ Route::post('/add-to-wishlist', [WishlistController::class, 'wishlist'])->name('
 Route::post('/add-to-cart', [CartController::class, 'cart'])->name('add.to.cart');
 Route::post('/user-message', [FrontendController::class, 'user_message'])->name('user.message');
 Route::get('/forgot-password-page', [FrontendController::class, 'forgot_password_page'])->name('forgot.password.page');
-Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('forgot.password.form');
-
+Route::post('/forgot', [AuthController::class, 'forgot'])->name('forgot');
+Route::get('/code-page', [FrontendController::class, 'VerifyPage'])->name('verify.page');
+Route::post('/verify-code', [AuthController::class, 'VerifyCode'])->name('verify.code');
+Route::post('/verify-pass', [AuthController::class, 'VerifyPass'])->name('verify.pass');
+Route::get('/new-password', [FrontendController::class, 'newPassword'])->name('new.password');
+Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change.password');
 
 
 
