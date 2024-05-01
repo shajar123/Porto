@@ -11,8 +11,6 @@
 <script src="{{asset('/frontend/js/main.min.js')}}"></script>
 <script src="{{asset('frontend/libs/growl/jquery.growl.js')}}"></script>
 
-<script>
-$(document).ready(function(){
     $('#addToCartBtn').click(function(){
         var userId = $(this).data('user');
         var productId = $(this).data('product');
@@ -53,5 +51,4 @@ $(document).ready(function(){
     });
 });
 </script>
-
 

@@ -9,23 +9,10 @@
 
         <main class="main main-test">
             <div class="container checkout-container">
-                <ul class="checkout-progress-bar d-flex justify-content-center flex-wrap">
-                    <li>
-                        <a href="cart.html">Shopping Cart</a>
-                    </li>
-                    <li class="active">
-                        <a href="checkout.html">Checkout</a>
-                    </li>
-                    <li class="disabled">
-                        <a href="#">Order Complete</a>
-                    </li>
-                </ul>
+                
 
                 <div class="login-form-container">
-                    <h4>Returning customer?
-                        <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                            aria-controls="collapseOne" class="btn btn-link btn-toggle">Login</button>
-                    </h4>
+
 
                     <div id="collapseOne" class="collapse">
                         <div class="login-section feature-box">
@@ -70,32 +57,7 @@
                     </div>
                 </div>
 
-                <div class="checkout-discount">
-                    <h4>Have a coupon?
-                        <button data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                            aria-controls="collapseOne" class="btn btn-link btn-toggle">ENTER YOUR CODE</button>
-                    </h4>
 
-                    <div id="collapseTwo" class="collapse">
-                        <div class="feature-box">
-                            <div class="feature-box-content">
-                                <p>If you have a coupon code, please apply it below.</p>
-
-                                <form action="#">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm w-auto"
-                                            placeholder="Coupon code" required="" />
-                                        <div class="input-group-append">
-                                            <button class="btn btn-sm mt-0" type="submit">
-                                                Apply Coupon
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-lg-7">
@@ -209,6 +171,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $totalprice = 0;
+                                @endphp
                                     @foreach ($productTitles as $title)
                                         <tr>
 
@@ -217,35 +182,38 @@
 
                                                 <h3 class="product-title">
 
-                                                    {{ $title }}
+                                                    {{ $title->title }}
 
 
                                                 </h3>
+
                                             </td>
+
 
 
                                             <td class="price-col">
-                                                <span>$1,040.00</span>
+
+                                                <span>{{ $title->sale_price }}</span>
+
                                             </td>
+
                                         </tr>
-                                    @endforeach
+                                        @php
+        $totalprice += $title->sale_price;
+    @endphp
+@endforeach
+
+<tr>
+    <td colspan="2">
+        <strong>Total Price:</strong> <span>{{ $totalprice }}</span>
+    </td>
+</tr>
 
 
 
-                                </tbody>
-                                <tfoot>
 
 
-
-                                    <tr class="order-total">
-                                        <td>
-                                            <h4>Total</h4>
-                                        </td>
-                                        <td>
-                                            <b class="total-price"><span>$1,603.80</span></b>
-                                        </td>
-                                    </tr>
-                                </tfoot>
+                            </tbody>
                             </table>
 
                             <div class="payment-methods">
