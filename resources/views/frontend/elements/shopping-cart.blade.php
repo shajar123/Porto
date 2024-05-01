@@ -77,13 +77,7 @@
 										<td class="text-right"><span class="subtotal-price"></span></td>
 									</tr>
                                     @endforeach
-
-
-
-
 								</tbody>
-
-
 								<tfoot>
 									<tr>
 										<td colspan="5" class="clearfix">

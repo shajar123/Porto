@@ -1269,47 +1269,5 @@
     <!-- Plugins JS File -->
 @endsection
 @section('custom-scripts')
-    <script>
-        $(document).ready(function() {
-            $('#addToWishlistBtn').click(function() {
-                var userId = $(this).data('user');
-                var productId = $(this).data('product');
 
-                $.ajax({
-                    url: "{{ route('wish.list') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        user_id: userId,
-                        product_id: productId
-                    },
-
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-
-        $(document).ready(function() {
-            $('#addToCartBtn').click(function() {
-                var userId = $(this).data('user');
-                var productId = $(this).data('product');
-
-                $.ajax({
-                    url: "{{ route('add.to.cart') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        user_id: userId,
-                        product_id: productId
-                    },
-
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
 @endsection
