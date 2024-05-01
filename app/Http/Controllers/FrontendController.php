@@ -105,9 +105,7 @@ class FrontendController extends Controller
     public function about_us(){
         return view('frontend.elements.about-us');
     }
-    public function checkout(){
-        return view('frontend.elements.checkout');
-    }
+
     public function getLogin(){
         return view('frontend.pages.login');
 
@@ -119,6 +117,16 @@ class FrontendController extends Controller
 
         return view('frontend.pages.register',compact('country','states','city'));
     }
+    public function checkout(){
+        
+        $countries=Country::get();
+        $states=State::get();
+        $cities=City::get();
+
+
+     return view('frontend.elements.checkout',compact('countries','states','cities'));
+
+}
 
     public function user_email(Request $request){
         $validate = $request->validate([
@@ -154,7 +162,7 @@ class FrontendController extends Controller
         return view('frontend.pages.verify');
     }
 public function newPassword(){
-   
+
     return view('frontend.pages.new-password');
 
 }
