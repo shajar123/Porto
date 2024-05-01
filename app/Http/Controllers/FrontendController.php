@@ -137,7 +137,8 @@ public function checkout()
 
     $cartItems = Cart::where('user_id', $userId)->get();
     $productIds = $cartItems->pluck('product_id');
-    $productTitles = Product::whereIn('id', $productIds)->pluck('title');
+
+    $productTitles = Product::whereIn('id', $productIds)->get();
 
     return view('frontend.elements.checkout', compact('countries', 'states', 'cities', 'productTitles','userId','productIds'));
 }
