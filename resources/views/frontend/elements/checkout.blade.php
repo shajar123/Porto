@@ -9,7 +9,7 @@
 
         <main class="main main-test">
             <div class="container checkout-container">
-                
+
 
                 <div class="login-form-container">
 
@@ -67,10 +67,7 @@
 
                                 <form id="checkout-form">
                                     @csrf
-                                    @foreach ($productIds as $productId)
-                                        <input type="hidden" name="product_id[]" value="{{ $productId }}">
-                                    @endforeach
-                                    <input type="hidden" name="user_id" value="{{ $userId }}">
+                                   
 
                                     <div class="row">
                                         <div class="col-md-6">
