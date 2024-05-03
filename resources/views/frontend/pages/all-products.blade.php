@@ -147,7 +147,7 @@
                                         <!-- End .price-box -->
                                         @auth
                                         <div class="product-action">
-                                            <a  id="addToWishlistBtn" data-user="{{ Auth::user()->id }}"  class="btn-icon-wish" title="wishlist"><i
+                                            <a   onclick="addToWishlist({{ Auth::user()->id }}, {{ $product->id }})"  class="btn-icon-wish" title="wishlist"><i
 													class="icon-heart"></i></a>
 
 

@@ -184,16 +184,14 @@
                             <span class="product-price">{{ $product->sale_price }}</span>
                         </div>
                         <!-- End .price-box -->
-                        @auth
 
                         <div class="product-action">
-                            @foreach ($products as $product)
-    <input type="hidden" name="product_ids[]" value="{{ $product->id }}">
-@endforeach
+@auth
 
 
-                            <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}"
-                                class="btn-icon-wish " data-product="{{ $product->id }}" title="Add to Wishlist"><i
+
+                            <a onclick="addToWishlist({{ Auth::user()->id }}, {{ $product->id }})"
+                                class="btn-icon-wish "  title="Add to Wishlist"><i
                                     class="icon-wishlist-2"></i><span>Add to
                                     Wishlist</span></a>
 
@@ -201,17 +199,22 @@
                                     {{-- <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
                                         href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
                                         Cart</a> --}}
+
                                         <a data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
                                             href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart" onclick="addToCart(this)">Add to Cart</a>
+
 
                                     <a href="{{ route('shopping.cart') }}" class="btn btn-gray view-cart d-none">View cart</a>
 
                         </div>
                         @endauth
+
+
                     </div>
                     <!-- End .product-details -->
                 </div>
                 @endforeach
+
             </div>
             <!-- End .featured-proucts -->
         </div>

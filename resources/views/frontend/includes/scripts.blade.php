@@ -13,6 +13,7 @@
 <script src="{{asset('frontend/libs/growl/jquery.growl.js')}}"></script>
 
 <script>
+
     function addToCart(element) {
         var userId = element.getAttribute('data-user');
         var productId = element.getAttribute('data-product');
@@ -37,52 +38,52 @@
             }
         });
     }
+</script>
+<script>
+    // function wishlist(element) {
+    //     var userId = element.getAttribute('data-user');
+    //     var productId = element.getAttribute('data-product');
+    //     var csrfToken = '{{ csrf_token() }}'; // Retrieve CSRF token
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '{{ route('wish.list') }}', // Replace this with your actual route to add to cart
+    //         data: {
+    //             user_id: userId,
+    //             product_id: productId,
+    //             _token: csrfToken // Include CSRF token in the data
+    //         },
+    //         success: function(response) {
+    //             // Handle success response (e.g., update UI)
+    //             alert('Product added to cart successfully!');
+    //         },
+    //         error: function(xhr, status, error) {
+    //             // Handle error response
+    //             console.error(xhr.responseText);
+    //         }
+    //     });
+    // }
 
-    function addToCart(element) {
-        var userId = element.getAttribute('data-user');
-        var productId = element.getAttribute('data-product');
+    function addToWishlist(userId, productId) {
         var csrfToken = '{{ csrf_token() }}'; // Retrieve CSRF token
 
-        // AJAX request to add product to cart
+        // AJAX request to add product to wishlist
         $.ajax({
             type: 'POST',
-            url: '{{ route('wish.list') }}', // Replace this with your actual route to add to cart
+            url: '{{ route('wish.list') }}', // Replace this with your actual route to store the wishlist item
             data: {
                 user_id: userId,
                 product_id: productId,
                 _token: csrfToken // Include CSRF token in the data
             },
-            success: function(response) {
+            success: function (response) {
                 // Handle success response (e.g., update UI)
-                alert('Wishlist Added successfully!');
+                alert('Product added to wishlist successfully!');
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 // Handle error response
                 console.error(xhr.responseText);
             }
         });
     }
 
-
-
-    $(document).ready(function() {
-        $('#addToWishlistBtn').click(function() {
-            var userId = $(this).data('user');
-            var productId = $(this).data('product');
-
-            $.ajax({
-                url: "{{ route('wish.list') }}",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    user_id: userId,
-                    product_id: productId
-                },
-
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
 </script>

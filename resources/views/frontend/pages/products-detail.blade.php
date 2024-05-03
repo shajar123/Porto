@@ -207,10 +207,9 @@
                     <!-- End .social-icons -->
                     @auth
 
-                        <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html"
-                            class="btn-icon-wish " data-product="{{ $product->id }}" title="Add to Wishlist"><i
-                                class="icon-wishlist-2" onclick="wishlist{{ ($product->id) }}"></i><span>Add to
-                                Wishlist </span></a>
+                        <a   onclick="addToWishlist({{ Auth::user()->id }}, {{ $product->id }})" href="javascript:;"
+                            class="btn-icon-wish "  title="Add to Wishlist"><i
+                                class="icon-wishlist-2"  ></i></a>
 
                     @endauth
                 </div>
