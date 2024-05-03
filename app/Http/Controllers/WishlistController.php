@@ -25,6 +25,10 @@ class WishlistController extends Controller
                 $wishlist->user_id = $userId;
                 $wishlist->product_id = $productId;
                 $wishlist->save();
+                return json_encode([
+                    'Error' => false,
+                    'Message' => 'wishlist  successfully'
+                ]);
     }
 
 }

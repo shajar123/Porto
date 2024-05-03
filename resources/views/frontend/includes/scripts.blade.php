@@ -1,19 +1,17 @@
-<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-</script>
-<script src="{{asset('frontend/js/jquery.min.js')}}"></script>
-<script src="{{asset('/frontend/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('/frontend/js/optional/isotope.pkgd.min.js')}}"></script>
-<script src="{{asset('/frontend/js/plugins.min.js')}}"></script>
-<script src="{{asset('/frontend/js/jquery.appear.min.js')}}"></script>
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
+<script src="{{ asset('/frontend/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('/frontend/js/optional/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('/frontend/js/plugins.min.js') }}"></script>
+<script src="{{ asset('/frontend/js/jquery.appear.min.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Main JS File -->
-<script src="{{asset('/frontend/js/main.min.js')}}"></script>
-<script src="{{asset('frontend/libs/growl/jquery.growl.js')}}"></script>
+<script src="{{ asset('/frontend/js/main.min.js') }}"></script>
+<script src="{{ asset('frontend/libs/growl/jquery.growl.js') }}"></script>
 
 <script>
-
     function addToCart(element) {
         var userId = element.getAttribute('data-user');
         var productId = element.getAttribute('data-product');
@@ -30,7 +28,11 @@
             },
             success: function(response) {
                 // Handle success response (e.g., update UI)
-                alert('Product added to cart successfully!');
+                Swal.fire({
+                    title: "Add Successfully in your Cart!",
+
+                    icon: "success"
+                });
             },
             error: function(xhr, status, error) {
                 // Handle error response
@@ -40,7 +42,6 @@
     }
 </script>
 <script>
-
 
     function addToWishlist(userId, productId) {
         var csrfToken = '{{ csrf_token() }}'; // Retrieve CSRF token
@@ -54,15 +55,18 @@
                 product_id: productId,
                 _token: csrfToken // Include CSRF token in the data
             },
-            success: function (response) {
-                // Handle success response (e.g., update UI)
-                alert('Product added to wishlist successfully!');
+            success: function(response) {
+
+                Swal.fire({
+                    title: "Product added to wishlist successfully!",
+
+                    icon: "success"
+                });
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 // Handle error response
                 console.error(xhr.responseText);
             }
         });
     }
-
 </script>

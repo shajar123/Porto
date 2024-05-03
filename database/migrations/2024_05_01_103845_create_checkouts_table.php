@@ -25,6 +25,9 @@ return new class extends Migration
             $table->text('phone');
             $table->text('email');
             $table->text('description');
+         
+
+
             $table->timestamps();
         });
     }
