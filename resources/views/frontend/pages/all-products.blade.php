@@ -151,8 +151,10 @@
 													class="icon-heart"></i></a>
 
 
-                                            <a href="addToCartBtn" data-user="{{ Auth::user()->id }}"  class="btn-icon btn-add-cart"><i
-													class="fa fa-arrow-right"></i><span>Add to Cart</span></a>
+                                            {{-- <a href="addToCartBtn" data-user="{{ Auth::user()->id }}"  class="btn-icon btn-add-cart"><i
+													class="fa fa-arrow-right"></i><span>Add to Cart</span></a> --}}
+                                                    <a data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
+                                                        href="javascript:;" class="btn btn-black add-cart mr-2" title="Add to Cart" onclick="addToCart(this)">Add to Cart</a>
 
 
                                         </div>

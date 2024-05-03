@@ -110,12 +110,12 @@
                                                                         <label for="recipient-name"
                                                                             class="col-form-label">Title</label>
                                                                         <input type="text" name="title" id="title-id"
-                                                                            class="form-control">
+                                                                            class="form-control" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="message-text"
                                                                             class="col-form-label">Description</label>
-                                                                        <textarea name="description" id="description-id" class="form-control"></textarea>
+                                                                        <textarea required name="description" id="description-id" class="form-control"></textarea>
                                                                     </div>
                                                                     <div class="w-100 h-100 d-flex align-items-center">
                                                                         <img id="image-id" onclick="$(this).next().click()"
@@ -126,7 +126,7 @@
                                                                             alt="">
                                                                         <input
                                                                             onchange="showSelectedImage($(this),'previewBlogImg')"
-                                                                            type="file" class="d-none" name="image" id="image-id">
+                                                                            type="file" class="d-none" name="image" id="image-id" required>
                                                                     </div>
 
 

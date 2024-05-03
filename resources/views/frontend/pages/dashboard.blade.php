@@ -190,7 +190,6 @@
                             @foreach ($products as $product)
     <input type="hidden" name="product_ids[]" value="{{ $product->id }}">
 @endforeach
-<input type="hidden" name="user_id" value="{{ $userId }}">
 
 
                             <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}"
@@ -199,9 +198,11 @@
                                     Wishlist</span></a>
 
 
-                                    <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
+                                    {{-- <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
                                         href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
-                                        Cart</a>
+                                        Cart</a> --}}
+                                        <a data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
+                                            href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart" onclick="addToCart(this)">Add to Cart</a>
 
                                     <a href="{{ route('shopping.cart') }}" class="btn btn-gray view-cart d-none">View cart</a>
 
