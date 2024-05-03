@@ -18,6 +18,7 @@ class WishlistController extends Controller
                 ->where('product_id', $productId)
                 ->first();
                    if ($existingWishlist) {
+
                    return response()->json(['message' => 'Product already exists in your wishlist'], 422);
                    }
                 $wishlist = new Wishlist();

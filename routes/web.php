@@ -100,6 +100,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/product-add', [ProductController::class, 'add'])->name('add.products');
         Route::post('/product-delete', [ProductController::class, 'delete'])->name('delete.products');
         Route::post('/product-update', [ProductController::class, 'update'])->name('update.products');
+        Route::get('/orders', [CheckoutController::class, 'orders'])->name('orders');
+
     });
 });
 Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');
