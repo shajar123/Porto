@@ -92,6 +92,7 @@ class FrontendController extends Controller
 
     public function shopping_cart(){
         $userId = auth()->id();
+
         $wishlistItems = Cart::where('user_id', $userId)->get();
         $cartdetails = [];
 
@@ -101,7 +102,7 @@ class FrontendController extends Controller
                 $cartdetails[] = $product;
             }
         }
-        return view('frontend.elements.shopping-cart', ['cartdetails' => $cartdetails]);
+        return view('frontend.elements.shopping-cart',compact('cartdetails'));
     }
 
 

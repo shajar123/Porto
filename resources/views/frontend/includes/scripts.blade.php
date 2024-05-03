@@ -6,49 +6,52 @@
 <script src="{{asset('/frontend/js/plugins.min.js')}}"></script>
 <script src="{{asset('/frontend/js/jquery.appear.min.js')}}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Main JS File -->
 <script src="{{asset('/frontend/js/main.min.js')}}"></script>
 <script src="{{asset('frontend/libs/growl/jquery.growl.js')}}"></script>
 
-    $('#addToCartBtn').click(function(){
-        var userId = $(this).data('user');
-        var productId = $(this).data('product');
+<script>
+    $(document).ready(function() {
+        $('#addToCartBtn').click(function() {
+            var userId = $(this).data('user');
+            var productId = $(this).data('product');
 
-        $.ajax({
-            url: "{{ route('add.to.cart') }}",
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                user_id: userId,
-                product_id: productId
-            },
+            $.ajax({
+                url: "{{ route('add.to.cart') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    user_id: userId,
+                    product_id: productId
+                },
 
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
         });
     });
-});
-$(document).ready(function(){
-    $('#addToWishlistBtn').click(function(){
-        var userId = $(this).data('user');
-        var productId = $(this).data('product');
 
-        $.ajax({
-            url: "{{ route('wish.list') }}",
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                user_id: userId,
-                product_id: productId
-            },
+    $(document).ready(function() {
+        $('#addToWishlistBtn').click(function() {
+            var userId = $(this).data('user');
+            var productId = $(this).data('product');
 
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
+            $.ajax({
+                url: "{{ route('wish.list') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    user_id: userId,
+                    product_id: productId
+                },
+
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
         });
     });
-});
 </script>
-

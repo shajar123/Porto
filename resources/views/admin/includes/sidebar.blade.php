@@ -22,11 +22,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="dripicons-message"></i>
-                        <span> BLOGS </span>
+                        <span> Blogs</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.blogs') }}">ADD BLOGS</a></li>
-                        <li><a href="{{ route('blogs.edit.page') }}">EDIT BLOGS</a></li>
+                        <li><a href="{{ route('admin.blogs') }}">Add Blogs</a></li>
+                        <li><a href="{{ route('blogs.edit.page') }}">Edit Blogs</a></li>
                     </ul>
                 </li>
 

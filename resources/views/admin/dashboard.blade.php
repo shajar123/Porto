@@ -454,7 +454,6 @@
             </div>
         </div>
         <!-- end row -->
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -464,7 +463,7 @@
                             <table class="table table-hover mb-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col">(#) Id</th>
+                                        <th scope="col"> Id</th>
                                         <th scope="col">Product Id</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">First Name</th>
@@ -488,15 +487,10 @@
                                         <td> {{ $checkout->phone }}</td>
                                         <td> {{ $checkout->postcode }}</td>
                                         <td>
-                                           
+
                                         </td>
                                     </tr>
                                     @endforeach
-
-
-
-
-
                                 </tbody>
                             </table>
                         </div>

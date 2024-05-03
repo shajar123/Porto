@@ -1095,7 +1095,7 @@
                     </div>
                     <!-- End .price-box -->
                 </div>
-                <!-- End .product-details -->
+
             </div>
         </div>
     </div>
@@ -1260,14 +1260,8 @@
                 </a>
             </div>
         </div>
-        <!-- End .mobile-menu-wrapper -->
     </div>
-    <!-- End .mobile-menu-container -->
-
-
-
-    <!-- Plugins JS File -->
 @endsection
 @section('custom-scripts')
-
+ 
 @endsection

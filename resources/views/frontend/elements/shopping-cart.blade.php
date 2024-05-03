@@ -67,34 +67,25 @@
                                             $totalprice +=$cartdetail->sale_price;
 
                                         @endphp
-
-
 										<td>
 											<div class="product-single-qty">
 												<input class="horizontal-quantity form-control" type="text">
 											</div><!-- End .product-single-qty -->
 										</td>
-										<td class="text-right"><span class="subtotal-price"></span></td>
+										<td>
+
+
+                                            <button onclick="deleteProducts('{{ $cartdetail->id }}',$(this))" type="button"
+                                                class="btn btn-danger"><i class="fa fa-trash"></i></button>
+
+                                    </td>
 									</tr>
                                     @endforeach
 								</tbody>
 								<tfoot>
 									<tr>
 										<td colspan="5" class="clearfix">
-											<div class="float-left">
-												<div class="cart-discount">
-													<form action="#">
-														<div class="input-group">
-															<input type="text" class="form-control form-control-sm"
-																placeholder="Coupon Code" required>
-															<div class="input-group-append">
-																<button class="btn btn-sm" type="submit">Apply
-																	Coupon</button>
-															</div>
-														</div><!-- End .input-group -->
-													</form>
-												</div>
-											</div><!-- End .float-left -->
+
 
 											<div class="float-right">
 												<button type="submit" class="btn btn-shop btn-update-cart">
@@ -121,73 +112,19 @@
 
 									<tr>
 										<td colspan="2" class="text-left">
-											<h4>Shipping</h4>
 
-											<div class="form-group form-group-custom-control">
-												<div class="custom-control custom-radio">
-													<input type="radio" class="custom-control-input" name="radio"
-														checked>
-													<label class="custom-control-label">Local pickup</label>
-												</div><!-- End .custom-checkbox -->
-											</div><!-- End .form-group -->
 
-											<div class="form-group form-group-custom-control mb-0">
-												<div class="custom-control custom-radio mb-0">
-													<input type="radio" name="radio" class="custom-control-input">
-													<label class="custom-control-label">Flat rate</label>
-												</div><!-- End .custom-checkbox -->
-											</div><!-- End .form-group -->
-
-											<form action="#">
-												<div class="form-group form-group-sm">
-													<label>Shipping to <strong>NY.</strong></label>
-													<div class="select-custom">
-														<select class="form-control form-control-sm">
-															<option value="USA">United States (US)</option>
-															<option value="Turkey">Turkey</option>
-															<option value="China">China</option>
-															<option value="Germany">Germany</option>
-														</select>
-													</div><!-- End .select-custom -->
-												</div><!-- End .form-group -->
-
-												<div class="form-group form-group-sm">
-													<div class="select-custom">
-														<select class="form-control form-control-sm">
-															<option value="NY">New York</option>
-															<option value="CA">California</option>
-															<option value="TX">Texas</option>
-														</select>
-													</div><!-- End .select-custom -->
-												</div><!-- End .form-group -->
-
-												<div class="form-group form-group-sm">
-													<input type="text" class="form-control form-control-sm"
-														placeholder="Town / City">
-												</div><!-- End .form-group -->
-
-												<div class="form-group form-group-sm">
-													<input type="text" class="form-control form-control-sm"
-														placeholder="ZIP">
-												</div><!-- End .form-group -->
-
-												<button type="submit" class="btn btn-shop btn-update-total">
-													Update Totals
-												</button>
-											</form>
 										</td>
 									</tr>
 								</tbody>
 
 								<tfoot>
-									<tr>
-										<td>Total</td>
-										<td>{{ $totalprice }}</td>
-									</tr>
+
 								</tfoot>
 							</table>
 
 							<div class="checkout-methods">
+                                <p>if you sure you want to checkout click on this button</p>
 								<a href="{{ route('checkout') }}" class="btn btn-block btn-dark">Proceed to Checkout
 									<i class="fa fa-arrow-right"></i></a>
 							</div>
@@ -206,5 +143,54 @@
 
 
 	<!-- Plugins JS File -->
+    @endsection
+    @section('custom-scripts')
+
+    <script>
+          function deleteProducts(id, element) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('cart.delete') }}',
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            if (res.Error == false) {
+                                element.parent().parent().remove();
+                                $.growl.notice({
+                                    message: res.Message
+                                });
+                            }
+                        },
+                        error: function(e) {
+                            $.each(e.responseJSON.errors, function(index, item) {
+
+                                if (count == 0) {
+                                    first_error = item[0];
+                                }
+
+                                count++;
+                            });
+                            $.growl.error({
+                                message: first_error
+                            });
+                        }
+                    });
+                }
+            })
+        }
+    </script>
     @endsection
 
