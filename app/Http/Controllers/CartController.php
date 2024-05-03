@@ -22,6 +22,10 @@ class CartController extends Controller
         $wishlist->user_id = $userId;
         $wishlist->product_id = $productId;
         $wishlist->save();
+        return json_encode([
+            'Error' => false,
+            'Message' => 'Pro add successfully'
+        ]);
     }
 
     public function delete(Request $request)
