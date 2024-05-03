@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -25,7 +26,7 @@ class CartController extends Controller
 
     public function delete(Request $request)
     {
-       $delete= Cart::where('product_id',$request->id)->delete();
+       $delete= Cart::where('id',$request->id)->delete();
 
 
         return json_encode([
