@@ -42,6 +42,7 @@
     }
 </script>
 <script>
+
     function addToWishlist(userId, productId) {
         var csrfToken = '{{ csrf_token() }}'; // Retrieve CSRF token
 
