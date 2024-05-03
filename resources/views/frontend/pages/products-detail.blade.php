@@ -176,14 +176,16 @@
                     @auth
 
 
-                        <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
+                        {{-- <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
                             href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
-                            Cart</a>
+                            Cart</a> --}}
+                            <a data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
+                                href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart" onclick="addToCart(this)">Add to Cart</a>
+
 
                         <a href="{{ route('shopping.cart') }}" class="btn btn-gray view-cart d-none">View cart</a>
                     @endauth
                 </div>
-                <!-- End .product-action -->
 
                 <hr class="divider mb-0 mt-0">
 
@@ -207,8 +209,8 @@
 
                         <a id="addToWishlistBtn" data-user="{{ Auth::user()->id }}" href="wishlist.html"
                             class="btn-icon-wish " data-product="{{ $product->id }}" title="Add to Wishlist"><i
-                                class="icon-wishlist-2"></i><span>Add to
-                                Wishlist</span></a>
+                                class="icon-wishlist-2" onclick="wishlist{{ ($product->id) }}"></i><span>Add to
+                                Wishlist </span></a>
 
                     @endauth
                 </div>
@@ -1263,5 +1265,5 @@
     </div>
 @endsection
 @section('custom-scripts')
- 
+
 @endsection

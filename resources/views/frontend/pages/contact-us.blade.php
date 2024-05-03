@@ -38,6 +38,7 @@
 								elit.
 							</p>
 						</div>
+                        @if($contacts)
 
 						<div class="col-sm-6 col-lg-3">
 							<div class="feature-box text-center">
@@ -66,6 +67,7 @@
 								</div>
 							</div>
 						</div>
+                        @endif
 						<div class="col-sm-6 col-lg-3">
 							<div class="feature-box text-center">
 								<i class="far fa-calendar-alt"></i>

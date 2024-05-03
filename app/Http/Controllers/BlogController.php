@@ -8,6 +8,12 @@ use App\Models\Blogs;
 class BlogController extends Controller
 {
     public function blogs_create(Request $request){
+        $validate = $request->validate([
+            'title'=>['required'],
+            'description'=>['required'],
+            'image'=>['required'],
+
+        ]);
         $store = Blogs::create([
             'title' =>$request ->title,
             'description' =>$request ->description,
@@ -30,6 +36,12 @@ class BlogController extends Controller
     }
 
     public function blog_edit_create(Request $request){
+        $validate = $request->validate([
+            'title'=>['required'],
+            'description'=>['required'],
+            'image'=>['required'],
+
+        ]);
         $update= Blogs::where('id',$request->id)->update([
 
             'title'=>$request->title,
@@ -40,7 +52,7 @@ class BlogController extends Controller
 
     }
 
-    
+
     public function blog_delete(Request $request){
         $delete = Blogs::where('id', $request->id)->delete();
 

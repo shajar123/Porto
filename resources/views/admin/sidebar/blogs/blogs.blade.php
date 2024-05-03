@@ -29,7 +29,7 @@
 
                                             <div class="col-6">
                                                 <label class="form-label"  for="input-date1">TITLE</label>
-                                                <input id="input-date1" name="title" class="form-control input-mask">
+                                                <input id="input-date1" name="title" class="form-control input-mask" required>
 
                                             </div>
 
@@ -44,7 +44,7 @@
                                             <div class="mb-4">
                                                 <label class="form-label"  for="input-repeat">DESCRIPTION</label>
                                                 <input id="input-repeat" name="description" class="form-control input-mask"
-                                                    data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false">
+                                                    data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false" required>
 
                                             </div>
 
@@ -60,7 +60,7 @@
                                                 width: 400px;
                                                 object-fit: cover;" src="https://via.placeholder.com/1000x1000" alt="">
                                             <input onchange="showSelectedImage($(this),'previewBlogImg')" type="file"
-                                                   class="d-none" name="image">
+                                                   class="d-none" name="image" required>
                                         </div>
                                     </div>
 
