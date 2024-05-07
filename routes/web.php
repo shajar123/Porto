@@ -101,6 +101,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/product-delete', [ProductController::class, 'delete'])->name('delete.products');
         Route::post('/product-update', [ProductController::class, 'update'])->name('update.products');
         Route::get('/orders', [CheckoutController::class, 'orders'])->name('orders');
+        Route::post('/order-status', [CheckoutController::class, 'order_status'])->name('order.status');
+        Route::get('/order-items', [CheckoutController::class, 'order_items'])->name('order.items');
+        Route::get('/Aorders/{id}', [CheckoutController::class, 'admin_orders'])->name('admin.orders');
+
 
     });
 });

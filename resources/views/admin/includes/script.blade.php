@@ -7,7 +7,6 @@
     <script src="{{asset('admin_assets/libs/morris.js/morris.min.js')}}"></script>
     <script src="{{asset('admin_assets/libs/raphael/raphael.min.js')}}"></script>
 
-
     <script src="{{asset('admin_assets/libs/peity/jquery.peity.min.js')}}"></script>
 
     <script src="{{asset('admin_assets/js/pages/dashboard.init.js')}}"></script>

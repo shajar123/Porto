@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->text('total_amount');
-            $table->text('status')->default(0)->comment('0=pending,1=completed,2=rejected');
-
+            $table->text('status')->default(0)->comment('pending=0,completed=1,rejected=2');
             $table->timestamps();
         });
     }

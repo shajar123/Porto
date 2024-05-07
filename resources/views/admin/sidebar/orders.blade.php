@@ -6,18 +6,6 @@
 @section('body')
 
 
-        <!-- Begin page -->
-
-
-
-
-
-
-
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
 
                 <div class="page-content">
                     <div class="container-fluid">
@@ -55,6 +43,7 @@
 
                                         <h4 class="card-title">TOTAL ORDERS</h4>
 
+
                                         <div class="table-responsive">
                                             <table class="table table-editable table-nowrap align-middle table-edits">
                                                 <thead>
@@ -63,16 +52,38 @@
                                                         <th>user_id</th>
                                                         <th>Total_Amount</th>
                                                         <th>Status</th>
+                                                        <th>Action</th>
+
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($orders as  $order)
+
                                                     <tr data-id="1">
-                                                        <td data-field="id" style="width: 80px">1</td>
-                                                        <td data-field="name">David McHenry</td>
-                                                        <td data-field="age">24</td>
-                                                        <td data-field="gender">Male</td>
+
+                                                        <td data-field="id" style="width: 80px">{{ $order->id }}</td>
+                                                        <td data-field="name">{{ $order->user_id }}</td>
+                                                        <td data-field="age">{{ $order->total_amount }}</td>
+
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    {{ $order->status }}
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item status-change" href="#" data-status="0" data-order-id="{{ $order->id }}">Pending</a>
+                                                                    <a class="dropdown-item status-change" href="#" data-status="1" data-order-id="{{ $order->id }}">Completed</a>
+                                                                    <a class="dropdown-item status-change" href="#" data-status="2" data-order-id="{{ $order->id }}">Rejected</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td><a href="{{ route('admin.orders',$order->id) }}" class="btn btn-success">See orders</a></td>
 
                                                     </tr>
+                                                    @endforeach
+
 
                                                 </tbody>
                                             </table>
@@ -102,5 +113,49 @@
 
         <!-- Right bar overlay-->
 
+
+@endsection
+@section('custom-scripts')
+<script>
+    $(document).ready(function() {
+        $('.status-change').click(function(e) {
+            e.preventDefault();
+            var status = $(this).data('status');
+            var orderId = $(this).data('order-id');
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('order.status') }}',
+                dataType: 'json',
+                data: {
+                    status: status,
+                    order_id: orderId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(res) {
+                    if (res.Error == false) {
+                        $.growl.notice({
+                            message: res.Message
+                        });
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        $.growl.error({
+                            message: res.Message
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    // Handle errors if any
+                },
+                complete: function() {
+                    $('.submitBtn2').html('Save');
+                    $('.submitBtn2').prop('disabled', false);
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

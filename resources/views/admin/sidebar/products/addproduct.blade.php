@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="form-label">Categories</label>
                             <select autocomplete="off" class="form-control select2" name="category_id[]" id="categories"
-                                data-placeholder="Choose Browser" multiple>
+                                data-placeholder="Select Category" multiple>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">
                                         {{ $category->title ?? '' }}

@@ -67,7 +67,10 @@
 
                                 <form id="checkout-form">
                                     @csrf
-                                   
+                                    <input type="hidden" name="user_id" value="{{ $userId }}">
+                                    @foreach($productIds as $productId)
+                                    <input type="hidden" name="product_ids[]" value="{{ $productId }}">
+                                @endforeach
 
                                     <div class="row">
                                         <div class="col-md-6">

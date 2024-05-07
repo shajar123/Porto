@@ -78,6 +78,12 @@
                         <span>ORDERS</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('order.items') }}" class="waves-effect">
+                        <i class="dripicons-calendar"></i>
+                        <span>ORDER ITEMS</span>
+                    </a>
+                </li>
 
 
 

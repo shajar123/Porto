@@ -132,7 +132,6 @@ public function checkout()
     $countries = Country::get();
     $states = State::get();
     $cities = City::get();
-
     $cartItems = Cart::where('user_id', $userId)->get();
     $productIds = $cartItems->pluck('product_id');
 
