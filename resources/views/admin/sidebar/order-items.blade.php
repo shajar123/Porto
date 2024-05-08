@@ -47,27 +47,57 @@
                                             <table class="table table-editable table-nowrap align-middle table-edits">
                                                 <thead>
                                                     <tr>
-                                                        <th>id</th>
-                                                        <th>order_id</th>
-                                                        <th>product_id</th>
-                                                        <th>Button</th>
+                                                        <th>title</th>
+                                                        <th>image</th>
+                                                        <th>sales-price</th>
+                                                        <th>Category</th>
+                                                        <th>Color</th>
+                                                        <th>Size</th>
+
+
 
 
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($orderitems as $orderitem)
+                                                    @foreach ($products as $product)
+
 
                                                     <tr data-id="1">
-                                                        <td data-field="id" style="width: 80px">{{ $orderitem->id }}</td>
-                                                        <td data-field="name">{{ $orderitem->order_id }}</td>
-                                                        <td data-field="age">{{$orderitem->product_id }}</td>
-                                             
+                                                        <td >{{ $product->title }}</td>
+                                                        <td ><img src="{{ asset($product->image) }}"
+                                                            style="height: 50px;width: 50px;object-fit: cover" alt=""></td>
+                                                        <td>{{ $product->sale_price }}</td>
+                                                        @php
+                                                            $categories=App\Models\Category::where('id',json_decode($product->category_id),)->get();
+                                                        @endphp
+                                                        @foreach ($categories as $category)
+                                                        <td>{{ $category->title }}</td>
 
 
+                                                        @endforeach
+
+                                                        @php
+                                                            $colors = App\Models\Color::where('id',json_decode($product->color_id))->get();
+                                                        @endphp
+
+                                                        @foreach($colors as  $color)
+                                                        <td>{{ $color->name}}</td>
+
+
+                                                        @endforeach
+                                                        @php
+                                                            $sizes = App\Models\Size::where('id',json_decode($product->size_id))->get();
+                                                        @endphp
+                                                        @foreach ($sizes as $size)
+                                                        <td>{{ $size->name }}</td>
+
+
+                                                        @endforeach
                                                     </tr>
                                                     @endforeach
+
 
 
                                                 </tbody>

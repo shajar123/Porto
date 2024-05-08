@@ -19,6 +19,7 @@ class CheckoutController extends Controller
 {
 
     public function checkout_form(Request $request){
+
         $validate = $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
@@ -59,7 +60,7 @@ class CheckoutController extends Controller
             'total_amount' => $totalPrice,
 
         ]);
-        $products = Product::all();
+        $products = Product::whereIn('id',$request->product_ids)->get();
 
         foreach ($products as $product) {
             OrderItem::create([
@@ -93,32 +94,21 @@ public function order_status(Request $request){
     }
 
 
-public function admin_orders($id) {
+public function order_items($id){
+    // Retrieve the order items associated with the given order ID
     $orderItems = OrderItem::where('order_id', $id)->get();
 
-    $productDetails = [];
+    // Extract product IDs from the OrderItems
+    $productIds = $orderItems->pluck('product_id')->toArray();
 
-    foreach ($orderItems as $orderItem) {
-        $product = Product::find($orderItem->product_id);
+    // Fetch product details based on the retrieved product IDs
+    $products = Product::whereIn('id', $productIds)->get();
 
-
-        if ($product) {
-            $productDetails[] = $product;
-        }
-    }
-
-
-    return view('admin.sidebar.admin-orders', compact('productDetails'));
+    // Pass the product details and order ID to the view
+    return view('admin.sidebar.order-items', [
+        'products' => $products,
+        'orderId' => $id
+    ]);
 }
 
-
-public function order_items(){
-
-    $orderitems=Orderitem::all();
-    return view('admin.sidebar.order-items',compact('orderitems'));
 }
-}
-
-
-
-

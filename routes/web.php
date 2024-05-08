@@ -62,7 +62,7 @@ Route::post('/verify-code', [AuthController::class, 'VerifyCode'])->name('verify
 Route::post('/verify-pass', [AuthController::class, 'VerifyPass'])->name('verify.pass');
 Route::get('/new-password', [FrontendController::class, 'newPassword'])->name('new.password');
 Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change.password');
-// Route::get('', [CheckoutController::class, 'changePassword'])->name('change.password');
+
 
 
 
@@ -102,10 +102,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/product-update', [ProductController::class, 'update'])->name('update.products');
         Route::get('/orders', [CheckoutController::class, 'orders'])->name('orders');
         Route::post('/order-status', [CheckoutController::class, 'order_status'])->name('order.status');
-        Route::get('/order-items', [CheckoutController::class, 'order_items'])->name('order.items');
-        Route::get('/Aorders/{id}', [CheckoutController::class, 'admin_orders'])->name('admin.orders');
-
-
+        Route::get('/order-items/{id}', [CheckoutController::class, 'order_items'])->name('order.items');
     });
 });
 Route::get('/admin-login', [AdminController::class, 'admin_login'])->name('admin.login');

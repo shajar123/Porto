@@ -79,7 +79,7 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td><a href="{{ route('admin.orders',$order->id) }}" class="btn btn-success">See orders</a></td>
+                                                        <td><a href="{{ route('order.items',$order->id) }}" class="btn btn-success">See orders</a></td>
 
                                                     </tr>
                                                     @endforeach
