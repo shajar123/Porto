@@ -68,10 +68,11 @@ class FrontendController extends Controller
         return view('frontend.pages.products-detail',compact('productsdetail'));
     }
     public function productsAll(){
-        $allproducts =Product::get();
-        return view('frontend.pages.all-products',compact('allproducts'));
-    }
+        $categories=Category::all();
+        $allproducts =Product::paginate(2);
 
+        return view('frontend.pages.all-products',compact('allproducts','categories'));
+    }
 
     public function wishlist(){
         $userId = auth()->id();

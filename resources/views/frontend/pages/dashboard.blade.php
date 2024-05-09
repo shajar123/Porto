@@ -184,9 +184,9 @@
                             <span class="product-price">{{ $product->sale_price }}</span>
                         </div>
                         <!-- End .price-box -->
+                        @auth
 
                         <div class="product-action">
-@auth
 
 
 
@@ -196,9 +196,7 @@
                                     Wishlist</span></a>
 
 
-                                    {{-- <a id="addToCartBtn" data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
-                                        href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">Add to
-                                        Cart</a> --}}
+
 
                                         <a data-user="{{ Auth::user()->id }}" data-product="{{ $product->id }}"
                                             href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart" onclick="addToCart(this)">Add to Cart</a>
