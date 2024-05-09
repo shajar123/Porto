@@ -4,6 +4,7 @@
 <script src="{{ asset('/frontend/js/optional/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('/frontend/js/plugins.min.js') }}"></script>
 <script src="{{ asset('/frontend/js/jquery.appear.min.js') }}"></script>
+<script src="{{ asset('frontend/js/nouislider.min.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
