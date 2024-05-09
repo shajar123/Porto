@@ -54,10 +54,6 @@
                                                         <th>Color</th>
                                                         <th>Size</th>
 
-
-
-
-
                                                     </tr>
                                                 </thead>
                                                 <tbody>
